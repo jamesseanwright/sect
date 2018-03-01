@@ -10,8 +10,7 @@ class Entity {
     }
 
     static create(...components: Component[]): Entity {
-        const entity = new Entity(components);
-        return entity;
+        return new Entity(components);
     }
 }
 

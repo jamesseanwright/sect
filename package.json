@@ -4,6 +4,7 @@
   "description": "A statically-typed Entity-Component-System for JavaScript games",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
     "test": "mocha"
   },
   "repository": {
