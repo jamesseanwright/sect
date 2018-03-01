@@ -1,0 +1,31 @@
+{
+  "name": "typed-ecs",
+  "version": "0.0.1",
+  "description": "A statically-typed Entity-Component-System for JavaScript games",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesseanwright/typed-ecs.git"
+  },
+  "keywords": [
+    "ecs",
+    "entity-component-system",
+    "entity",
+    "component",
+    "system",
+    "games",
+    "typescript"
+  ],
+  "author": "James Wright <james@jamesswright.co.uk>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesseanwright/typed-ecs/issues"
+  },
+  "homepage": "https://github.com/jamesseanwright/typed-ecs#readme",
+  "devDependencies": {
+    "typescript": "^2.7.2"
+  }
+}
