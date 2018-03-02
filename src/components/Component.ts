@@ -1,3 +1,1 @@
-export abstract class Component {
-    abstract get name(): string;
-}
+export abstract class Component {}
