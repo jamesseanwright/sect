@@ -9,6 +9,7 @@ class Game {
     }
 
     start() {
+        // TODO: make private instance method
         const loop = (timestamp: number) => {
             for (let system of this.systems) {
                 system.update(timestamp);
