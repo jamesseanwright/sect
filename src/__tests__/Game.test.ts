@@ -1,5 +1,9 @@
 import { expect } from 'chai';
+import * as sinon from 'sinon';
+import * as createMockRaf from 'mock-raf';
+import System from '../systems/System';
 import Game from '../Game';
+import { SinonStatic } from 'sinon';
 
 describe('Game', function () {
     describe('game state', function () {
@@ -20,6 +24,25 @@ describe('Game', function () {
             expect(() => game.getState<number>("score")).to.throw(
                 "score is not present in game state"
             );
+        });
+    });
+
+
+    describe('start', function () {
+        type FakeWindow = NodeJS.Global & Window;
+        let mockRaf;
+
+        beforeEach(function () {
+            mockRaf = createMockRaf();
+            (global as FakeWindow).requestAnimationFrame = mockRaf.raf;
+        });
+
+        afterEach(function () {
+            (global as FakeWindow).requestAnimationFrame = undefined;
+        });
+
+        it('should update all of the systems in a rAF loop', function () {
+
         });
     });
 });
