@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
 import * as createMockRaf from 'mock-raf';
+import { Component } from '../components';
 import System from '../systems/System';
 import Game from '../Game';
-import { SinonStatic } from 'sinon';
 
 describe('Game', function () {
     describe('game state', function () {
@@ -30,19 +30,37 @@ describe('Game', function () {
 
     describe('start', function () {
         type FakeWindow = NodeJS.Global & Window;
+
+        class StubSystem extends System {
+            next(component: Component, timestamp: number) {}
+        }
+
+        const system = new StubSystem();
+        let mockSystem = sinon.mock(system);
+        let game: Game;
         let mockRaf;
 
         beforeEach(function () {
+            game = new Game(system);
             mockRaf = createMockRaf();
             (global as FakeWindow).requestAnimationFrame = mockRaf.raf;
         });
 
         afterEach(function () {
             (global as FakeWindow).requestAnimationFrame = undefined;
+            mockSystem.restore();
         });
 
         it('should update all of the systems in a rAF loop', function () {
+            mockSystem.expects('update')
+                .twice()
+                .withArgs(sinon.match.number);
 
+            game.start();
+            mockRaf.step();
+            mockRaf.step();
+
+            mockSystem.verify();
         });
     });
 });
