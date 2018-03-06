@@ -8,16 +8,16 @@ class Game {
         this.systems = systems;
     }
 
-    start() {
-        const loop = (timestamp: number) => {
-            for (let system of this.systems) {
-                system.update(timestamp);
-            }
+    private loop = (timestamp: number): void => {
+        for (let system of this.systems) {
+            system.update(timestamp);
+        }
 
-            requestAnimationFrame(loop);
-        };
+        requestAnimationFrame(this.loop);
+    }
 
-        requestAnimationFrame(loop);
+    start(): void {
+        requestAnimationFrame(this.loop);
     }
 
     getState<T>(key: string): T {
