@@ -4,11 +4,12 @@
   "description": "A statically-typed Entity-Component-System for JavaScript games",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc-watch --onSuccess 'npm test'",
+    "build": "tsc && npm run copy-html",
+    "copy-html": "cp src/index.html dist",
+    "dev": "rm -rf dist && tsc-watch --onSuccess 'npm run dev-success'",
+    "dev-success": "npm run copy-html && npm test",
     "lint": "tslint -c tslint.json src{,/**}/*.ts",
-    "pretest": "npm run lint",
-    "test": "mocha dist{,/**}/__tests__/*.test.js"
+    "test": "npm run lint && mocha dist{,/**}/__tests__/*.test.js"
   },
   "repository": {
     "type": "git",
