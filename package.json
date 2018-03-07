@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc-watch --onSuccess 'npm run lint && npm test'",
+    "dev": "tsc-watch --onSuccess 'npm test'",
     "lint": "tslint -c tslint.json src{,/**}/*.ts",
+    "pretest": "npm run lint",
     "test": "mocha dist{,/**}/__tests__/*.test.js"
   },
   "repository": {
