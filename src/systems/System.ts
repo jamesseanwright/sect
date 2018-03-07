@@ -1,7 +1,12 @@
 import { Component } from '../components';
 
 abstract class System {
+    private componentType: typeof Component;
     private components: Component[] = [];
+
+    constructor(componentType: typeof Component) {
+        this.componentType = componentType;
+    }
 
     public register(component: Component) {
         this.components.push(component);
@@ -16,6 +21,10 @@ abstract class System {
         for (const component of this.components) {
             this.next(component, timestamp);
         }
+    }
+
+    public getComponentType(): typeof Component {
+        return this.componentType;
     }
 
     protected abstract next(component: Component, timestamp: number): void;

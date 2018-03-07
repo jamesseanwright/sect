@@ -31,6 +31,10 @@ describe('Game', function () {
         type FakeWindow = NodeJS.Global & Window;
 
         class StubSystem extends System {
+            constructor() {
+                super(Component);
+            }
+
             public next(component: Component, timestamp: number) {}
         }
 

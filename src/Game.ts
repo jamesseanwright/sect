@@ -6,6 +6,7 @@ class Game {
 
     constructor(...systems: System[]) {
         this.systems = systems;
+        this.linkSystemsToComponents();
     }
 
     public start(): void {
@@ -22,6 +23,12 @@ class Game {
 
     public setState<T>(key: string, value: T) {
         this.gameState.set(key, value);
+    }
+
+    private linkSystemsToComponents(): void {
+        for (const system of this.systems) {
+            system.getComponentType().setSystem(system); // TODO: eww
+        }
     }
 
     private loop = (timestamp: number): void => {

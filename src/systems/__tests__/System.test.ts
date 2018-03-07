@@ -18,7 +18,7 @@ describe('System', function () {
 
     describe('register', function () {
         it('should register a component with the system', function () {
-            const system = new MySystem();
+            const system = new MySystem(Component);
             const component = new MyComponent();
             const timestamp = 0;
 
@@ -32,7 +32,7 @@ describe('System', function () {
 
     describe('deregister', function () {
         it('should deregister a component from the system', function () {
-            const system = new MySystem();
+            const system = new MySystem(Component);
             const component = new MyComponent();
             const timestamp = 0;
 
