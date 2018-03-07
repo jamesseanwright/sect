@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import * as sinon from 'sinon';
 import * as createMockRaf from 'mock-raf';
+import * as sinon from 'sinon';
 import { Component } from '../components';
-import System from '../systems/System';
 import Game from '../Game';
+import System from '../systems/System';
 
 describe('Game', function () {
     describe('game state', function () {
@@ -11,9 +11,9 @@ describe('Game', function () {
             const game = new Game();
             const expectedScore = 100;
 
-            game.setState<number>("score", expectedScore);
+            game.setState<number>('score', expectedScore);
 
-            const actualScore = game.getState<number>("score");
+            const actualScore = game.getState<number>('score');
 
             expect(actualScore).to.equal(expectedScore);
         });
@@ -21,22 +21,21 @@ describe('Game', function () {
         it('should throw an error when the state property is unrecognised', function () {
             const game = new Game();
 
-            expect(() => game.getState<number>("score")).to.throw(
-                "score is not present in game state"
+            expect(() => game.getState<number>('score')).to.throw(
+                'score is not present in game state',
             );
         });
     });
-
 
     describe('start', function () {
         type FakeWindow = NodeJS.Global & Window;
 
         class StubSystem extends System {
-            next(component: Component, timestamp: number) {}
+            public next(component: Component, timestamp: number) {}
         }
 
         const system = new StubSystem();
-        let mockSystem = sinon.mock(system);
+        const mockSystem = sinon.mock(system);
         let game: Game;
         let mockRaf;
 

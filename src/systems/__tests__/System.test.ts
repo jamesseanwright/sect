@@ -1,13 +1,15 @@
+/* tslint:disable:max-classes-per-file */
+
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import System from '../System';
 import { Component } from '../../components';
+import System from '../System';
 
 describe('System', function () {
     class MySystem extends System {
-        stub = sinon.stub();
+        public stub = sinon.stub();
 
-        next(component: Component, timestamp: number) {
+        public next(component: Component, timestamp: number) {
             this.stub(component, timestamp);
         }
     }

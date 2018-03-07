@@ -8,19 +8,11 @@ class Game {
         this.systems = systems;
     }
 
-    private loop = (timestamp: number): void => {
-        for (let system of this.systems) {
-            system.update(timestamp);
-        }
-
+    public start(): void {
         requestAnimationFrame(this.loop);
     }
 
-    start(): void {
-        requestAnimationFrame(this.loop);
-    }
-
-    getState<T>(key: string): T {
+    public getState<T>(key: string): T {
         if (!this.gameState.has(key)) {
             throw new Error(`${key} is not present in game state`);
         }
@@ -28,8 +20,16 @@ class Game {
         return this.gameState.get(key) as T;
     }
 
-    setState<T>(key: string, value: T) {
+    public setState<T>(key: string, value: T) {
         this.gameState.set(key, value);
+    }
+
+    private loop = (timestamp: number): void => {
+        for (const system of this.systems) {
+            system.update(timestamp);
+        }
+
+        requestAnimationFrame(this.loop);
     }
 }
 

@@ -1,10 +1,10 @@
 import { Component } from './Component';
 
 export class Positionable extends Component {
-    x: Number;
-    y: Number;
+    public x: number; // TODO: encapsulate
+    public y: number;
 
-    constructor(x: Number, y: Number) {
+    constructor(x: number, y: number) {
         super();
 
         this.x = x;

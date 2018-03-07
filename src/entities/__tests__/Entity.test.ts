@@ -19,7 +19,7 @@ describe('Entity', function () {
             const entity = Entity.create();
 
             expect(() => entity.getComponent<MyComponent>(MyComponent)).to.throw(
-                "Component MyComponent is not implemented by this entity"
+                'Component MyComponent is not implemented by this entity',
             );
         });
     });
