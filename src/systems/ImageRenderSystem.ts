@@ -1,11 +1,11 @@
-import { CanvasRenderable, Component } from '../components';
+import { Component, ImageRenderable } from '../components';
 import System from './System';
 
-class CanvasRenderSystem extends System {
+class ImageRenderSystem extends System {
     private context: CanvasRenderingContext2D;
 
     constructor(context: CanvasRenderingContext2D) {
-        super(CanvasRenderable);
+        super(ImageRenderable);
         this.context = context;
     }
 
@@ -14,4 +14,4 @@ class CanvasRenderSystem extends System {
     }
 }
 
-export default CanvasRenderSystem;
+export default ImageRenderSystem;
