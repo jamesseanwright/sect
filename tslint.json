@@ -5,6 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
+        "array-type": [true, "array"],
         "arrow-parens": [true, "ban-single-arg-parens"],
         "no-empty": [false],
         "no-unused-expression": [false],

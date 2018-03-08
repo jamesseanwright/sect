@@ -6,7 +6,7 @@ import { Component } from '../../components';
 import System from '../System';
 
 describe('System', function () {
-    class MySystem extends System {
+    class MySystem extends System<Component> {
         public stub = sinon.stub();
 
         public next(component: Component, timestamp: number) {
@@ -18,7 +18,7 @@ describe('System', function () {
 
     describe('register', function () {
         it('should register a component with the system', function () {
-            const system = new MySystem(Component);
+            const system = new MySystem();
             const component = new MyComponent();
             const timestamp = 0;
 
@@ -32,7 +32,7 @@ describe('System', function () {
 
     describe('deregister', function () {
         it('should deregister a component from the system', function () {
-            const system = new MySystem(Component);
+            const system = new MySystem();
             const component = new MyComponent();
             const timestamp = 0;
 

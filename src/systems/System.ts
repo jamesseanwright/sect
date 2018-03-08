@@ -1,18 +1,13 @@
 import { Component } from '../components';
 
-abstract class System {
-    private componentType: typeof Component;
-    private components: Component[] = [];
+abstract class System<T extends Component> {
+    private components: T[] = [];
 
-    constructor(componentType: typeof Component) {
-        this.componentType = componentType;
-    }
-
-    public register(component: Component) {
+    public register(component: T) {
         this.components.push(component);
     }
 
-    public deregister(component: Component) {
+    public deregister(component: T) {
         // mutating the array for performance
         this.components.splice(this.components.indexOf(component));
     }
@@ -23,11 +18,7 @@ abstract class System {
         }
     }
 
-    public getComponentType(): typeof Component {
-        return this.componentType;
-    }
-
-    protected abstract next(component: Component, timestamp: number): void;
+    protected abstract next(component: T, timestamp: number): void;
 }
 
 export default System;

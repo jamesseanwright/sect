@@ -1,11 +1,11 @@
 import { Component, ImageRenderable } from '../components';
 import System from './System';
 
-class ImageRenderSystem extends System {
+class ImageRenderSystem extends System<ImageRenderable> {
     private context: CanvasRenderingContext2D;
 
     constructor(context: CanvasRenderingContext2D) {
-        super(ImageRenderable);
+        super();
         this.context = context;
     }
 

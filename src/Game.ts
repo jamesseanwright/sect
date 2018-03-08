@@ -1,12 +1,12 @@
+import { Component } from './components/Component';
 import System from './systems/System';
 
 class Game {
-    private systems: System[];
+    private systems: System<Component>[];
     private gameState = new Map<string, any>();
 
-    constructor(...systems: System[]) {
+    constructor(...systems: System<Component>[]) {
         this.systems = systems;
-        this.linkSystemsToComponents();
     }
 
     public start(): void {
@@ -23,12 +23,6 @@ class Game {
 
     public setState<T>(key: string, value: T) {
         this.gameState.set(key, value);
-    }
-
-    private linkSystemsToComponents(): void {
-        for (const system of this.systems) {
-            system.getComponentType().setSystem(system); // TODO: eww
-        }
     }
 
     private loop = (timestamp: number): void => {
