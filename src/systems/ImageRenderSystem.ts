@@ -1,4 +1,4 @@
-import { Component, ImageRenderable } from '../components';
+import { ImageRenderable } from '../components';
 import System from './System';
 
 class ImageRenderSystem extends System<ImageRenderable> {
@@ -9,7 +9,7 @@ class ImageRenderSystem extends System<ImageRenderable> {
         this.context = context;
     }
 
-    protected next(component: Component, timestamp: number): void {
+    protected next(component: ImageRenderable, timestamp: number): void {
         throw new Error('Method not implemented.');
     }
 }
