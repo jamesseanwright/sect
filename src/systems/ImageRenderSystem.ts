@@ -1,4 +1,7 @@
+// tslint:disable
+
 import { ImageRenderable } from '../components';
+import { Component } from '../components/Component';
 import System from './System';
 
 class ImageRenderSystem extends System<ImageRenderable> {
@@ -10,7 +13,13 @@ class ImageRenderSystem extends System<ImageRenderable> {
     }
 
     protected next(component: ImageRenderable, timestamp: number): void {
-        throw new Error('Method not implemented.');
+        this.context.drawImage(
+            component.image,
+            component.positionable.x,
+            component.positionable.y,
+            component.positionable.width,
+            component.positionable.height,
+        );
     }
 }
 
