@@ -1,5 +1,3 @@
-// tslint:disable
-
 import { ImageRenderable } from '../components';
 import { Component } from '../components/Component';
 import System from './System';
