@@ -1,12 +1,13 @@
 import { Component } from './components/Component';
 import System from './systems/System';
+import { SystemRegistry } from './systems/systemRegistry';
 
 class Game {
     private systems: System<Component>[];
     private gameState = new Map<string, any>();
 
-    constructor(...systems: System<Component>[]) {
-        this.systems = systems;
+    constructor(systemRegistry: SystemRegistry) {
+        this.systems = Array.from(systemRegistry.values());
     }
 
     public start(): void {

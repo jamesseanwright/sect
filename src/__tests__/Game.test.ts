@@ -4,11 +4,12 @@ import * as sinon from 'sinon';
 import { Component } from '../components';
 import Game from '../Game';
 import System from '../systems/System';
+import { SystemRegistry } from '../systems/systemRegistry';
 
 describe('Game', function () {
     describe('game state', function () {
         it('should allow access to a state property by key', function () {
-            const game = new Game();
+            const game = new Game(new SystemRegistry());
             const expectedScore = 100;
 
             game.setState<number>('score', expectedScore);
@@ -19,7 +20,7 @@ describe('Game', function () {
         });
 
         it('should throw an error when the state property is unrecognised', function () {
-            const game = new Game();
+            const game = new Game(new SystemRegistry());
 
             expect(() => game.getState<number>('score')).to.throw(
                 'score is not present in game state',
@@ -36,11 +37,12 @@ describe('Game', function () {
 
         const system = new StubSystem();
         const mockSystem = sinon.mock(system);
+        const systemRegistry = new SystemRegistry([[Component, system]]);
         let game: Game;
         let mockRaf;
 
         beforeEach(function () {
-            game = new Game(system);
+            game = new Game(systemRegistry);
             mockRaf = createMockRaf();
             (global as FakeWindow).requestAnimationFrame = mockRaf.raf;
         });

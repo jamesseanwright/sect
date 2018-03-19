@@ -1,16 +1,6 @@
 import { Component } from '../components';
 import System from '../systems/System';
 
-// WIP code to prototype component registration
-const systemsRegistry = new Map<string, System<Component>>();
-
-const createEntity = (...components: Component[]) => {
-    for (const component of components) {
-        const system = systemsRegistry.get(component.constructor.name);
-        system.register(component);
-    }
-};
-
 class Entity {
     public static create(...components: Component[]): Entity {
         return new Entity(components);
