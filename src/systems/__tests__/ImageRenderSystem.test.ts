@@ -4,7 +4,7 @@ import { ImageRenderable, Positionable } from '../../components';
 import ImageRenderSystem from '../ImageRenderSystem';
 
 describe('ImageRenderSystem', function () {
-    describe('next()', function () {
+    describe('next', function () {
         it('should render an image using the associated context', function () {
             const context = {
                 drawImage: sinon.stub(),

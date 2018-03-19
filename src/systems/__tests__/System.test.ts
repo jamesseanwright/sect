@@ -1,4 +1,4 @@
-/* tslint:disable:max-classes-per-file */
+// tslint:disable:max-classes-per-file
 
 import { expect } from 'chai';
 import * as sinon from 'sinon';
