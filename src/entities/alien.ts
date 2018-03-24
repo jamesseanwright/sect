@@ -1,14 +1,16 @@
-import { AutoMoveable, Positionable } from '../components';
-import createEntity from './createEntity';
+import { AutoMoveable, Component, Positionable } from '../components';
 
-const createAlien = (/* TODO: params */): void => {
-    const positionable = new Positionable(0, 0, 10, 10); // TODO: reference world size
+const SIZE = 10;
+const SPEED = 0.5;
+
+const createAlien = (x: number, y: number): Component[] => {
+    const positionable = new Positionable(x, y, SIZE, SIZE); // TODO: reference world size
     const autoMoveable = new AutoMoveable(positionable, 0.1);
 
-    createEntity(
+    return [
         positionable,
         autoMoveable,
-    );
+    ];
 };
 
 export default createAlien;
