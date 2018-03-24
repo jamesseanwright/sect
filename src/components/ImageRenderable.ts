@@ -3,12 +3,20 @@ import { Component } from './Component';
 import { Positionable } from './Positionable';
 
 export class ImageRenderable extends Component {
-    public image: HTMLImageElement; // TODO: encapsulate!!!
-    public positionable: Positionable;
+    private _image: HTMLImageElement;
+    private _positionable: Positionable;
 
     constructor(positionable: Positionable, image: HTMLImageElement) {
         super();
-        this.positionable = positionable;
-        this.image = image;
+        this._image = image;
+        this._positionable = positionable;
+    }
+
+    get image() {
+        return this._image;
+    }
+
+    get positionable() {
+        return this._positionable;
     }
 }

@@ -2,13 +2,21 @@ import { Component } from './Component';
 import { Positionable } from './Positionable';
 
 export class AutoMoveable extends Component {
-    public positionable: Positionable;
-    public speed: number; // TODO: encapsulate
+    public _positionable: Positionable;
+    public _speed: number;
 
     constructor(positionable: Positionable, speed: number) {
         super();
 
-        this.positionable = positionable;
-        this.speed = speed;
+        this._positionable = positionable;
+        this._speed = speed;
+    }
+
+    get positionable() {
+        return this._positionable;
+    }
+
+    get speed() {
+        return this._speed;
     }
 }

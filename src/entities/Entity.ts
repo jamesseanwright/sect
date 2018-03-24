@@ -8,11 +8,11 @@ class Entity {
         this._components = components;
     }
 
-    public get isActive() {
+    get isActive() {
         return this._isActive;
     }
 
-    public get components() {
+    get components() {
         return this._components;
     }
 }

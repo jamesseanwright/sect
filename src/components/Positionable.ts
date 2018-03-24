@@ -1,17 +1,33 @@
 import { Component } from './Component';
 
 export class Positionable extends Component {
-    public x: number; // TODO: encapsulate
-    public y: number;
-    public width: number;
-    public height: number;
+    private _x: number;
+    private _y: number;
+    private _width: number;
+    private _height: number;
 
     constructor(x: number, y: number, width: number, height: number) {
         super();
 
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this._x = x;
+        this._y = y;
+        this._width = width;
+        this._height = height;
     }
+
+     get x() {
+         return this._x;
+     }
+
+     get y() {
+         return this._y;
+     }
+
+     get width() {
+         return this._width;
+     }
+
+     get height() {
+         return this._height;
+     }
 }
