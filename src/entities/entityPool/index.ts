@@ -8,9 +8,13 @@ export default class EntityPool {
         ([name, entities]) => [name, new EntityGroup(entities)] as [string, EntityGroup],
     )
 
-    private entityGroups;
+    private entityGroups: Map<string, EntityGroup>;
 
     constructor(entityGroups: groupTuple[]) {
         this.entityGroups = new Map<string, EntityGroup>(EntityPool.createGroups(entityGroups));
+    }
+
+    public getGroup(groupName: string): EntityGroup { // TODO: error handling
+        return this.entityGroups.get(groupName);
     }
 }

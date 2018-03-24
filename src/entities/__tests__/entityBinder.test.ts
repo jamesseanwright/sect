@@ -3,10 +3,10 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
 import Entity from '../Entity';
-import { bindEntityWithRegistry } from '../bindEntity';
+import createEntityBinder from '../entityBinder';
 import { Component } from '../../components';
 import System from '../../systems/System';
-import { SystemRegistry } from '../../systems/systemRegistry';
+import SystemRegistry from '../../systems/SystemRegistry';
 
 describe('bindEntity', function () {
     const createSystem = <T extends Component>(label: string) => new (class extends System<T> {
@@ -37,7 +37,7 @@ describe('bindEntity', function () {
             [Component2, system2],
         ]);
 
-        bindEntity = bindEntityWithRegistry(systemRegistry);
+        bindEntity = createEntityBinder(systemRegistry);
     });
 
     afterEach(function () {

@@ -1,13 +1,15 @@
 import Entity from './Entity';
 import { Component } from '../components';
 import System from '../systems/System';
-import systemRegistry, { SystemRegistry } from '../systems/systemRegistry';
+import SystemRegistry from '../systems/SystemRegistry';
 
-export const bindEntityWithRegistry = (registry: SystemRegistry) => (entity: Entity): void => {
+const createEntityBinder = (registry: SystemRegistry) => (entity: Entity): Entity => {
     for (const component of entity.components) {
         const system = registry.get(component.constructor);
         system.register(component);
     }
+
+    return entity;
 };
 
-export default bindEntityWithRegistry(systemRegistry);
+export default createEntityBinder;

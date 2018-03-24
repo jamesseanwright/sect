@@ -4,7 +4,7 @@ import * as sinon from 'sinon';
 import { Component } from '../components';
 import Game from '../Game';
 import System from '../systems/System';
-import { SystemRegistry } from '../systems/systemRegistry';
+import SystemRegistry from '../systems/SystemRegistry';
 
 describe('Game', function () {
     describe('game state', function () {

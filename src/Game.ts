@@ -1,6 +1,6 @@
 import { Component } from './components';
 import System from './systems/System';
-import { SystemRegistry } from './systems/systemRegistry';
+import SystemRegistry from './systems/SystemRegistry';
 
 class Game {
     private systems: System<Component>[];
