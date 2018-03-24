@@ -1,4 +1,4 @@
-import { Component } from './components/Component';
+import { Component } from './components';
 import System from './systems/System';
 import { SystemRegistry } from './systems/systemRegistry';
 

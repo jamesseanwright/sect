@@ -1,5 +1,4 @@
-import { ImageRenderable } from '../components';
-import { Component } from '../components/Component';
+import { Component, ImageRenderable } from '../components';
 import System from './System';
 
 class ImageRenderSystem extends System<ImageRenderable> {

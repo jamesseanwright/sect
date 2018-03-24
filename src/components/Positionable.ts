@@ -1,6 +1,6 @@
-import { Component } from './Component';
+import Component from './Component';
 
-export class Positionable extends Component {
+export default class Positionable extends Component {
     private _x: number;
     private _y: number;
     private _width: number;

@@ -1,7 +1,7 @@
-import { Component } from './Component';
-import { Positionable } from './Positionable';
+import Component from './Component';
+import Positionable from './Positionable';
 
-export class AutoMoveable extends Component {
+export default class AutoMoveable extends Component {
     public _positionable: Positionable;
     public _speed: number;
 

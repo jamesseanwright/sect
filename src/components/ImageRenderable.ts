@@ -1,8 +1,8 @@
 import ImageRenderSystem from '../systems/ImageRenderSystem';
-import { Component } from './Component';
-import { Positionable } from './Positionable';
+import Component from './Component';
+import Positionable from './Positionable';
 
-export class ImageRenderable extends Component {
+export default class ImageRenderable extends Component {
     private _image: HTMLImageElement;
     private _positionable: Positionable;
 
