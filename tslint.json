@@ -10,8 +10,10 @@
         "no-empty": [false],
         "no-unused-expression": [false],
         "only-arrow-functions": [false],
+        "ordered-imports": [true, { "import-sources-order": "any", "grouped-imports": true }],
         "quotemark": [true, "single"],
-        "space-before-function-paren": [true, { "anonymous": "always" }]
+        "space-before-function-paren": [true, { "anonymous": "always" }],
+        "variable-name": [true, "check-format", "allow-leading-underscore"]
     },
     "rulesDirectory": []
 }

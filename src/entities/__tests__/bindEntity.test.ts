@@ -2,12 +2,13 @@
 
 import { expect } from 'chai';
 import * as sinon from 'sinon';
+import Entity from '../Entity';
+import { bindEntityWithRegistry } from '../bindEntity';
 import { Component } from '../../components';
 import System from '../../systems/System';
 import { SystemRegistry } from '../../systems/systemRegistry';
-import { bindComponentsWithRegistry } from '../bindComponents';
 
-describe('bindComponents', function () {
+describe('bindEntity', function () {
     const createSystem = <T extends Component>(label: string) => new (class extends System<T> {
         public label = label;
         protected next(...args): void {}
@@ -21,7 +22,7 @@ describe('bindComponents', function () {
     let component1: Component;
     let component2: Component;
     let systemRegistry: SystemRegistry;
-    let bindComponents: (...components: Component[]) => void;
+    let bindEntity: (entity: Entity) => void;
 
     beforeEach(function () {
         const system1 = createSystem<Component1>('1');
@@ -36,7 +37,7 @@ describe('bindComponents', function () {
             [Component2, system2],
         ]);
 
-        bindComponents = bindComponentsWithRegistry(systemRegistry);
+        bindEntity = bindEntityWithRegistry(systemRegistry);
     });
 
     afterEach(function () {
@@ -44,7 +45,9 @@ describe('bindComponents', function () {
         mockSystem2.restore();
     });
 
-    it('should register each component with its associated system', function () {
+    it('should register each component of an entity with its associated system', function () {
+        const entity = new Entity(component1, component2);
+
         mockSystem1.expects('register')
             .once()
             .withArgs(component1);
@@ -53,7 +56,7 @@ describe('bindComponents', function () {
             .once()
             .withArgs(component2);
 
-        bindComponents(component1, component2);
+        bindEntity(entity);
 
         mockSystem1.verify();
         mockSystem2.verify();
