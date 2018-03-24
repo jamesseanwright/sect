@@ -12,6 +12,10 @@ class Entity {
         return this._isActive;
     }
 
+    set isActive(value: boolean) {
+        this._isActive = value;
+    }
+
     get components() {
         return this._components;
     }
