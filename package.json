@@ -8,8 +8,8 @@
     "copy-html": "cp src/index.html dist",
     "dev": "rm -rf dist && tsc-watch --onSuccess 'npm run dev-success'",
     "dev-success": "npm run copy-html && npm test",
-    "lint": "tslint -c tslint.json src{,/**}/*.ts",
-    "test": "npm run lint && mocha dist{,/**}/__tests__/*.test.js"
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "test": "npm run lint && mocha 'dist/**/__tests__/*.test.js'"
   },
   "repository": {
     "type": "git",
