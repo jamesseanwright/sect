@@ -5,6 +5,7 @@
   "description": "A small Entity-Component-System framework for JavaScript games, with first-class TypeScript support",
   "scripts": {
     "build": "lerna run build",
+    "create-package": "cp -r packages/package-template packages/$*",
     "dev": "lerna run watch --no-sort --stream",
     "release": "lerna publish",
     "test": "lerna test"
