@@ -1,0 +1,38 @@
+{
+  "name": "@tecs/entity-pool",
+  "version": "0.0.1",
+  "description": "A template for defining new packages",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev-success": "npm test",
+    "lint": "tslint -c ../../tslint.json '/src/**/*.ts'",
+    "prepublishOnly": "npm run build",
+    "test": "npm run lint && mocha 'dist/**/__tests__/*.test.js'",
+    "watch": "tsc-watch --onSuccess 'npm run dev-success'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesseanwright/tecs.git"
+  },
+  "keywords": [
+    "ecs",
+    "entity-component-system",
+    "entity",
+    "component",
+    "system",
+    "games",
+    "typescript"
+  ],
+  "author": "James Wright <james@jamesswright.co.uk>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesseanwright/tecs/issues"
+  },
+  "homepage": "https://github.com/jamesseanwright/tecs#readme",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "sinon": "4.4.9"
+  }
+}

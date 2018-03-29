@@ -5,7 +5,7 @@
   "description": "A small Entity-Component-System framework for JavaScript games, with first-class TypeScript support",
   "scripts": {
     "build": "lerna run build",
-    "create-package": "cp -r packages/package-template packages/$*",
+    "create-package": "node createPackage.js",
     "dev": "lerna run watch --no-sort --stream",
     "release": "lerna publish",
     "test": "lerna test"
@@ -34,7 +34,8 @@
     "@types/mocha": "2.2.48",
     "@types/node": "9.4.6",
     "@types/sinon": "4.3.0",
-    "lerna": "^2.9.0",
+    "fs-extra": "5.0.0",
+    "lerna": "2.9.0",
     "mocha": "5.0.1",
     "tsc-watch": "1.0.16",
     "tslint": "5.9.1",
