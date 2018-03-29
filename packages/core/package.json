@@ -1,0 +1,28 @@
+{
+  "name": "@tecs/core",
+  "version": "0.0.1",
+  "description": "A small Entity-Component-System framework for JavaScript games, with first-class TypeScript support",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "npm run lint && mocha 'dist/**/__tests__/*.test.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesseanwright/tecs.git"
+  },
+  "keywords": [
+    "ecs",
+    "entity-component-system",
+    "entity",
+    "component",
+    "system",
+    "games",
+    "typescript"
+  ],
+  "author": "James Wright <james@jamesswright.co.uk>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesseanwright/tecs/issues"
+  },
+  "homepage": "https://github.com/jamesseanwright/tecs#readme"
+}

@@ -1,8 +1,8 @@
 {
-  "name": "tecs",
+  "name": "tecs-monorepo",
+  "private": true,
   "version": "0.0.1",
   "description": "A small Entity-Component-System framework for JavaScript games, with first-class TypeScript support",
-  "main": "dist/index.js",
   "scripts": {
     "build": "tsc && npm run copy-html",
     "copy-html": "cp src/index.html dist",
@@ -36,6 +36,7 @@
     "@types/node": "9.4.6",
     "@types/sinon": "4.3.0",
     "chai": "4.1.2",
+    "lerna": "^2.9.0",
     "mocha": "5.0.1",
     "mock-raf": "1.0.0",
     "sinon": "4.4.2",
