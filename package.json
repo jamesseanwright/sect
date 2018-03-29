@@ -6,6 +6,7 @@
   "scripts": {
     "build": "lerna run build",
     "dev": "lerna run watch --no-sort --stream",
+    "release": "lerna publish",
     "test": "lerna test"
   },
   "repository": {
