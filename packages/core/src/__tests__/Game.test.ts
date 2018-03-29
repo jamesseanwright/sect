@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import * as createMockRaf from 'mock-raf';
 import * as sinon from 'sinon';
-import { Component } from '../components';
+import Component from '../Component';
 import Game from '../Game';
-import System from '../systems/System';
-import SystemRegistry from '../systems/SystemRegistry';
+import System from '../System';
+import SystemRegistry from '../SystemRegistry';
 
 describe('Game', function () {
     describe('game state', function () {

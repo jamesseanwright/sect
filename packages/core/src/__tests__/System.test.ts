@@ -2,7 +2,7 @@
 
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { Component } from '../../components';
+import Component from '../Component';
 import System from '../System';
 
 describe('System', function () {

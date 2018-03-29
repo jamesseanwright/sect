@@ -1,4 +1,4 @@
-import { Component } from '../components';
+import Component from './component';
 
 abstract class System<T extends Component> {
     private components: T[] = [];

@@ -1,4 +1,4 @@
-import { Component } from '../components';
+import Component from './Component';
 
 class Entity {
     private _isActive: boolean;

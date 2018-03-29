@@ -4,9 +4,9 @@ import { expect } from 'chai';
 import * as sinon from 'sinon';
 import Entity from '../Entity';
 import createEntityBinder from '../entityBinder';
-import { Component } from '../../components';
-import System from '../../systems/System';
-import SystemRegistry from '../../systems/SystemRegistry';
+import Component from '../Component';
+import System from '../System';
+import SystemRegistry from '../SystemRegistry';
 
 describe('bindEntity', function () {
     const createSystem = <T extends Component>(label: string) => new (class extends System<T> {

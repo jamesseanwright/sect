@@ -1,10 +1,15 @@
 {
   "name": "@tecs/core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A small Entity-Component-System framework for JavaScript games, with first-class TypeScript support",
   "main": "dist/index.js",
   "scripts": {
-    "test": "npm run lint && mocha 'dist/**/__tests__/*.test.js'"
+    "build": "tsc",
+    "dev-success": "npm test",
+    "lint": "tslint -c ../../tslint.json '/src/**/*.ts'",
+    "prepublishOnly": "npm run build",
+    "test": "npm run lint && mocha 'dist/**/__tests__/*.test.js'",
+    "watch": "tsc-watch --onSuccess 'npm run dev-success'"
   },
   "repository": {
     "type": "git",
@@ -24,5 +29,10 @@
   "bugs": {
     "url": "https://github.com/jamesseanwright/tecs/issues"
   },
-  "homepage": "https://github.com/jamesseanwright/tecs#readme"
+  "homepage": "https://github.com/jamesseanwright/tecs#readme",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mock-raf": "1.0.0",
+    "sinon": "4.4.9"
+  }
 }
