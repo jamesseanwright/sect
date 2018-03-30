@@ -1,7 +1,7 @@
 {
-  "name": "@tecs/package-template",
+  "name": "@tecs/example-game",
   "version": "0.0.1",
-  "description": "A template for defining new packages",
+  "description": "An example game using various packages in the monorepo",
   "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
