@@ -1,8 +1,7 @@
 {
   "name": "@tecs/basics",
   "version": "0.0.1",
-  "description": "A template for defining new packages",
-  "private": true,
+  "description": "A collection of commonly-used components and systems",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

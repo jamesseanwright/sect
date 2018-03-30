@@ -1,7 +1,7 @@
 {
   "name": "@tecs/image-rendering",
   "version": "0.0.1",
-  "description": "A template for defining new packages",
+  "description": "A component and system for rendering images via CanvasRenderingContext2D",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

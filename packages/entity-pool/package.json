@@ -1,7 +1,7 @@
 {
   "name": "@tecs/entity-pool",
   "version": "0.0.1",
-  "description": "A template for defining new packages",
+  "description": "A basic pool for managing entities as static memory resources",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
