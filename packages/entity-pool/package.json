@@ -1,6 +1,6 @@
 {
   "name": "@tecs/entity-pool",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "A basic pool for managing entities as static memory resources",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,6 +36,6 @@
     "sinon": "4.4.9"
   },
   "dependencies": {
-    "@tecs/core": "0"
+    "@tecs/core": "^0.1.1"
   }
 }
