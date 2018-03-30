@@ -9,7 +9,7 @@ if (!packageName) {
 }
 
 fs.copySync(
-    path.join('packages', 'package-template'),
+    'package-template',
     path.join('packages', packageName),
     {
         overwrite: false,

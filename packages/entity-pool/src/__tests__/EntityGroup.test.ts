@@ -1,6 +1,6 @@
 import { expect } from 'chai';
+import { Entity } from '@tecs/core';
 import EntityGroup from '../EntityGroup';
-import Entity from '../../Entity';
 
 describe('EntityGroup', function () {
     let entities: Entity[];

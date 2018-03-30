@@ -8,7 +8,7 @@
     "create-package": "node createPackage.js",
     "dev": "lerna run watch --no-sort --stream",
     "release": "lerna publish",
-    "test": "lerna test"
+    "test": "lerna run test"
   },
   "repository": {
     "type": "git",

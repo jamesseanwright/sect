@@ -1,4 +1,4 @@
-import Entity from '../Entity';
+import Entity from '@tecs/core';
 
 export default class EntityGroup {
     private static getNextPosition = (position: number, entityCount: number) => (
