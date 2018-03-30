@@ -4,6 +4,7 @@
     "compilerOptions": {
         "outDir": "dist",
         "target": "es6",
-        "module": "commonjs"
+        "module": "commonjs",
+        "declaration": true
     }
 }

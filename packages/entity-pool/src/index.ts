@@ -1,7 +1,7 @@
 import EntityGroup from './EntityGroup';
 import { Entity } from '@tecs/core';
 
-type groupTuple = [string, Entity[]];
+export type groupTuple = [string, Entity[]];
 
 export default class EntityPool {
     private static createGroups = (entityGroups: groupTuple[]) => entityGroups.map(

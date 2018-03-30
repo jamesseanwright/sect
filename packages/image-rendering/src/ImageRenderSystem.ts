@@ -1,5 +1,5 @@
-import { Component, ImageRenderable } from '../components';
-import System from './System';
+import { Component, System } from '@tecs/core';
+import ImageRenderable from './ImageRenderable';
 
 class ImageRenderSystem extends System<ImageRenderable> {
     private context: CanvasRenderingContext2D;

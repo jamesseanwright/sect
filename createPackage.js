@@ -1,3 +1,4 @@
+const child_process = require('child_process');
 const fs = require('fs-extra');
 const path = require('path');
 
@@ -8,9 +9,11 @@ if (!packageName) {
     process.exit(1);
 }
 
+const targetPath = path.join('packages', packageName);
+
 fs.copySync(
     'package-template',
-    path.join('packages', packageName),
+    targetPath,
     {
         overwrite: false,
         errorOnExist: true,
@@ -22,3 +25,5 @@ const packageInfo = require(packageInfoPath);
 
 packageInfo.name = packageInfo.name.replace('package-template', packageName);
 fs.writeFileSync(packageInfoPath, JSON.stringify(packageInfo, null, 2));
+console.log(`Package created at ${targetPath}!`);
+child_process.execSync('./node_modules/.bin/lerna bootstrap');

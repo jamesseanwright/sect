@@ -1,6 +1,6 @@
-import ImageRenderSystem from '../systems/ImageRenderSystem';
-import Component from './Component';
-import Positionable from './Positionable';
+import { Component } from '@tecs/core';
+import { Positionable } from '@tecs/basics';
+import ImageRenderSystem from './ImageRenderSystem';
 
 export default class ImageRenderable extends Component {
     private _image: HTMLImageElement;

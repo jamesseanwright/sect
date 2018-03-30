@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A small Entity-Component-System framework for JavaScript games, with first-class TypeScript support",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev-success": "npm test",

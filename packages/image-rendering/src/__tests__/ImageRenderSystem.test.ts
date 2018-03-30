@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { ImageRenderable, Positionable } from '../../components';
+import { Positionable } from '@tecs/basics';
+import ImageRenderable from '../ImageRenderable';
 import ImageRenderSystem from '../ImageRenderSystem';
 
 describe('ImageRenderSystem', function () {

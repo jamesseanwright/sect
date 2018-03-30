@@ -2,8 +2,8 @@
   "name": "@tecs/entity-pool",
   "version": "0.0.1",
   "description": "A template for defining new packages",
-  "private": true,
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev-success": "npm test",
@@ -36,6 +36,6 @@
     "sinon": "4.4.9"
   },
   "dependencies": {
-    "@tecs/core": "^0.1.0"
+    "@tecs/core": "0"
   }
 }
