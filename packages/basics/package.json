@@ -1,6 +1,6 @@
 {
   "name": "@tecs/basics",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A collection of commonly-used components and systems",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/jamesseanwright/tecs#readme",
   "dependencies": {
-    "@tecs/core": "^0.1.1"
+    "@tecs/core": "^0.1.2"
   },
   "devDependencies": {
     "chai": "4.1.2",

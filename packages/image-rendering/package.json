@@ -1,6 +1,6 @@
 {
   "name": "@tecs/image-rendering",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A component and system for rendering images via CanvasRenderingContext2D",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -35,8 +35,8 @@
   },
   "homepage": "https://github.com/jamesseanwright/tecs#readme",
   "dependencies": {
-    "@tecs/basics": "^0.1.1",
-    "@tecs/core": "^0.1.1"
+    "@tecs/basics": "^0.1.2",
+    "@tecs/core": "^0.1.2"
   },
   "devDependencies": {
     "chai": "4.1.2",

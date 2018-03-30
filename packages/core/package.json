@@ -1,6 +1,6 @@
 {
   "name": "@tecs/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A small Entity-Component-System framework for JavaScript games, with first-class TypeScript support",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
