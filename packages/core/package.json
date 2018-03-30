@@ -27,6 +27,9 @@
   ],
   "author": "James Wright <james@jamesswright.co.uk>",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": {
     "url": "https://github.com/jamesseanwright/tecs/issues"
   },
