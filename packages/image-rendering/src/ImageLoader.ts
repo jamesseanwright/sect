@@ -20,16 +20,12 @@ export default class ImageLoader {
 
     private images: Map<string, HTMLImageElement>;
 
-    constructor(definitions: ImageDefinition[]) {
-        this.init(definitions);
-    }
-
     public getImage(name: string): HTMLImageElement {
         // TODO: error handling
         return this.images.get(name);
     }
 
-    private async init(definitions: ImageDefinition[]): Promise<void> {
+    public async init(definitions: ImageDefinition[]): Promise<void> {
         this.images = await ImageLoader.loadImages(definitions);
     }
 }

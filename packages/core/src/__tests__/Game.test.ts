@@ -29,7 +29,7 @@ describe('Game', function () {
     });
 
     describe('start', function () {
-        type FakeWindow = Window & NodeJS.Global;
+        type FakeWindow = Window & NodeJS.Global; // TODO: import type from test-utils
 
         class StubSystem extends System<Component> {
             public next(component: Component, timestamp: number) {}
