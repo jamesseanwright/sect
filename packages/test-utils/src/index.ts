@@ -10,18 +10,18 @@ export type BrowserGlobalScope = NodeJS.Global & {
 
 export class StubImage {
     private _src: string;
-    private _willError: boolean;
 
     public onload() {}
-    public onerror() {}
+    public onerror(event: Partial<ErrorEvent>) {}
 
     public get src(): string {
         return this._src;
     }
 
     public set src(value: string) {
+        const errorEvent = { message: `Couldn't load ${value}` };
         this._src = value;
-        this._willError ? this.onerror() : this.onload();
+        value === 'https://error' ? this.onerror(errorEvent) : this.onload();
     }
 }
 
