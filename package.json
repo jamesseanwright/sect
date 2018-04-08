@@ -6,7 +6,7 @@
   "scripts": {
     "build": "lerna run build",
     "create-package": "node createPackage.js",
-    "watch": "lerna run watch --no-sort --stream",
+    "watch": "lerna run watch --parallel",
     "release": "lerna publish",
     "test": "lerna run test"
   },

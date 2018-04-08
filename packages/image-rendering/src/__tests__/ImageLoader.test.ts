@@ -1,24 +1,36 @@
+import * as sinon from 'sinon';
 import { expect } from 'chai';
-import { BrowserGlobalScope, createDom } from '@tecs/test-utils';
-import ImageLoader from '../ImageLoader';
+import { createDom, StubbedDom, StubImage } from '@tecs/test-utils';
+import ImageLoader, { ImageDefinition } from '../ImageLoader';
 
 describe('ImageLoader', function () {
     let imageLoader: ImageLoader;
-    let destroyDom: () => void;
+    let stubbedDom: StubbedDom;
+    let stubImage: sinon.SinonStubbedInstance<StubImage>;
 
     beforeEach(function () {
         imageLoader = new ImageLoader();
-        destroyDom = createDom();
+        stubbedDom = createDom();
+        stubImage = sinon.stub(stubbedDom.browserScope.Image.prototype);
     });
 
     afterEach(function () {
-        destroyDom();
+        stubbedDom.destroy();
+        stubImage.onload.restore();
+        stubImage.onerror.restore();
     });
 
     it('should load each image and hold them in memory by the specified key', async function () {
-        await imageLoader.init([
+        const definitions = [
             ['foo', 'https://images/foo.png'],
             ['bar', 'https://images/bar.png'],
-        ]);
+        ] as ImageDefinition[];
+
+        await imageLoader.init(definitions);
+
+        definitions.forEach(([name, expectedSrc]) => {
+            const { src } = imageLoader.getImage(name);
+            expect(src).to.equal(expectedSrc);
+        });
     });
 });

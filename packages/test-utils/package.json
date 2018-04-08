@@ -7,11 +7,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev-success": "npm test",
     "lint": "tslint -c ../../tslint.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build",
-    "test": "npm run lint && mocha 'dist/**/__tests__/*.test.js'",
-    "watch": "tsc-watch --onSuccess 'npm run dev-success'"
+    "watch": "tsc-watch"
   },
   "repository": {
     "type": "git",
