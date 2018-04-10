@@ -3,17 +3,17 @@ import { Positionable } from '@tecs/basics';
 import ImageRenderSystem from './ImageRenderSystem';
 
 export default class ImageRenderable extends Component {
-    private _image: HTMLImageElement;
+    private _imageName: string;
     private _positionable: Positionable;
 
-    constructor(positionable: Positionable, image: HTMLImageElement) {
+    constructor(positionable: Positionable, imageName: string) {
         super();
-        this._image = image;
+        this._imageName = imageName;
         this._positionable = positionable;
     }
 
-    get image() {
-        return this._image;
+    get imageName() {
+        return this._imageName;
     }
 
     get positionable() {
