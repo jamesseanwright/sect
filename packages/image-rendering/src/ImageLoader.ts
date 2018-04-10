@@ -13,7 +13,7 @@ export default class ImageLoader {
             const image = new Image();
 
             image.onload = () => resolve(image);
-            image.onerror = event => reject(new Error(event.message));
+            image.onerror = ({ message }) => reject(new Error(message));
             image.src = source;
         });
     }

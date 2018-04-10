@@ -6,7 +6,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "mkdir -p dist && rm -rf dist/* && tsc",
+    "build": "npm run create-dist-dir && npm run copy-html && tsc",
+    "create-dist-dir": "mkdir -p dist && rm -rf dist/*",
+    "copy-html": "cp src/index.html dist",
     "dev-success": "npm test",
     "lint": "tslint -c ../../tslint.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build",
