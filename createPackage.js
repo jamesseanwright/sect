@@ -2,7 +2,7 @@ const child_process = require('child_process');
 const fs = require('fs-extra');
 const path = require('path');
 
-const packageName = process.argv[2];
+const [,,packageName] = process.argv;
 
 if (!packageName) {
     console.error('Package name not specified!');
