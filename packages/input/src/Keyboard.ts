@@ -11,7 +11,7 @@ const toTuple = (a, b) => [a, b] as [typeof a, typeof b]; // TODO: reuse in othe
 
 class Keyboard {
     private static processKeyName(keyName: string): string {
-        return keyName.match(/[A-Z]/) ? keyName.toLowerCase() : keyName;
+        return keyName.match(/^[A-Z]{1}$/) ? keyName.toLowerCase() : keyName;
     }
 
     private keys: Map<string, boolean>;

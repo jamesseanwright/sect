@@ -1,7 +1,7 @@
 {
   "name": "@tecs/input",
   "version": "0.0.1",
-  "description": "A template for defining new packages",
+  "description": "Keyboard and mouse systems and components",
   "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,7 +36,8 @@
   },
   "homepage": "https://github.com/jamesseanwright/tecs#readme",
   "dependencies": {
-    "@tecs/core": "^0.1.0"
+    "@tecs/core": "^0.1.0",
+    "@tecs/test-utils": "^0.0.1"
   },
   "devDependencies": {
     "chai": "4.1.2",

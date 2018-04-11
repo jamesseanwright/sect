@@ -6,6 +6,7 @@ export type BrowserGlobalScope = NodeJS.Global & {
     window: DOMWindow;
     document: Document;
     Image: typeof StubImage;
+    KeyboardEvent: typeof KeyboardEvent;
 };
 
 export class StubImage {
@@ -37,6 +38,7 @@ export const createDom = (markup?: string): StubbedDom => {
     browserScope.window = dom.window;
     browserScope.document = dom.window.document;
     browserScope.Image = StubImage;
+    browserScope.KeyboardEvent = dom.window.KeyboardEvent;
 
     const destroy = () => {
         delete browserScope.window;
