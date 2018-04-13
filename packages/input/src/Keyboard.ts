@@ -1,3 +1,5 @@
+import { toTuple } from '@tecs/basics';
+
 const DEFAULT_KEYS = [
     'a',
     's',
@@ -6,9 +8,6 @@ const DEFAULT_KEYS = [
     'ArrowDown',
     'ArrowLeft',
 ];
-
-const toTuple = (a, b) => [a, b] as [typeof a, typeof b]; // TODO: reuse in other Map initialisers
-
 class Keyboard {
     private static processKeyName(keyName: string): string {
         return keyName.match(/^[A-Z]{1}$/) ? keyName.toLowerCase() : keyName;
