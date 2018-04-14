@@ -15,17 +15,17 @@ class KeyboardInteractable extends Component {
         return keyName.match(/^[A-Z]{1}$/) ? keyName.toLowerCase() : keyName;
     }
 
-    private keys: Map<string, boolean>;
+    private _keys: Map<string, boolean>;
 
     constructor(supportedKeys: string[] = DEFAULT_KEYS) {
         super();
-        this.keys = new Map(supportedKeys.map(key => toTuple(key, false)));
+        this._keys = new Map(supportedKeys.map(key => toTuple(key, false)));
         this.registerEvents();
     }
 
     public isPressed(keyName: string): boolean {
         const key = KeyboardInteractable.processKeyName(keyName);
-        return this.keys.has(key) && this.keys.get(key);
+        return this._keys.has(key) && this._keys.get(key);
     }
 
     private registerEvents(): void {
@@ -36,11 +36,11 @@ class KeyboardInteractable extends Component {
     private updateKey(keyName: string, isKeyPressed: boolean): void {
         const key = KeyboardInteractable.processKeyName(keyName);
 
-        if (!this.keys.has(key)) {
+        if (!this._keys.has(key)) {
             return;
         }
 
-        this.keys.set(key, isKeyPressed);
+        this._keys.set(key, isKeyPressed);
     }
 }
 
