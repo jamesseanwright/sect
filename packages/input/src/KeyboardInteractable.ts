@@ -1,4 +1,5 @@
 import { toTuple } from '@tecs/basics';
+import { Component } from '@tecs/core';
 
 const DEFAULT_KEYS = [
     'a',
@@ -8,7 +9,7 @@ const DEFAULT_KEYS = [
     'ArrowDown',
     'ArrowLeft',
 ];
-class Keyboard {
+class KeyboardInteractable extends Component {
     private static processKeyName(keyName: string): string {
         return keyName.match(/^[A-Z]{1}$/) ? keyName.toLowerCase() : keyName;
     }
@@ -16,12 +17,13 @@ class Keyboard {
     private keys: Map<string, boolean>;
 
     constructor(supportedKeys: string[] = DEFAULT_KEYS) {
+        super();
         this.keys = new Map(supportedKeys.map(key => toTuple(key, false)));
         this.registerEvents();
     }
 
     public isPressed(keyName: string): boolean {
-        const key = Keyboard.processKeyName(keyName);
+        const key = KeyboardInteractable.processKeyName(keyName);
         return this.keys.has(key) && this.keys.get(key);
     }
 
@@ -31,7 +33,7 @@ class Keyboard {
     }
 
     private updateKey(keyName: string, isKeyPressed: boolean): void {
-        const key = Keyboard.processKeyName(keyName);
+        const key = KeyboardInteractable.processKeyName(keyName);
 
         if (!this.keys.has(key)) {
             return;
@@ -41,4 +43,4 @@ class Keyboard {
     }
 }
 
-export default Keyboard;
+export default KeyboardInteractable;
