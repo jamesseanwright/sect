@@ -9,6 +9,7 @@ const DEFAULT_KEYS = [
     'ArrowDown',
     'ArrowLeft',
 ];
+
 class KeyboardInteractable extends Component {
     private static processKeyName(keyName: string): string {
         return keyName.match(/^[A-Z]{1}$/) ? keyName.toLowerCase() : keyName;
