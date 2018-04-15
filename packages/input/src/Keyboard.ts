@@ -3,15 +3,6 @@
 import { toTuple } from '@tecs/basics';
 import { Component } from '@tecs/core';
 
-const DEFAULT_KEYS = [
-    'a',
-    's',
-    'ArrowUp',
-    'ArrowRight',
-    'ArrowDown',
-    'ArrowLeft',
-];
-
 export class Keyboard {
     private static processKeyName(keyName: string): string {
         return keyName.match(/^[A-Z]{1}$/) ? keyName.toLowerCase() : keyName;
@@ -19,8 +10,8 @@ export class Keyboard {
 
     private _keys: Map<string, boolean>;
 
-    constructor(supportedKeys: string[] = DEFAULT_KEYS) {
-        this._keys = new Map(supportedKeys.map(key => toTuple(key, false)));
+    constructor() {
+        this._keys = new Map();
         this.registerEvents();
     }
 
@@ -36,11 +27,6 @@ export class Keyboard {
 
     private updateKey(keyName: string, isKeyPressed: boolean): void {
         const key = Keyboard.processKeyName(keyName);
-
-        if (!this._keys.has(key)) {
-            return;
-        }
-
         this._keys.set(key, isKeyPressed);
     }
 }

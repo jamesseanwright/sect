@@ -14,6 +14,9 @@ class KeyboardInteractable extends Component {
 
     private _keyboard: Keyboard;
 
+    /* `keyboard` param is solely for testing. Consumers will never
+     * have to create a Keyboard instance, thus it is not exported.
+     */
     constructor(keyboard: Keyboard = KeyboardInteractable.keyboard) {
         super();
         this._keyboard = keyboard;
