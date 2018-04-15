@@ -7,6 +7,7 @@ export type BrowserGlobalScope = NodeJS.Global & {
     document: Document;
     Image: typeof StubImage;
     KeyboardEvent: typeof KeyboardEvent;
+    MouseEvent: typeof MouseEvent;
 };
 
 export class StubImage {
@@ -39,11 +40,14 @@ export const createDom = (markup?: string): StubbedDom => {
     browserScope.document = dom.window.document;
     browserScope.Image = StubImage;
     browserScope.KeyboardEvent = dom.window.KeyboardEvent;
+    browserScope.MouseEvent = dom.window.MouseEvent;
 
     const destroy = () => {
         delete browserScope.window;
         delete browserScope.document;
         delete browserScope.Image;
+        delete browserScope.KeyboardEvent;
+        delete browserScope.MouseEvent;
     };
 
     // return typed global to avoid casts

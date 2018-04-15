@@ -1,17 +1,18 @@
 import { toTuple } from '@tecs/basics';
-import { Component } from '@tecs/core';
 
-const SUPPORTED_BUTTONS = [0, 1, 2];
+export type SupportedTarget = Window | HTMLElement;
 
-class MouseInteractable extends Component {
+class Mouse {
     private _buttons: Map<number, boolean>;
-    // private _clickTarget: EventTarget; TODO: relative click coords
+    private _target: SupportedTarget;
     private _x: number;
     private _y: number;
 
-    constructor() {
-        super();
-        this._buttons = new Map(SUPPORTED_BUTTONS.map(button => toTuple(button, false)));
+    constructor(clickTarget: SupportedTarget) {
+        this._x = 0;
+        this._y = 0;
+        this._target = clickTarget;
+        this._buttons = new Map();
         this.registerEvents();
     }
 
@@ -28,9 +29,9 @@ class MouseInteractable extends Component {
     }
 
     private registerEvents(): void {
-        window.addEventListener('mousedown', ({ button }) => this.updateButton(button, true));
-        window.addEventListener('mouseup', ({ button }) => this.updateButton(button, true));
-        window.addEventListener('mousemove', ({ clientX, clientY }) => this.updateCoordinates(clientX, clientY));
+        this._target.addEventListener('mousedown', ({ button }) => this.updateButton(button, true));
+        this._target.addEventListener('mouseup', ({ button }) => this.updateButton(button, true));
+        this._target.addEventListener('mousemove', ({ clientX, clientY }) => this.updateCoordinates(clientX, clientY));
     }
 
     private updateButton(button: number, isButtonPressed: boolean): void {
@@ -43,4 +44,4 @@ class MouseInteractable extends Component {
     }
 }
 
-export default MouseInteractable;
+export default Mouse;
