@@ -1,6 +1,4 @@
-import { toTuple } from '@tecs/basics';
-
-export type SupportedTarget = Window | HTMLElement;
+export type SupportedTarget = HTMLElement;
 
 class Mouse {
     private _buttons: Map<number, boolean>;
@@ -30,7 +28,7 @@ class Mouse {
 
     private registerEvents(): void {
         this._target.addEventListener('mousedown', ({ button }) => this.updateButton(button, true));
-        this._target.addEventListener('mouseup', ({ button }) => this.updateButton(button, true));
+        this._target.addEventListener('mouseup', ({ button }) => this.updateButton(button, false));
         this._target.addEventListener('mousemove', ({ clientX, clientY }) => this.updateCoordinates(clientX, clientY));
     }
 
