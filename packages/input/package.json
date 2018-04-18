@@ -2,7 +2,6 @@
   "name": "@tecs/input",
   "version": "0.0.1",
   "description": "Keyboard and mouse systems and components",
-  "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
