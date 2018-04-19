@@ -2,7 +2,7 @@ import { Component } from '@tecs/core';
 import Keyboard from './Keyboard';
 import Input from './Input';
 
-export type SupportedInput = Input<string | boolean>;
+export type SupportedInput = Input<string | number>;
 
 class InputInteractable<T extends SupportedInput> extends Component {
     protected _input: T;

@@ -14,11 +14,6 @@ class KeyboardInteractable extends InputInteractable<Keyboard> {
 
     private static _keyboard: Keyboard;
 
-    constructor(keyboard: Keyboard) {
-        super(keyboard);
-        this._input = keyboard;
-    }
-
     public isPressed = (keyName: string): boolean => this._input.isPressed(keyName);
 }
 

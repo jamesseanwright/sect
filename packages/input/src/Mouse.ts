@@ -1,21 +1,22 @@
+import Input from './Input';
+
 export type SupportedTarget = HTMLElement;
 
-class Mouse {
-    private _buttons: Map<number, boolean>;
+class Mouse extends Input<number> {
     private _target: SupportedTarget;
     private _x: number;
     private _y: number;
 
     constructor(clickTarget: SupportedTarget) {
+        super();
         this._x = 0;
         this._y = 0;
         this._target = clickTarget;
-        this._buttons = new Map();
         this.registerEvents();
     }
 
     public isPressed(button: number): boolean {
-        return this._buttons.has(button) && this._buttons.get(button);
+        return this._pressBindings.has(button) && this._pressBindings.get(button);
     }
 
     public get x() {
@@ -33,7 +34,7 @@ class Mouse {
     }
 
     private updateButton(button: number, isButtonPressed: boolean): void {
-        this._buttons.set(button, isButtonPressed);
+        this._pressBindings.set(button, isButtonPressed);
     }
 
     private updateCoordinates(x: number, y: number) {
