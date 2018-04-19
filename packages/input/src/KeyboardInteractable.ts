@@ -1,29 +1,25 @@
 import { Component } from '@tecs/core';
 import Keyboard from './Keyboard';
+import InputInteractable from './InputInteractable';
 
-class KeyboardInteractable extends Component {
-    private static _keyboard: Keyboard;
-
-    // TODO: replace with Component factory method?
-    private static get keyboard(): Keyboard {
+class KeyboardInteractable extends InputInteractable<Keyboard> {
+    // TODO: make reuseable for mouse component
+    public static create(): KeyboardInteractable {
         if (!KeyboardInteractable._keyboard) {
             KeyboardInteractable._keyboard = new Keyboard();
         }
 
-        return KeyboardInteractable._keyboard;
+        return new KeyboardInteractable(KeyboardInteractable._keyboard);
     }
 
-    private _keyboard: Keyboard;
+    private static _keyboard: Keyboard;
 
-    /* `keyboard` param is solely for testing. Consumers will never
-     * have to create a Keyboard instance, thus it is not exported.
-     */
-    constructor(keyboard: Keyboard = KeyboardInteractable.keyboard) {
-        super();
-        this._keyboard = keyboard;
+    constructor(keyboard: Keyboard) {
+        super(keyboard);
+        this._input = keyboard;
     }
 
-    public isPressed = (keyName: string): boolean => this._keyboard.isPressed(keyName);
+    public isPressed = (keyName: string): boolean => this._input.isPressed(keyName);
 }
 
 export default KeyboardInteractable;

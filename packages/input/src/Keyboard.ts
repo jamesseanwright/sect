@@ -2,22 +2,21 @@
 
 import { toTuple } from '@tecs/basics';
 import { Component } from '@tecs/core';
+import Input from './Input';
 
-export class Keyboard {
+export class Keyboard extends Input<string> {
     private static processKeyName(keyName: string): string {
         return keyName.match(/^[A-Z]{1}$/) ? keyName.toLowerCase() : keyName;
     }
 
-    private _keys: Map<string, boolean>;
-
     constructor() {
-        this._keys = new Map();
+        super();
         this.registerEvents();
     }
 
     public isPressed(keyName: string): boolean {
         const key = Keyboard.processKeyName(keyName);
-        return this._keys.has(key) && this._keys.get(key);
+        return this._pressBindings.has(key) && this._pressBindings.get(key);
     }
 
     private registerEvents(): void {
@@ -27,7 +26,7 @@ export class Keyboard {
 
     private updateKey(keyName: string, isKeyPressed: boolean): void {
         const key = Keyboard.processKeyName(keyName);
-        this._keys.set(key, isKeyPressed);
+        this._pressBindings.set(key, isKeyPressed);
     }
 }
 
