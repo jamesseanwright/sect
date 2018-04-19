@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import * as createMockRaf from 'mock-raf';
 import * as sinon from 'sinon';
+import { createDom, RafManipulator } from '@tecs/test-utils';
 import Component from '../Component';
 import Game from '../Game';
 import System from '../System';
@@ -29,7 +29,8 @@ describe('Game', function () {
     });
 
     describe('start', function () {
-        type FakeWindow = Window & NodeJS.Global; // TODO: import type from test-utils
+        let destroyDom: () => void;
+        let raf: RafManipulator;
 
         class StubSystem extends System<Component> {
             public next(component: Component, timestamp: number) {}
@@ -39,16 +40,17 @@ describe('Game', function () {
         const mockSystem = sinon.mock(system);
         const systemRegistry = new SystemRegistry([[Component, system]]);
         let game: Game;
-        let mockRaf;
 
-        beforeEach(function () {
+        beforeEach(function ()  {
+            const { destroy, rafManipulator } = createDom();
+
             game = new Game(systemRegistry);
-            mockRaf = createMockRaf();
-            (global as FakeWindow).requestAnimationFrame = mockRaf.raf;
+            destroyDom = destroy;
+            raf = rafManipulator;
         });
 
         afterEach(function () {
-            (global as FakeWindow).requestAnimationFrame = undefined;
+            destroyDom();
             mockSystem.restore();
         });
 
@@ -58,8 +60,8 @@ describe('Game', function () {
                 .withArgs(sinon.match.number);
 
             game.start();
-            mockRaf.step();
-            mockRaf.step();
+            raf.step();
+            raf.step();
 
             mockSystem.verify();
         });

@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/jamesseanwright/tecs#readme",
   "dependencies": {
-    "jsdom": "11.7.0"
+    "jsdom": "11.7.0",
+    "mock-raf": "1.0.0"
   }
 }

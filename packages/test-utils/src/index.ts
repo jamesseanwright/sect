@@ -1,6 +1,7 @@
 // tslint:disable:max-classes-per-file
 
 import { DOMWindow, JSDOM } from 'jsdom';
+import * as createMockRaf from 'mock-raf';
 
 export type BrowserGlobalScope = NodeJS.Global & {
     window: DOMWindow;
@@ -8,6 +9,7 @@ export type BrowserGlobalScope = NodeJS.Global & {
     Image: typeof StubImage;
     KeyboardEvent: typeof KeyboardEvent;
     MouseEvent: typeof MouseEvent;
+    requestAnimationFrame(callback: FrameRequestCallback): number;
 };
 
 export class StubImage {
@@ -27,13 +29,18 @@ export class StubImage {
     }
 }
 
+// just in case we change libraries...
+export type RafManipulator = createMockRaf.Creator;
+
 export interface StubbedDom {
     browserScope: BrowserGlobalScope;
+    rafManipulator: RafManipulator;
     destroy(): void;
 }
 
 export const createDom = (markup?: string): StubbedDom => {
     const dom = new JSDOM(markup);
+    const rafManipulator = createMockRaf();
     const browserScope = global as BrowserGlobalScope;
 
     browserScope.window = dom.window;
@@ -41,6 +48,7 @@ export const createDom = (markup?: string): StubbedDom => {
     browserScope.Image = StubImage;
     browserScope.KeyboardEvent = dom.window.KeyboardEvent;
     browserScope.MouseEvent = dom.window.MouseEvent;
+    browserScope.requestAnimationFrame = rafManipulator.raf;
 
     const destroy = () => {
         delete browserScope.window;
@@ -48,8 +56,12 @@ export const createDom = (markup?: string): StubbedDom => {
         delete browserScope.Image;
         delete browserScope.KeyboardEvent;
         delete browserScope.MouseEvent;
+        delete browserScope.requestAnimationFrame;
     };
 
-    // return typed global to avoid casts
-    return { browserScope, destroy };
+    return {
+        browserScope, // return typed global to avoid casts
+        destroy,
+        rafManipulator,
+    };
 };
