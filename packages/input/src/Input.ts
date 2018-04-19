@@ -6,4 +6,6 @@ abstract class Input<TKey> {
     }
 }
 
+export type SupportedInput = Input<string | number>;
+
 export default Input;

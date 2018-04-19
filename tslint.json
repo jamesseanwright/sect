@@ -14,7 +14,7 @@
         "ordered-imports": [true, { "import-sources-order": "any", "grouped-imports": true }],
         "quotemark": [true, "single"],
         "space-before-function-paren": [true, { "anonymous": "always" }],
-        "variable-name": [true, "check-format", "allow-leading-underscore"]
+        "variable-name": [true, "check-format", "allow-leading-underscore", "allow-pascal-case"]
     },
     "rulesDirectory": []
 }

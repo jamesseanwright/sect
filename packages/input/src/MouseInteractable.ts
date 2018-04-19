@@ -1,18 +1,15 @@
 import { Component } from '@tecs/core';
 import Mouse from './Mouse';
 import InputInteractable from './InputInteractable';
+import Input from './Input';
+import createFactory from './createFactory';
 
 class MouseInteractable extends InputInteractable<Mouse> {
     // TODO: make reuseable for mouse component
-    public static create(): MouseInteractable {
-        if (!MouseInteractable._mouse) {
-            MouseInteractable._mouse = new Mouse(window.document.body); // TODO
-        }
-
-        return new MouseInteractable(MouseInteractable._mouse);
-    }
-
-    private static _mouse: Mouse;
+    public static create = createFactory<MouseInteractable>(
+        MouseInteractable,
+        new Mouse(window.document.body), // TODO: inject event target
+    );
 
     public isPressed = (keyName: string): boolean => this._input.isPressed(keyName);
 

@@ -1,8 +1,6 @@
 import { Component } from '@tecs/core';
 import Keyboard from './Keyboard';
-import Input from './Input';
-
-export type SupportedInput = Input<string | number>;
+import Input, { SupportedInput } from './Input';
 
 class InputInteractable<T extends SupportedInput> extends Component {
     protected _input: T;
