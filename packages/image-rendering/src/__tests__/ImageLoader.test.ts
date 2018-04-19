@@ -38,4 +38,13 @@ describe('ImageLoader', function () {
             expect(message).to.equal(expectedMessage);
         });
     });
+
+    it('should throw an error if the requested image does`nt exist', async function () {
+        const name = 'foo';
+        const expectedError = `Image ${name} not found in ImageLoader`;
+
+        await imageLoader.init([]);
+
+        expect(() => imageLoader.getImage(name)).to.throw(expectedError);
+    });
 });

@@ -21,7 +21,10 @@ export default class ImageLoader {
     private images: Map<string, HTMLImageElement>;
 
     public getImage(name: string): HTMLImageElement {
-        // TODO: error handling
+        if (!this.images.has(name)) {
+            throw new Error(`Image ${name} not found in ImageLoader`);
+        }
+
         return this.images.get(name);
     }
 
