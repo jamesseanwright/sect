@@ -5,13 +5,12 @@ import Input from './Input';
 import createFactory from './createFactory';
 
 class MouseInteractable extends InputInteractable<Mouse> {
-    // TODO: make reuseable for mouse component
     public static create = createFactory<MouseInteractable>(
         MouseInteractable,
-        new Mouse(window.document.body), // TODO: inject event target
+        Mouse,
     );
 
-    public isPressed = (keyName: string): boolean => this._input.isPressed(keyName);
+    public isPressed = (button: number): boolean => this._input.isPressed(button);
 
     public get x() {
         return this._input.x;

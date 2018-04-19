@@ -7,7 +7,8 @@ class Mouse extends Input<number> {
     private _x: number;
     private _y: number;
 
-    constructor(clickTarget: SupportedTarget) {
+    // TODO: inject click target
+    constructor(clickTarget: SupportedTarget = window.document.body) {
         super();
         this._x = 0;
         this._y = 0;
