@@ -1,2 +1,3 @@
-export const toTuple = (a, b) => [a, b] as [typeof a, typeof b]; // Typed Map initialiser
 export { default as Positionable } from './Positionable';
+export { default as RectRenderable } from './RectRenderable';
+export { default as RectRenderSystem } from './RectRenderSystem';

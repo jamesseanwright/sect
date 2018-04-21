@@ -13,6 +13,8 @@ class ImageRenderSystem extends System<ImageRenderable> {
     }
 
     protected next(component: ImageRenderable, timestamp: number): void {
+        // TODO: clearRect
+
         this.context.drawImage(
             this.imageLoader.getImage(component.imageName),
             component.positionable.x,

@@ -1,6 +1,5 @@
 // tslint:disable:max-classes-per-file
 
-import { toTuple } from '@tecs/basics';
 import { Component } from '@tecs/core';
 import Input from './Input';
 

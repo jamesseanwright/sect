@@ -1,6 +1,6 @@
 import { Component } from '@tecs/core';
 
-export default class Positionable extends Component {
+class Positionable extends Component {
     private _x: number;
     private _y: number;
     private _width: number;
@@ -31,3 +31,5 @@ export default class Positionable extends Component {
          return this._height;
      }
 }
+
+export default Positionable;
