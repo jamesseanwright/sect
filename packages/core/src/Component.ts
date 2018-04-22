@@ -1,1 +1,3 @@
-export default abstract class Component {}
+abstract class Component {}
+
+export default Component;

@@ -12,7 +12,7 @@ const bindEntity = createEntityBinder(systemRegistry);
 
 const createPaddle = () => {
     const positionable = new Positionable(20, 20, 50, 10); // TODO: world space, real coords
-    const rectRenderable = new RectRenderable(positionable, 'white');
+    const rectRenderable = new RectRenderable(positionable, 'black');
 
     return new Entity(positionable, rectRenderable);
 };
