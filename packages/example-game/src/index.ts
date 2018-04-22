@@ -6,7 +6,7 @@ const context = canvas.getContext('2d');
 
 const systemRegistry = new SystemRegistry([
     [RectRenderable, new RectRenderSystem(context)],
-]); // TODO: fix [default] typings
+]);
 
 const bindEntity = createEntityBinder(systemRegistry);
 
