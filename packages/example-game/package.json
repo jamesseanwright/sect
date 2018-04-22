@@ -6,10 +6,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npm run create-dist-dir && npm run copy-html && tsc",
+    "build": "npm run create-dist-dir && tsc && npm run build-client",
+    "build-client": "rollup dist/index.js --f iife | minify --out-file dist/index.min.js && cp src/index.html dist",
     "create-dist-dir": "mkdir -p dist && rm -rf dist/*",
-    "copy-html": "cp src/index.html dist",
-    "dev-success": "npm run copy-html && npm test",
+    "dev-success": "npm run build-client && npm test",
     "lint": "tslint -c ../../tslint.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build",
     "test": "npm run lint",
@@ -42,7 +42,9 @@
     "@tecs/core": "^0.1.0"
   },
   "devDependencies": {
+    "babel-minify": "0.4.0",
     "chai": "4.1.2",
+    "rollup": "0.58.1",
     "sinon": "4.4.9"
   }
 }
