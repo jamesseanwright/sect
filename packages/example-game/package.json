@@ -6,14 +6,11 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npm run create-dist-dir && tsc && npm run build-client",
-    "build-client": "rollup dist/index.js --f iife | minify --out-file dist/index.min.js && cp src/index.html dist",
+    "build": "npm run create-dist-dir && rollup -c && cp src/index.html dist",
     "create-dist-dir": "mkdir -p dist && rm -rf dist/*",
-    "dev-success": "npm run build-client && npm test",
     "lint": "tslint -c ../../tslint.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build",
-    "test": "npm run lint",
-    "watch": "tsc-watch --onSuccess 'npm run dev-success'"
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -42,9 +39,14 @@
     "@tecs/core": "^0.1.0"
   },
   "devDependencies": {
-    "babel-minify": "0.4.0",
     "chai": "4.1.2",
     "rollup": "0.58.1",
+    "rollup-plugin-babel-minify": "4.0.0",
+    "rollup-plugin-node-resolve": "3.3.0",
+    "rollup-plugin-typescript2": "0.13.0",
     "sinon": "4.4.9"
+  },
+  "peerDependencies": {
+    "typescript": ">=2.8.3"
   }
 }
