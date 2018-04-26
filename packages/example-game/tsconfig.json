@@ -6,6 +6,5 @@
         "target": "ES6",
         "module": "es2015",
 		"moduleResolution": "Node",
-        "declaration": true
     }
 }
