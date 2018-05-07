@@ -1,7 +1,7 @@
 // tslint:disable:max-classes-per-file
 
 import { DOMWindow, JSDOM } from 'jsdom';
-import * as createMockRaf from 'mock-raf';
+import createMockRaf from 'mock-raf'; // not using DefinitelyTyped def due to esm conflicts
 
 export type BrowserGlobalScope = NodeJS.Global & {
     window: DOMWindow;
@@ -29,8 +29,15 @@ export class StubImage {
     }
 }
 
-// just in case we change libraries...
-export type RafManipulator = createMockRaf.Creator;
+/* copied from the mock-raf DefinitelyTyped def
+ * due to import conflicts with esm loader.
+ */
+export interface RafManipulator {
+    now(): number;
+    raf(callback: FrameRequestCallback): number;
+    cancel(handle: number): void;
+    step(options?: { time?: number, count?: number }): void;
+}
 
 export interface StubbedDom {
     browserScope: BrowserGlobalScope;
