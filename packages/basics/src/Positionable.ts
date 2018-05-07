@@ -15,21 +15,29 @@ class Positionable extends Component {
         this._height = height;
     }
 
-     get x() {
-         return this._x;
-     }
+    get x() {
+        return this._x;
+    }
 
-     get y() {
-         return this._y;
-     }
+    set x(x: number) {
+        this._x = x;
+    }
 
-     get width() {
-         return this._width;
-     }
+    get y() {
+        return this._y;
+    }
 
-     get height() {
-         return this._height;
-     }
+    set y(y: number) {
+        this._y = y;
+    }
+
+    get width() {
+        return this._width;
+    }
+
+    get height() {
+        return this._height;
+    }
 }
 
 export default Positionable;
