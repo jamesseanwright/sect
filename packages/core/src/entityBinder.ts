@@ -6,7 +6,10 @@ import SystemRegistry from './SystemRegistry';
 const createEntityBinder = (registry: SystemRegistry) => (entity: Entity): Entity => {
     for (const component of entity.components) {
         const system = registry.get(component.constructor);
-        system.register(component);
+
+        if (system) {
+            system.register(component);
+        }
     }
 
     return entity;

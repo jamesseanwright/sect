@@ -9,28 +9,27 @@ import System from '../System';
 import SystemRegistry from '../SystemRegistry';
 
 describe('bindEntity', function () {
-    const createSystem = <T extends Component>(label: string) => new (class extends System<T> {
-        public label = label;
+    const createSystem = <T extends Component>() => new (class extends System<T> {
         protected next(...args): void {}
     })();
 
     class Component1 extends Component {}
     class Component2 extends Component {}
+    class OrphanedComponent extends Component {}
 
-    let mockSystem1: sinon.SinonMock;
-    let mockSystem2: sinon.SinonMock;
+    const mockSystem = sinon.mock(System.prototype);
     let component1: Component;
     let component2: Component;
+    let orphanedComponent: Component;
     let systemRegistry: SystemRegistry;
     let bindEntity: (entity: Entity) => void;
 
     beforeEach(function () {
-        const system1 = createSystem<Component1>('1');
-        const system2 = createSystem<Component2>('2');
-        mockSystem1 = sinon.mock(system1);
-        mockSystem2 = sinon.mock(system2);
+        const system1 = createSystem<Component1>();
+        const system2 = createSystem<Component2>();
         component1 = new Component1();
         component2 = new Component2();
+        orphanedComponent = new OrphanedComponent(); // e.g. Positionable
 
         systemRegistry = new SystemRegistry([
             [Component1, system1],
@@ -41,24 +40,23 @@ describe('bindEntity', function () {
     });
 
     afterEach(function () {
-        mockSystem1.restore();
-        mockSystem2.restore();
+        mockSystem.restore();
     });
 
     it('should register each component of an entity with its associated system', function () {
-        const entity = new Entity(component1, component2);
+        const entity = new Entity(component1, component2, orphanedComponent);
 
-        mockSystem1.expects('register')
-            .once()
-            .withArgs(component1);
-
-        mockSystem2.expects('register')
-            .once()
-            .withArgs(component2);
+        const expectation = mockSystem.expects('register')
+            .twice();
 
         bindEntity(entity);
 
-        mockSystem1.verify();
-        mockSystem2.verify();
+        const [ firstComponent ] = expectation.getCall(0).args;
+        const [ secondComponent ] = expectation.getCall(1).args;
+
+        // TODO: mixing of assertion styles is a bit weird
+        expect(firstComponent).to.equal(component1);
+        expect(secondComponent).to.equal(component2);
+        mockSystem.verify();
     });
 });
