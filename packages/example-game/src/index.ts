@@ -7,6 +7,10 @@ import MovementSystem from './movement/MovementSystem';
 const canvas = document.body.querySelector('#game-output') as HTMLCanvasElement;
 const context = canvas.getContext('2d');
 
+const clearContext = () => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+};
+
 const systemRegistry = new SystemRegistry([
     [Moveable, new MovementSystem()],
     [RectRenderable, new RectRenderSystem(context)],
@@ -24,6 +28,8 @@ const createPaddle = () => {
 
 const paddle = bindEntity(createPaddle());
 const game = new Game(systemRegistry);
+
+game.onLoopStart(clearContext);
 
 game.setState<number>('score', 0);
 game.start();

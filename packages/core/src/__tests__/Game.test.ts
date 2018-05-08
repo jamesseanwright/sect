@@ -65,5 +65,31 @@ describe('Game', function () {
 
             mockSystem.verify();
         });
+
+        it('should call the callback passed to onLoopStart if provided', function () {
+            const onLoopStart = sinon.spy();
+
+            game.onLoopStart(onLoopStart);
+
+            game.start();
+            raf.step();
+            raf.step();
+            raf.step();
+
+            expect(onLoopStart.calledThrice).to.be.true;
+        });
+
+        it('should call the callback passed to onLoopEnd if provided', function () {
+            const onLoopEnd = sinon.spy();
+
+            game.onLoopEnd(onLoopEnd);
+
+            game.start();
+            raf.step();
+            raf.step();
+            raf.step();
+
+            expect(onLoopEnd.calledThrice).to.be.true;
+        });
     });
 });
