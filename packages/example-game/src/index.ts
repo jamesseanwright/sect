@@ -18,15 +18,15 @@ const systemRegistry = new SystemRegistry([
 
 const bindEntity = createEntityBinder(systemRegistry);
 
-const createPaddle = () => {
-    const positionable = new Positionable(20, 20, 50, 10); // TODO: world space, real coords
-    const moveable = new Moveable(5, 0, positionable, KeyboardInteractable.create()); // TODO: .create() for all comps?
+const createPlayerPaddle = () => {
+    const positionable = new Positionable(20, 20, 10, 50); // TODO: world space, real coords
+    const moveable = new Moveable(0, 5, positionable, KeyboardInteractable.create()); // TODO: .create() for all comps?
     const rectRenderable = new RectRenderable(positionable, 'black');
 
     return new Entity(moveable, positionable, rectRenderable);
 };
 
-const paddle = bindEntity(createPaddle());
+const paddle = bindEntity(createPlayerPaddle());
 const game = new Game(systemRegistry);
 
 game.onLoopStart(clearContext);

@@ -2,7 +2,6 @@ import { Positionable } from '@tecs/basics';
 import { Component } from '@tecs/core';
 import { KeyboardInteractable } from '@tecs/input';
 
-// TODO: abstract boilerplate (properties dictionary?)
 class Moveable extends Component {
     private _positionable: Positionable;
     private _keyboardInteractable: KeyboardInteractable;
