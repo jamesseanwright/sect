@@ -38,6 +38,7 @@
   "homepage": "https://github.com/jamesseanwright/tecs#readme",
   "dependencies": {
     "@tecs/basics": "^0.1.2",
+    "@tecs/collision": "^0.0.1",
     "@tecs/core": "^0.1.0",
     "@tecs/input": "^0.0.1"
   },

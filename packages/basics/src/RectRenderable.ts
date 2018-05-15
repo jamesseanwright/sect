@@ -1,14 +1,14 @@
 import { Component } from '@tecs/core';
-import Positionable from './Positionable';
+import RectPositionable from './RectPositionable';
 
 export type RectStyle = string | CanvasGradient | CanvasPattern;
 
 class RectRenderable extends Component {
     private _fill: RectStyle;
     private _stroke: RectStyle;
-    private _positionable: Positionable;
+    private _positionable: RectPositionable;
 
-    constructor(positionable: Positionable, fill: RectStyle, stroke?: RectStyle) {
+    constructor(positionable: RectPositionable, fill: RectStyle, stroke?: RectStyle) {
         super();
         this._fill = fill;
         this._stroke = stroke;
@@ -23,7 +23,7 @@ class RectRenderable extends Component {
         return this._stroke;
     }
 
-    public get positionable(): Positionable {
+    public get positionable(): RectPositionable {
         return this._positionable;
     }
 }

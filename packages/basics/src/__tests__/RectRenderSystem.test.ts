@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import Positionable from '../Positionable';
+import RectPositionable from '../RectPositionable';
 import RectRenderable from '../RectRenderable';
 import RectRenderSystem from '../RectRenderSystem';
 
@@ -16,7 +16,7 @@ describe('RectRenderSystem', function () {
     const height = 100;
     const fill = 'red';
     const stroke = 'yellow';
-    const positionable = new Positionable(x, y, width, height);
+    const positionable = new RectPositionable(x, y, width, height);
     let rectRenderSystem;
 
     beforeEach(function () {

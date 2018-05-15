@@ -1,1 +1,1 @@
-export default () => undefined;
+export { default as LinearCollidable } from './LinearCollidable';
