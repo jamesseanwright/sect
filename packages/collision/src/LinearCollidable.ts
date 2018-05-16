@@ -2,13 +2,19 @@ import { Positionable } from '@tecs/basics';
 import { Component } from '@tecs/core';
 
 class LinearCollidable extends Component {
+    private _name: string;
     private _positionable: Positionable;
     private _collisions: LinearCollidable[];
 
-    constructor(positionable: Positionable) {
+    constructor(name: string, positionable: Positionable) {
         super();
+        this._name = name;
         this._positionable = positionable;
         this._collisions = []; // TODO: more efficient way than dynamic array?
+    }
+
+    public get name(): string {
+        return this._name;
     }
 
     public get positionable(): Positionable {
@@ -23,8 +29,8 @@ class LinearCollidable extends Component {
         this._collisions.splice(this._collisions.indexOf(target));
     }
 
-    public hasCollisionWith(target: LinearCollidable): boolean {
-        return this._collisions.includes(target);
+    public hasCollisionWith(name: string): boolean {
+        return this._collisions.some(c => c.name === name);
     }
 }
 

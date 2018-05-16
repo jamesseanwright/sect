@@ -18,8 +18,16 @@ class Moveable extends Component {
         return this._xSpeed;
     }
 
+    public set xSpeed(value: number) {
+        this._xSpeed = value;
+    }
+
     public get ySpeed(): number {
         return this._ySpeed;
+    }
+
+    public set ySpeed(value: number) {
+        this._ySpeed = value;
     }
 }
 

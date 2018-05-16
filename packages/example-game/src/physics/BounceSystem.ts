@@ -5,6 +5,8 @@ import Bounceable from './Bounceable';
 
 class BounceSystem extends System<Bounceable> {
     protected next(component: Bounceable, timestamp: number): void {
-        throw new Error('Method not implemented.');
+        if (component.linearCollidable.hasCollisionWith('paddle')) {
+            component.moveable.xSpeed *= -1;
+        }
     }
 }
