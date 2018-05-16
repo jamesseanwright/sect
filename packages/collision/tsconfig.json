@@ -3,7 +3,7 @@
 
     "compilerOptions": {
         "outDir": "dist",
-        "target": "ES6",
+        "target": "ES2016",
         "module": "ES2015",
 		"moduleResolution": "Node",
         "declaration": true

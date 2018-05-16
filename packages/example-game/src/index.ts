@@ -1,8 +1,9 @@
 import { RectPositionable, RectRenderable, RectRenderSystem } from '@tecs/basics';
 import { createEntityBinder, Entity, Game, SystemRegistry } from '@tecs/core';
 import { KeyboardInteractable } from '@tecs/input';
-import Moveable from './movement/Moveable';
+import KeyboardMoveable from './movement/KeyboardMoveable';
 import MovementSystem from './movement/MovementSystem';
+import Moveable from './movement/Moveable';
 
 const canvas = document.body.querySelector('#game-output') as HTMLCanvasElement;
 const context = canvas.getContext('2d');
@@ -12,7 +13,7 @@ const clearContext = () => {
 };
 
 const systemRegistry = new SystemRegistry([
-    [Moveable, new MovementSystem()],
+    [KeyboardMoveable, new MovementSystem()],
     [RectRenderable, new RectRenderSystem(context)],
 ]);
 
@@ -20,7 +21,7 @@ const bindEntity = createEntityBinder(systemRegistry);
 
 const createPlayerPaddle = () => {
     const positionable = new RectPositionable(20, 20, 10, 50); // TODO: world space, real coords
-    const moveable = new Moveable(0, 5, positionable, KeyboardInteractable.create()); // TODO: .create() for all comps?
+    const moveable = new KeyboardMoveable(positionable, new Moveable(0, 5), KeyboardInteractable.create());
     const rectRenderable = new RectRenderable(positionable, 'black');
 
     return new Entity(moveable, positionable, rectRenderable);

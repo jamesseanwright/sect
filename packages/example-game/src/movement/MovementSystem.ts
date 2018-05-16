@@ -1,14 +1,14 @@
 import { System } from '@tecs/core';
-import Moveable from './Moveable';
+import KeyboardMoveable from './KeyboardMoveable';
 
-class MovementSystem extends System<Moveable> {
-    protected next(component: Moveable, timestamp: number): void {
+class MovementSystem extends System<KeyboardMoveable> {
+    protected next(component: KeyboardMoveable, timestamp: number): void {
         if (component.keyboardInteractable.isPressed('ArrowUp')) {
-            component.positionable.y -= component.ySpeed;
+            component.positionable.y -= component.moveable.ySpeed;
         }
 
         if (component.keyboardInteractable.isPressed('ArrowDown')) {
-            component.positionable.y += component.ySpeed;
+            component.positionable.y += component.moveable.ySpeed;
         }
     }
 }

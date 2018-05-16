@@ -1,9 +1,17 @@
 import { System } from '@tecs/core';
 import { Positionable } from '@tecs/basics';
 import LinearCollidable from './LinearCollidable';
+import { CollisionPredicate } from '.';
 
-abstract class LinearCollisionSystem extends System<LinearCollidable> {
+class LinearCollisionSystem extends System<LinearCollidable> {
     private targets = new Map<LinearCollidable, LinearCollidable[]>();
+
+    private hasCollision: CollisionPredicate;
+
+    constructor(hasCollision: CollisionPredicate) {
+        super();
+        this.hasCollision = hasCollision;
+    }
 
     public register(component: LinearCollidable): void {
         super.register(component);
@@ -15,13 +23,11 @@ abstract class LinearCollisionSystem extends System<LinearCollidable> {
         this.targets.clear();
     }
 
-    protected abstract hasCollision(a: Positionable, b: Positionable): boolean;
-    protected abstract onCollision(a: Positionable, b: Positionable): void;
-
     protected next(component: LinearCollidable, timestamp: number): void {
         for (const target of this.getTargets(component)) {
             if (this.hasCollision(component.positionable, target.positionable)) {
-                this.onCollision(component.positionable, target.positionable);
+                component.addCollision(target);
+                target.addCollision(component);
             }
         }
     }
