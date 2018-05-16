@@ -6,6 +6,7 @@
         "target": "ES2016",
         "module": "ES2015",
 		"moduleResolution": "Node",
+        "removeComments": true,
         "declaration": true
     }
 }
