@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { Positionable } from '@tecs/basics';
+import { RectPositionable } from '@tecs/basics';
 import ImageRenderable from '../ImageRenderable';
 import ImageRenderSystem from '../ImageRenderSystem';
 
@@ -17,7 +17,7 @@ describe('ImageRenderSystem', function () {
 
             const image = {} as any;
             const system = new ImageRenderSystem(context as any, imageLoader as any); // TODO: typings
-            const positionable = new Positionable(10, 20, 30, 40);
+            const positionable = new RectPositionable(10, 20, 30, 40);
             const imageRenderable = new ImageRenderable(positionable, image);
 
             imageLoader.getImage.returns(image);

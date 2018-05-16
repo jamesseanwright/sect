@@ -1,12 +1,12 @@
 import { Component } from '@tecs/core';
-import { Positionable } from '@tecs/basics';
+import { Positionable, RectPositionable } from '@tecs/basics';
 import ImageRenderSystem from './ImageRenderSystem';
 
 export default class ImageRenderable extends Component {
     private _imageName: string;
-    private _positionable: Positionable;
+    private _positionable: RectPositionable;
 
-    constructor(positionable: Positionable, imageName: string) {
+    constructor(positionable: RectPositionable, imageName: string) {
         super();
         this._imageName = imageName;
         this._positionable = positionable;

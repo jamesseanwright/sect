@@ -1,4 +1,4 @@
-import { Positionable, RectRenderable, RectRenderSystem } from '@tecs/basics';
+import { RectPositionable, RectRenderable, RectRenderSystem } from '@tecs/basics';
 import { createEntityBinder, Entity, Game, SystemRegistry } from '@tecs/core';
 import { KeyboardInteractable } from '@tecs/input';
 import Moveable from './movement/Moveable';
@@ -19,7 +19,7 @@ const systemRegistry = new SystemRegistry([
 const bindEntity = createEntityBinder(systemRegistry);
 
 const createPlayerPaddle = () => {
-    const positionable = new Positionable(20, 20, 10, 50); // TODO: world space, real coords
+    const positionable = new RectPositionable(20, 20, 10, 50); // TODO: world space, real coords
     const moveable = new Moveable(0, 5, positionable, KeyboardInteractable.create()); // TODO: .create() for all comps?
     const rectRenderable = new RectRenderable(positionable, 'black');
 

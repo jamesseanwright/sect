@@ -1,9 +1,7 @@
 import { System } from '@tecs/core';
 import { Positionable } from '@tecs/basics';
 import LinearCollidable from './LinearCollidable';
-import CollisionPredicate from './collisions';
 
-// TODO: handle collision between two different types of positionable
 abstract class LinearCollisionSystem extends System<LinearCollidable> {
     private targets = new Map<LinearCollidable, LinearCollidable[]>();
 
