@@ -5,8 +5,8 @@ import { KeyboardInteractable } from '@tecs/input';
 import KeyboardMoveable from './movement/KeyboardMoveable';
 import MovementSystem from './movement/MovementSystem';
 import Moveable from './movement/Moveable';
-import AutoMoveable from './movement/AutoMoveable';
-import AutoMovementSystem from './movement/AutoMovementSystem';
+import ConstantMoveable from './movement/ConstantMoveable';
+import ConstantMovementSystem from './movement/ConstantMovementSystem';
 import Bounceable from './physics/Bounceable';
 import BounceSystem from './physics/BounceSystem';
 import createBall from './entities/ball';
@@ -24,7 +24,7 @@ const clearContext = () => {
 const systemRegistry = new SystemRegistry([
     [KeyboardMoveable, new MovementSystem()],
     [RectRenderable, new RectRenderSystem(context)],
-    [AutoMoveable, new AutoMovementSystem()],
+    [ConstantMoveable, new ConstantMovementSystem()],
     [LinearCollidable, new LinearCollisionSystem(hasRectangularCollision)],
     [Bounceable, new BounceSystem()],
 ]);

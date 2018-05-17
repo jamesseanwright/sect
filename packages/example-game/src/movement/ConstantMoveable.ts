@@ -2,7 +2,7 @@ import { Positionable } from '@tecs/basics';
 import { Component } from '@tecs/core';
 import Moveable from './Moveable';
 
-class AutoMoveable extends Component {
+class ConstantMoveable extends Component {
     private _moveable: Moveable;
     private _positionable: Positionable;
 
@@ -21,4 +21,4 @@ class AutoMoveable extends Component {
     }
 }
 
-export default AutoMoveable;
+export default ConstantMoveable;
