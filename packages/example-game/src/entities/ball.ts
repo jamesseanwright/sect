@@ -7,7 +7,7 @@ import Bounceable from '../physics/Bounceable';
 
 const createBall = (bindEntity: EntityBinder) => {
     const positionable = new RectPositionable(200, 200, 10, 10); // TODO: world space, real coords
-    const moveable = new Moveable(7, 7);
+    const moveable = new Moveable(5, 5); // TODO: replace magic numbers
     const autoMoveable = new AutoMoveable(positionable, moveable);
     const linearCollidable = new LinearCollidable('paddle', positionable);
     const bounceable = new Bounceable(autoMoveable, linearCollidable);

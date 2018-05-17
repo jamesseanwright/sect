@@ -25,8 +25,8 @@ class LinearCollidable extends Component {
         this._collisions.push(target);
     }
 
-    public removeCollision(target: LinearCollidable): void {
-        this._collisions.splice(this._collisions.indexOf(target));
+    public removeCollisionsWith(name: string): void {
+        this._collisions = this._collisions.filter(c => c.name !== name); // TODO: see above TODO
     }
 
     public hasCollisionWith(name: string): boolean {
