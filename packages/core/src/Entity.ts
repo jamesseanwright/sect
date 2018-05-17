@@ -19,6 +19,11 @@ class Entity {
     get components() {
         return this._components;
     }
+
+    // TODO: test!
+    public getComponentByType<T extends Component>(ComponentType: new (...args) => T): T {
+        return this._components.find(c => c.constructor === ComponentType) as T;
+    }
 }
 
 export default Entity;
