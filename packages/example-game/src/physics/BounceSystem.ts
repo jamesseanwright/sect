@@ -5,8 +5,15 @@ import Bounceable from './Bounceable';
 
 class BounceSystem extends System<Bounceable> {
     protected next(component: Bounceable, timestamp: number): void {
+        console.log('***** bouncey');
         if (component.linearCollidable.hasCollisionWith('paddle')) {
-            component.moveable.xSpeed *= -1;
+            component.autoMoveable.moveable.xSpeed *= -1;
+        }
+
+        if (component.linearCollidable.hasCollisionWith('edge')) {
+            component.autoMoveable.moveable.ySpeed *= -1;
         }
     }
 }
+
+export default BounceSystem;

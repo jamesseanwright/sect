@@ -2,26 +2,20 @@ import { Positionable } from '@tecs/basics';
 import { Component } from '@tecs/core';
 import { KeyboardInteractable } from '@tecs/input';
 import { LinearCollidable } from '@tecs/collision';
-import Moveable from '../movement/Moveable';
+import AutoMoveable from '../movement/AutoMoveable';
 
 class Bounceable extends Component {
-    private _positionable: Positionable;
-    private _moveable: Moveable;
+    private _autoMoveable: AutoMoveable;
     private _linearCollidable: LinearCollidable;
 
-    constructor(positionable: Positionable, moveable: Moveable, linearCollidable: LinearCollidable) {
+    constructor(autoMoveable: AutoMoveable, linearCollidable: LinearCollidable) {
         super();
-        this._positionable = positionable;
-        this._moveable = moveable;
+        this._autoMoveable = autoMoveable;
         this._linearCollidable = linearCollidable;
     }
 
-    public get positionable(): Positionable {
-        return this._positionable;
-    }
-
-    public get moveable(): Moveable {
-        return this._moveable;
+    public get autoMoveable(): AutoMoveable {
+        return this._autoMoveable;
     }
 
     public get linearCollidable(): LinearCollidable {
