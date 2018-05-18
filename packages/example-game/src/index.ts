@@ -16,6 +16,8 @@ import createComputerPaddle from './entities/computerPaddle';
 import createEdge from './entities/edge';
 import createPlayerPaddle from './entities/playerPaddle';
 
+const EDGE_HEIGHT = 5;
+
 const canvas = document.body.querySelector('#game-output') as HTMLCanvasElement;
 const context = canvas.getContext('2d');
 
@@ -38,8 +40,8 @@ const ball = createBall(bindEntity);
 const paddle = createPlayerPaddle(bindEntity);
 const computerTarget = ball.getComponentByType<RectPositionable>(RectPositionable);
 const computerPaddle = createComputerPaddle(bindEntity, computerTarget);
-const topEdge = createEdge(bindEntity, 0, canvas.width);
-const bottomEdge = createEdge(bindEntity, canvas.height, canvas.width);
+const topEdge = createEdge(bindEntity, 0, canvas.width, EDGE_HEIGHT);
+const bottomEdge = createEdge(bindEntity, canvas.height - EDGE_HEIGHT, canvas.width, EDGE_HEIGHT);
 const game = new Game(systemRegistry);
 
 game.onLoopStart(clearContext);
