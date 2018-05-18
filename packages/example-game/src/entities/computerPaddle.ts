@@ -7,7 +7,7 @@ import TrackingMoveable from '../movement/TrackingMoveable';
 
 const createComputerPaddle = (bindEntity: EntityBinder, targetPositionable: RectPositionable) => {
     const positionable = new RectPositionable(700, 110, 10, 50); // TODO: world space, real coords
-    const moveable = new Moveable(0, 4.5); // TODO: remove magic numbers, share speed with player
+    const moveable = new Moveable(0, 4.8); // TODO: remove magic numbers, share speed with player
     const linearCollidable = new LinearCollidable('paddle', positionable);
     const trackingMoveable = new TrackingMoveable(moveable, positionable, targetPositionable);
     const rectRenderable = new RectRenderable(positionable, 'black');
