@@ -15,12 +15,12 @@ class LinearCollisionSystem extends System<LinearCollidable> {
 
     public register(component: LinearCollidable): void {
         super.register(component);
-        this.targets.clear();
+        this.targets.clear(); // invalidate memoisation to include new targets in collision checks
     }
 
     public deregister(component: LinearCollidable): void {
         super.deregister(component);
-        this.targets.clear();
+        this.targets.clear(); // invalidate memoisation to include new targets in collision checks
     }
 
     protected next(component: LinearCollidable, timestamp: number): void {
@@ -32,6 +32,7 @@ class LinearCollisionSystem extends System<LinearCollidable> {
         }
     }
 
+    // Memoising target access for each registered component to boost performance
     private getTargets(collidable: LinearCollidable): LinearCollidable[] {
         if (!this.targets.has(collidable)) {
             const targets = this.components.filter(c => c !== collidable);

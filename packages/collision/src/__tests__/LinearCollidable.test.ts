@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import * as sinon from 'sinon';
 import { RectPositionable } from '@tecs/basics';
 import LinearCollidable from '../LinearCollidable';
 
