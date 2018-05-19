@@ -13,7 +13,7 @@ describe('hasRectangularCollision', function () {
 
     it('should return false when two RectPositionables are not colliding', function () {
         const aPositionable = new RectPositionable(10, 10, 50, 50);
-        const bPositionable = new RectPositionable(51, 51, 50, 50);
+        const bPositionable = new RectPositionable(61, 61, 50, 50);
         const hasCollision = hasRectangularCollision(aPositionable, bPositionable);
 
         expect(hasCollision).to.be.false;

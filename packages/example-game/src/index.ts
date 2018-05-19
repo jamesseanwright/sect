@@ -42,6 +42,7 @@ const computerTarget = ball.getComponentByType<RectPositionable>(RectPositionabl
 const computerPaddle = createComputerPaddle(bindEntity, computerTarget);
 const topEdge = createEdge(bindEntity, 0, canvas.width, EDGE_HEIGHT);
 const bottomEdge = createEdge(bindEntity, canvas.height - EDGE_HEIGHT, canvas.width, EDGE_HEIGHT);
+
 const game = new Game(systemRegistry);
 
 game.onLoopStart(clearContext);
