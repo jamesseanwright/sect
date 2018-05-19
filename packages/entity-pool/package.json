@@ -1,6 +1,6 @@
 {
   "name": "@sectjs/entity-pool",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A basic pool for managing entities as static memory resources",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -39,6 +39,6 @@
     "sinon": "4.4.9"
   },
   "dependencies": {
-    "@sectjs/core": "^0.1.2"
+    "@sectjs/core": "^0.1.3"
   }
 }
