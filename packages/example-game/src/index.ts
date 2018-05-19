@@ -1,12 +1,12 @@
 import ConstantMovementSystem from './movement/ConstantMovementSystem';
-import { Positionable, RectPositionable, RectRenderable, RectRenderSystem, TextRenderable, TextRenderSystem } from '@tecs/basics';
-import { createEntityBinder, Entity, Game, SystemRegistry } from '@tecs/core';
-import { KeyboardInteractable } from '@tecs/input';
+import { RectPositionable, RectRenderable, RectRenderSystem, TextRenderable, TextRenderSystem } from '@sectjs/basics';
+import { createEntityBinder, Entity, Game, SystemRegistry } from '@sectjs/core';
+import { KeyboardInteractable } from '@sectjs/input';
 import KeyboardMoveable from './movement/KeyboardMoveable';
 import MovementSystem from './movement/MovementSystem';
 import Moveable from './movement/Moveable';
 import ConstantMoveable from './movement/ConstantMoveable';
-import { hasRectangularCollision, LinearCollidable, LinearCollisionSystem } from '@tecs/collision';
+import { hasRectangularCollision, LinearCollidable, LinearCollisionSystem } from '@sectjs/collision';
 import TrackingMoveable from './movement/TrackingMoveable';
 import TrackingMovementSystem from './movement/TrackingMovementSystem';
 import Bounceable from './physics/Bounceable';

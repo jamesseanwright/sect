@@ -1,5 +1,5 @@
-import { RectPositionable, RectRenderable, TextRenderable } from '@tecs/basics';
-import { Entity, EntityBinder, Game } from '@tecs/core';
+import { RectPositionable, RectRenderable, TextRenderable } from '@sectjs/basics';
+import { Entity, EntityBinder, Game } from '@sectjs/core';
 
 const createHud = (bindEntity: EntityBinder, game: Game) => {
     const positionable = new RectPositionable(20, 20, 0, 0); // TODO: positionable without width and height

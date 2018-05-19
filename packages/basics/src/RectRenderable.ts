@@ -1,4 +1,4 @@
-import { Component } from '@tecs/core';
+import { Component } from '@sectjs/core';
 import RectPositionable from './RectPositionable';
 import { CanvasStyle } from './types';
 

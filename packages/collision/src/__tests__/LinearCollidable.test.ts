@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { RectPositionable } from '@tecs/basics';
+import { RectPositionable } from '@sectjs/basics';
 import LinearCollidable from '../LinearCollidable';
 
 describe('LinearCollidable', function () {

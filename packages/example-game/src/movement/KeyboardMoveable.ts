@@ -1,6 +1,6 @@
-import { Positionable } from '@tecs/basics';
-import { Component } from '@tecs/core';
-import { KeyboardInteractable } from '@tecs/input';
+import { Positionable } from '@sectjs/basics';
+import { Component } from '@sectjs/core';
+import { KeyboardInteractable } from '@sectjs/input';
 import Moveable from './Moveable';
 
 class KeyboardMoveable extends Component {

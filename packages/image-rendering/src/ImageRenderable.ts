@@ -1,5 +1,5 @@
-import { Component } from '@tecs/core';
-import { Positionable, RectPositionable } from '@tecs/basics';
+import { Component } from '@sectjs/core';
+import { Positionable, RectPositionable } from '@sectjs/basics';
 import ImageRenderSystem from './ImageRenderSystem';
 
 export default class ImageRenderable extends Component {

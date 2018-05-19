@@ -1,4 +1,4 @@
-import { System } from '@tecs/core';
+import { System } from '@sectjs/core';
 import TrackingMoveable from './TrackingMoveable';
 
 class TrackingMovementSystem extends System<TrackingMoveable> {

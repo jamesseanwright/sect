@@ -1,5 +1,5 @@
 import EntityGroup from './EntityGroup';
-import { Entity } from '@tecs/core';
+import { Entity } from '@sectjs/core';
 
 export type groupTuple = [string, Entity[]];
 

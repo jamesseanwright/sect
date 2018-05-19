@@ -1,6 +1,6 @@
-# Tecs
+# Sect
 
-Tecs is a modular and testable Entity-Component-System framework for JavaScript games, with first-class TypeScript support.
+Sect is a modular and testable Entity-Component-System framework for JavaScript games, with first-class TypeScript support.
 
 **This project is still in the early stages of development. Do not use at this time.** The core packages and APIs are currently being drafted.
 

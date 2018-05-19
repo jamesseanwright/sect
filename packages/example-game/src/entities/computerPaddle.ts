@@ -1,7 +1,7 @@
-import { RectPositionable, RectRenderable } from '@tecs/basics';
-import { LinearCollidable } from '@tecs/collision';
-import { Entity, EntityBinder } from '@tecs/core';
-import { KeyboardInteractable } from '@tecs/input';
+import { RectPositionable, RectRenderable } from '@sectjs/basics';
+import { LinearCollidable } from '@sectjs/collision';
+import { Entity, EntityBinder } from '@sectjs/core';
+import { KeyboardInteractable } from '@sectjs/input';
 import Moveable from '../movement/Moveable';
 import TrackingMoveable from '../movement/TrackingMoveable';
 

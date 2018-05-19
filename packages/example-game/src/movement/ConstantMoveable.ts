@@ -1,5 +1,5 @@
-import { Positionable } from '@tecs/basics';
-import { Component } from '@tecs/core';
+import { Positionable } from '@sectjs/basics';
+import { Component } from '@sectjs/core';
 import Moveable from './Moveable';
 
 class ConstantMoveable extends Component {

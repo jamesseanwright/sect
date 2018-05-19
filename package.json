@@ -1,5 +1,5 @@
 {
-  "name": "tecs-monorepo",
+  "name": "sect-monorepo",
   "private": true,
   "version": "0.0.1",
   "description": "A small Entity-Component-System framework for JavaScript games, with first-class TypeScript support",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jamesseanwright/tecs.git"
+    "url": "git+https://github.com/jamesseanwright/sect.git"
   },
   "keywords": [
     "ecs",
@@ -26,9 +26,9 @@
   "author": "James Wright <james@jamesswright.co.uk>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jamesseanwright/tecs/issues"
+    "url": "https://github.com/jamesseanwright/sect/issues"
   },
-  "homepage": "https://github.com/jamesseanwright/tecs#readme",
+  "homepage": "https://github.com/jamesseanwright/sect#readme",
   "devDependencies": {
     "@types/chai": "4.1.2",
     "@types/jsdom": "11.0.4",

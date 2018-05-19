@@ -1,6 +1,6 @@
-import { System } from '@tecs/core';
-import { hasRectangularCollision, LinearCollidable, LinearCollisionSystem } from '@tecs/collision';
-import { Positionable, RectPositionable } from '@tecs/basics';
+import { System } from '@sectjs/core';
+import { hasRectangularCollision, LinearCollidable, LinearCollisionSystem } from '@sectjs/collision';
+import { Positionable, RectPositionable } from '@sectjs/basics';
 import Bounceable from './Bounceable';
 
 class BounceSystem extends System<Bounceable> {

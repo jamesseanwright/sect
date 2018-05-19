@@ -1,4 +1,4 @@
-import { Component } from '@tecs/core';
+import { Component } from '@sectjs/core';
 import Keyboard from './Keyboard';
 import InputInteractable from './InputInteractable';
 import createFactory from './createFactory';

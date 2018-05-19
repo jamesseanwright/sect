@@ -1,6 +1,6 @@
-import { RectPositionable, RectRenderable } from '@tecs/basics';
-import { LinearCollidable } from '@tecs/collision';
-import { Entity, EntityBinder } from '@tecs/core';
+import { RectPositionable, RectRenderable } from '@sectjs/basics';
+import { LinearCollidable } from '@sectjs/collision';
+import { Entity, EntityBinder } from '@sectjs/core';
 
 const createEdge = (bindEntity: EntityBinder, y: number, width: number, height: number) => {
     const positionable = new RectPositionable(0, y, width, height); // TODO: world space, real coords

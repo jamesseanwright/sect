@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { createDom, RafManipulator } from '@tecs/test-utils';
+import { createDom, RafManipulator } from '@sectjs/test-utils';
 import Component from '../Component';
 import Game from '../Game';
 import System from '../System';

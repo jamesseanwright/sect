@@ -1,6 +1,6 @@
 // tslint:disable:max-classes-per-file
 
-import { Component } from '@tecs/core';
+import { Component } from '@sectjs/core';
 import Input from './Input';
 
 export class Keyboard extends Input<string> {

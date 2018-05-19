@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { RectPositionable } from '@tecs/basics';
+import { RectPositionable } from '@sectjs/basics';
 import ImageRenderable from '../ImageRenderable';
 import ImageRenderSystem from '../ImageRenderSystem';
 

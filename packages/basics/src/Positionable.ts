@@ -1,4 +1,4 @@
-import { Component } from '@tecs/core';
+import { Component } from '@sectjs/core';
 
 abstract class Positionable extends Component {
     private _x: number;

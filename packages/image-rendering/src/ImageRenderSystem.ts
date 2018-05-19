@@ -1,4 +1,4 @@
-import { Component, System } from '@tecs/core';
+import { Component, System } from '@sectjs/core';
 import ImageLoader from './ImageLoader';
 import ImageRenderable from './ImageRenderable';
 

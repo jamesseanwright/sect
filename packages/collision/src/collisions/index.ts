@@ -1,4 +1,4 @@
-import { Positionable } from '@tecs/basics';
+import { Positionable } from '@sectjs/basics';
 
 export type CollisionPredicate = (a: Positionable, b: Positionable) => boolean;
 

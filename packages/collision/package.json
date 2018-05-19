@@ -1,5 +1,5 @@
 {
-  "name": "@tecs/collision",
+  "name": "@sectjs/collision",
   "version": "0.0.1",
   "description": "Logic for linear and grid-based collisions",
   "private": true,
@@ -36,8 +36,8 @@
   },
   "homepage": "https://github.com/jamesseanwright/tecs#readme",
   "dependencies": {
-    "@tecs/basics": "^0.1.2",
-    "@tecs/core": "^0.1.0"
+    "@sectjs/basics": "^0.1.2",
+    "@sectjs/core": "^0.1.0"
   },
   "devDependencies": {
     "chai": "4.1.2",

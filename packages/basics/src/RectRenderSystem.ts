@@ -1,4 +1,4 @@
-import { Component, System } from '@tecs/core';
+import { Component, System } from '@sectjs/core';
 import RectRenderable from './RectRenderable';
 import { RenderMode } from './types';
 

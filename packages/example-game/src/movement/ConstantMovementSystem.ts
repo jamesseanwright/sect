@@ -1,4 +1,4 @@
-import { System } from '@tecs/core';
+import { System } from '@sectjs/core';
 import ConstantMoveable from './ConstantMoveable';
 
 class ConstantMovementSystem extends System<ConstantMoveable> {

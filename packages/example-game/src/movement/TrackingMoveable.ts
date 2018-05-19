@@ -1,5 +1,5 @@
-import { RectPositionable } from '@tecs/basics';
-import { Component } from '@tecs/core';
+import { RectPositionable } from '@sectjs/basics';
+import { Component } from '@sectjs/core';
 import Moveable from './Moveable';
 
 class TrackingMoveable extends Component {

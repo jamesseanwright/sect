@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Component, Entity } from '@tecs/core';
+import { Component, Entity } from '@sectjs/core';
 import EntityPool from '../';
 
 describe('EntityPool', function () {

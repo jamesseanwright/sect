@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Entity } from '@tecs/core';
+import { Entity } from '@sectjs/core';
 import EntityGroup from '../EntityGroup';
 
 describe('EntityGroup', function () {

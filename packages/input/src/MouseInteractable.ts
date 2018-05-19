@@ -1,4 +1,4 @@
-import { Component } from '@tecs/core';
+import { Component } from '@sectjs/core';
 import Mouse from './Mouse';
 import InputInteractable from './InputInteractable';
 import Input from './Input';

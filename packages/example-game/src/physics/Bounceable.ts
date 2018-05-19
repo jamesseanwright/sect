@@ -1,7 +1,7 @@
-import { Positionable } from '@tecs/basics';
-import { Component } from '@tecs/core';
-import { KeyboardInteractable } from '@tecs/input';
-import { LinearCollidable } from '@tecs/collision';
+import { Positionable } from '@sectjs/basics';
+import { Component } from '@sectjs/core';
+import { KeyboardInteractable } from '@sectjs/input';
+import { LinearCollidable } from '@sectjs/collision';
 import ConstantMoveable from '../movement/ConstantMoveable';
 
 class Bounceable extends Component {

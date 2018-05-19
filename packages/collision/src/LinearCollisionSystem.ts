@@ -1,5 +1,5 @@
-import { System } from '@tecs/core';
-import { Positionable } from '@tecs/basics';
+import { System } from '@sectjs/core';
+import { Positionable } from '@sectjs/basics';
 import LinearCollidable from './LinearCollidable';
 import { CollisionPredicate } from '.';
 

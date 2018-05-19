@@ -1,6 +1,6 @@
-import { RectPositionable, RectRenderable } from '@tecs/basics';
-import { LinearCollidable } from '@tecs/collision';
-import { Entity, EntityBinder } from '@tecs/core';
+import { RectPositionable, RectRenderable } from '@sectjs/basics';
+import { LinearCollidable } from '@sectjs/collision';
+import { Entity, EntityBinder } from '@sectjs/core';
 import Moveable from '../movement/Moveable';
 import ConstantMoveable from '../movement/ConstantMoveable';
 import Bounceable from '../physics/Bounceable';

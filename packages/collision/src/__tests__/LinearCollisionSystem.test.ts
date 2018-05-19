@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Positionable, RectPositionable } from '@tecs/basics';
+import { Positionable, RectPositionable } from '@sectjs/basics';
 import LinearCollidable from '../LinearCollidable';
 import LinearCollisionSystem from '../LinearCollisionSystem';
 

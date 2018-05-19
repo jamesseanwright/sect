@@ -1,4 +1,4 @@
-import { System } from '@tecs/core';
+import { System } from '@sectjs/core';
 import KeyboardMoveable from './KeyboardMoveable';
 
 class MovementSystem extends System<KeyboardMoveable> {

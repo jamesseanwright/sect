@@ -1,4 +1,4 @@
-import { RectPositionable } from '@tecs/basics';
+import { RectPositionable } from '@sectjs/basics';
 
 const isWithinBounds = (a: RectPositionable, b: RectPositionable) => (
     a.x >= b.x && a.x <= b.x + b.width && a.y >= b.y && a.y <= b.y + b.height

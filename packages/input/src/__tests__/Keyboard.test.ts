@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createDom, StubbedDom } from '@tecs/test-utils';
+import { createDom, StubbedDom } from '@sectjs/test-utils';
 import Keyboard from '../Keyboard';
 
 describe('Keyboard', function () {

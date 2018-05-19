@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createDom, StubbedDom } from '@tecs/test-utils';
+import { createDom, StubbedDom } from '@sectjs/test-utils';
 import Mouse from '../Mouse';
 
 describe('Mouse', function () {

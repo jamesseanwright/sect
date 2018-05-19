@@ -1,5 +1,5 @@
 {
-  "name": "@tecs/test-utils",
+  "name": "@sectjs/test-utils",
   "version": "0.0.1",
   "description": "A template for defining new packages",
   "private": true,
