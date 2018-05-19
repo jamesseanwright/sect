@@ -1,8 +1,8 @@
 import { Component, System } from '@tecs/core';
-import RectRenderable from './RectRenderable';
+import TextRenderable from './TextRenderable';
 import { RenderMode } from './types';
 
-class RectRenderSystem extends System<RectRenderable> {
+class TextRenderSystem extends System<TextRenderable> {
     private context: CanvasRenderingContext2D;
 
     constructor(context: CanvasRenderingContext2D) {
@@ -10,7 +10,9 @@ class RectRenderSystem extends System<RectRenderable> {
         this.context = context;
     }
 
-    protected next(component: RectRenderable, timestamp: number): void {
+    protected next(component: TextRenderable, timestamp: number): void {
+        this.context.font = component.font;
+
         if (component.fill) {
             this.render(component, 'fill');
         }
@@ -20,16 +22,15 @@ class RectRenderSystem extends System<RectRenderable> {
         }
     }
 
-    private render(component: RectRenderable, mode: RenderMode) {
+    private render(component: TextRenderable, mode: RenderMode) {
         this.context[`${mode}Style`] = component[mode];
 
-        this.context[`${mode}Rect`](
+        this.context[`${mode}Text`](
+            component.text,
             component.positionable.x,
             component.positionable.y,
-            component.positionable.width,
-            component.positionable.height,
         );
     }
 }
 
-export default RectRenderSystem;
+export default TextRenderSystem;

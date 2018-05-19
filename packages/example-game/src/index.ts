@@ -1,5 +1,5 @@
 import ConstantMovementSystem from './movement/ConstantMovementSystem';
-import { Positionable, RectPositionable, RectRenderable, RectRenderSystem } from '@tecs/basics';
+import { Positionable, RectPositionable, RectRenderable, RectRenderSystem, TextRenderable, TextRenderSystem } from '@tecs/basics';
 import { createEntityBinder, Entity, Game, SystemRegistry } from '@tecs/core';
 import { KeyboardInteractable } from '@tecs/input';
 import KeyboardMoveable from './movement/KeyboardMoveable';
@@ -14,6 +14,7 @@ import BounceSystem from './physics/BounceSystem';
 import createBall from './entities/ball';
 import createComputerPaddle from './entities/computerPaddle';
 import createEdge from './entities/edge';
+import createHud from './entities/hud';
 import createPlayerPaddle from './entities/playerPaddle';
 
 const EDGE_HEIGHT = 5;
@@ -28,12 +29,14 @@ const clearContext = () => {
 const systemRegistry = new SystemRegistry([
     [KeyboardMoveable, new MovementSystem()],
     [RectRenderable, new RectRenderSystem(context)],
+    [TextRenderable, new TextRenderSystem(context)],
     [ConstantMoveable, new ConstantMovementSystem()],
     [TrackingMoveable, new TrackingMovementSystem()],
     [LinearCollidable, new LinearCollisionSystem(hasRectangularCollision)],
     [Bounceable, new BounceSystem()],
 ]);
 
+const game = new Game(systemRegistry);
 const bindEntity = createEntityBinder(systemRegistry);
 
 const ball = createBall(bindEntity);
@@ -42,8 +45,7 @@ const computerTarget = ball.getComponentByType<RectPositionable>(RectPositionabl
 const computerPaddle = createComputerPaddle(bindEntity, computerTarget);
 const topEdge = createEdge(bindEntity, 0, canvas.width, EDGE_HEIGHT);
 const bottomEdge = createEdge(bindEntity, canvas.height - EDGE_HEIGHT, canvas.width, EDGE_HEIGHT);
-
-const game = new Game(systemRegistry);
+const hud = createHud(bindEntity, game);
 
 game.onLoopStart(clearContext);
 
