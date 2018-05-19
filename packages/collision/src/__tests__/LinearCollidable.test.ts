@@ -19,15 +19,19 @@ describe('LinearCollidable', function () {
     describe('removeCollisionsWith', function () {
         it('should remove all collisions by name', function () {
             const collidable = new LinearCollidable('foo', new RectPositionable(0, 0, 1, 1));
+            const targetNames = ['bar', 'bar', 'baz', 'baz', 'baz', 'qux'];
+            const nameToRemove = 'baz';
 
-            const targets = ['bar', 'bar', 'baz', 'baz', 'baz', 'qux'].map(
+            const targets = targetNames.map(
                 name => new LinearCollidable(name, new RectPositionable(0, 0, 1, 1)),
             );
 
             targets.forEach(target => collidable.addCollision(target));
-            collidable.removeCollisionsWith('baz');
+            collidable.removeCollisionsWith(nameToRemove);
 
-            expect(collidable.hasCollisionWith(targetName)).to.be.true;
+            targetNames.forEach(name => {
+                expect(collidable.hasCollisionWith(name)).to.equal(name !== nameToRemove);
+            });
         });
     });
 });
