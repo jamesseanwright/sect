@@ -2,7 +2,6 @@
   "name": "@sectjs/collision",
   "version": "0.0.1",
   "description": "Logic for linear and grid-based collisions",
-  "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
