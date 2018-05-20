@@ -2,6 +2,15 @@ import minify from 'rollup-plugin-babel-minify';
 import resolve from 'rollup-plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 
+const safeMinificationPlugins = [
+    typescript(),
+    minify(),
+];
+
+const extremeMinificationPlugins = [
+    typescript(), // TODO: ES5 => closure compiler here
+];
+
 export default {
     input: 'src/index.ts',
     output: {
@@ -9,8 +18,7 @@ export default {
         format: 'iife',
     },
     plugins: [
-        typescript(),
         resolve(),
-        minify(),
+        ...safeMinificationPlugins,
     ],
 };
