@@ -1,16 +1,6 @@
-import { RectPositionable, RectRenderable, RectRenderSystem, TextRenderable, TextRenderSystem } from '@sectjs/basics';
-import { createEntityBinder, Entity, Game, SystemRegistry } from '@sectjs/core';
-import { KeyboardInteractable } from '@sectjs/input';
-import KeyboardMoveable from './movement/KeyboardMoveable';
-import KeyboardMovementSystem from './movement/KeyboardMovementSystem';
-import Moveable from './movement/Moveable';
-import ConstantMoveable from './movement/ConstantMoveable';
-import ConstantMovementSystem from './movement/ConstantMovementSystem'; // TODO: move below bare imports
-import { hasRectangularCollision, LinearCollidable, LinearCollisionSystem } from '@sectjs/collision';
-import TrackingMoveable from './movement/TrackingMoveable';
-import TrackingMovementSystem from './movement/TrackingMovementSystem';
-import Bounceable from './physics/Bounceable';
-import BounceSystem from './physics/BounceSystem';
+import { RectPositionable } from '@sectjs/basics';
+import { createEntityBinder, Entity, Game } from '@sectjs/core';
+import createSystemRegistry from './systemRegistry';
 import createBall from './entities/ball';
 import createComputerPaddle from './entities/computerPaddle';
 import createEdge from './entities/edge';
@@ -26,16 +16,7 @@ const clearContext = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
 };
 
-const systemRegistry = new SystemRegistry([
-    [KeyboardMoveable, new KeyboardMovementSystem()],
-    [RectRenderable, new RectRenderSystem(context)],
-    [TextRenderable, new TextRenderSystem(context)],
-    [ConstantMoveable, new ConstantMovementSystem()],
-    [TrackingMoveable, new TrackingMovementSystem()],
-    [LinearCollidable, new LinearCollisionSystem(hasRectangularCollision)],
-    [Bounceable, new BounceSystem()],
-]);
-
+const systemRegistry = createSystemRegistry(context);
 const game = new Game(systemRegistry);
 const bindEntity = createEntityBinder(systemRegistry);
 
