@@ -17,7 +17,7 @@ describe('RectRenderSystem', function () {
     const fill = 'red';
     const stroke = 'yellow';
     const positionable = new RectPositionable(x, y, width, height);
-    let rectRenderSystem;
+    let rectRenderSystem: RectRenderSystem;
 
     beforeEach(function () {
         rectRenderSystem = new RectRenderSystem(context as any);

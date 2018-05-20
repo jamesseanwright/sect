@@ -11,7 +11,7 @@ class TextRenderSystem extends System<TextRenderable> {
     }
 
     protected next(component: TextRenderable, timestamp: number): void {
-        this.context.font = component.font;
+        this.context.font = `${component.fontSize}px ${component.fontFamily}`;
 
         if (component.fill) {
             this.render(component, 'fill');
