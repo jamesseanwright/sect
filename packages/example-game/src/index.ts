@@ -1,4 +1,4 @@
-import ConstantMovementSystem from './movement/ConstantMovementSystem';
+import ConstantMovementSystem from './movement/ConstantMovementSystem'; // TODO: move below bare imports
 import { RectPositionable, RectRenderable, RectRenderSystem, TextRenderable, TextRenderSystem } from '@sectjs/basics';
 import { createEntityBinder, Entity, Game, SystemRegistry } from '@sectjs/core';
 import { KeyboardInteractable } from '@sectjs/input';
