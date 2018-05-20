@@ -1,7 +1,7 @@
 import { System } from '@sectjs/core';
 import KeyboardMoveable from './KeyboardMoveable';
 
-class MovementSystem extends System<KeyboardMoveable> { // TODO: rename to KeyboardMovementSystem
+class KeyboardMovementSystem extends System<KeyboardMoveable> {
     protected next(component: KeyboardMoveable, timestamp: number): void {
         if (component.keyboardInteractable.isPressed('ArrowUp')) {
             component.positionable.y -= component.moveable.ySpeed;
@@ -13,4 +13,4 @@ class MovementSystem extends System<KeyboardMoveable> { // TODO: rename to Keybo
     }
 }
 
-export default MovementSystem;
+export default KeyboardMovementSystem;

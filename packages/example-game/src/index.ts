@@ -1,11 +1,11 @@
-import ConstantMovementSystem from './movement/ConstantMovementSystem'; // TODO: move below bare imports
 import { RectPositionable, RectRenderable, RectRenderSystem, TextRenderable, TextRenderSystem } from '@sectjs/basics';
 import { createEntityBinder, Entity, Game, SystemRegistry } from '@sectjs/core';
 import { KeyboardInteractable } from '@sectjs/input';
 import KeyboardMoveable from './movement/KeyboardMoveable';
-import MovementSystem from './movement/MovementSystem';
+import KeyboardMovementSystem from './movement/KeyboardMovementSystem';
 import Moveable from './movement/Moveable';
 import ConstantMoveable from './movement/ConstantMoveable';
+import ConstantMovementSystem from './movement/ConstantMovementSystem'; // TODO: move below bare imports
 import { hasRectangularCollision, LinearCollidable, LinearCollisionSystem } from '@sectjs/collision';
 import TrackingMoveable from './movement/TrackingMoveable';
 import TrackingMovementSystem from './movement/TrackingMovementSystem';
@@ -27,7 +27,7 @@ const clearContext = () => {
 };
 
 const systemRegistry = new SystemRegistry([
-    [KeyboardMoveable, new MovementSystem()],
+    [KeyboardMoveable, new KeyboardMovementSystem()],
     [RectRenderable, new RectRenderSystem(context)],
     [TextRenderable, new TextRenderSystem(context)],
     [ConstantMoveable, new ConstantMovementSystem()],
