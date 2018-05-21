@@ -1,15 +1,8 @@
-import minify from 'rollup-plugin-babel-minify';
 import resolve from 'rollup-plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
-
-const safeMinificationPlugins = [
-    typescript(),
-    minify(),
-];
-
-const extremeMinificationPlugins = [
-    typescript(), // TODO: ES5 => closure compiler here
-];
+import { uglify } from 'rollup-plugin-uglify';
+import { minify as esMinify } from 'uglify-es';
+import reservedDomProps from 'uglify-es/tools/domprops';
 
 export default {
     input: 'src/index.ts',
@@ -19,6 +12,14 @@ export default {
     },
     plugins: [
         resolve(),
-        ...safeMinificationPlugins,
+        typescript(),
+        uglify({
+            mangle: {
+                toplevel: true,
+                properties: {
+                    reserved: reservedDomProps,
+                },
+            }
+        }, esMinify),
     ],
 };
