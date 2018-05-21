@@ -18,14 +18,6 @@ describe('Game', function () {
 
             expect(actualScore).to.equal(expectedScore);
         });
-
-        it('should throw an error when the state property is unrecognised', function () {
-            const game = new Game(new SystemRegistry());
-
-            expect(() => game.getState<number>('score')).to.throw(
-                'score is not present in game state',
-            );
-        });
     });
 
     describe('start', function () {

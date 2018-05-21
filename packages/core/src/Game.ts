@@ -27,10 +27,6 @@ class Game {
     }
 
     public getState<T>(key: string): T {
-        if (!this.gameState.has(key)) {
-            throw new Error(`${key} is not present in game state`);
-        }
-
         return this.gameState.get(key) as T;
     }
 
