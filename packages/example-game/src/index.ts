@@ -22,8 +22,7 @@ const bindEntity = createEntityBinder(systemRegistry);
 
 const ball = createBall(bindEntity);
 const paddle = createPlayerPaddle(bindEntity);
-const computerTarget = ball.getComponentByType<RectPositionable>(RectPositionable);
-const computerPaddle = createComputerPaddle(bindEntity, computerTarget);
+const computerPaddle = createComputerPaddle(bindEntity, ball);
 const topEdge = createEdge(bindEntity, 0, canvas.width, EDGE_HEIGHT);
 const bottomEdge = createEdge(bindEntity, canvas.height - EDGE_HEIGHT, canvas.width, EDGE_HEIGHT);
 const hud = createHud(bindEntity, game);
