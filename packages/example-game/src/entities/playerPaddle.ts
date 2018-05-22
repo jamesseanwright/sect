@@ -10,9 +10,8 @@ const createPlayerPaddle = (bindEntity: EntityBinder) => {
     const moveable = new KeyboardMoveable(positionable, new Moveable(0, 4.8), KeyboardInteractable.create());
     const linearCollidable = new LinearCollidable('paddle', positionable);
     const rectRenderable = new RectRenderable(positionable, 'black');
-    const entity = new Entity(moveable, positionable, linearCollidable, rectRenderable);
 
-    return bindEntity(entity);
+    return bindEntity(new Entity(moveable, positionable, linearCollidable, rectRenderable));
 };
 
 export default createPlayerPaddle;

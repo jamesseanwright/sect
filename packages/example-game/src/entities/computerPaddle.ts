@@ -12,9 +12,8 @@ const createComputerPaddle = (bindEntity: EntityBinder, ball: Entity) => {
     const targetPositionable = ball.getComponentByType<RectPositionable>(RectPositionable);
     const trackingMoveable = new TrackingMoveable(moveable, positionable, targetPositionable);
     const rectRenderable = new RectRenderable(positionable, 'black');
-    const entity = new Entity(positionable, linearCollidable, trackingMoveable, rectRenderable);
 
-    return bindEntity(entity);
+    return bindEntity(new Entity(positionable, linearCollidable, trackingMoveable, rectRenderable));
 };
 
 export default createComputerPaddle;

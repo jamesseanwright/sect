@@ -6,9 +6,8 @@ const createEdge = (bindEntity: EntityBinder, y: number, width: number, height: 
     const positionable = new RectPositionable(0, y, width, height); // TODO: world space, real coords
     const rectRenderable = new RectRenderable(positionable, 'black');
     const linearCollidable = new LinearCollidable('edge', positionable);
-    const entity = new Entity(positionable, linearCollidable, rectRenderable);
 
-    return bindEntity(entity);
+    return bindEntity(new Entity(positionable, linearCollidable, rectRenderable));
 };
 
 export default createEdge;

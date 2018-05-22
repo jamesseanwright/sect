@@ -12,9 +12,8 @@ const createBall = (bindEntity: EntityBinder) => {
     const linearCollidable = new LinearCollidable('paddle', positionable);
     const bounceable = new Bounceable(constantMoveable, linearCollidable);
     const rectRenderable = new RectRenderable(positionable, 'black');
-    const entity = new Entity(constantMoveable, positionable, bounceable, linearCollidable, rectRenderable);
 
-    return bindEntity(entity);
+    return bindEntity(new Entity(constantMoveable, positionable, bounceable, linearCollidable, rectRenderable));
 };
 
 export default createBall;
