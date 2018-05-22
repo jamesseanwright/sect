@@ -5,13 +5,13 @@ import SystemRegistry from './SystemRegistry';
 const noOp = () => undefined;
 
 class Game {
-    private systems: System<Component>[];
+    private systems: IterableIterator<System<Component>>;
     private gameState = new Map<string, any>();
     private loopStartCallback = noOp;
     private loopEndCallback = noOp;
 
     constructor(systemRegistry: SystemRegistry) {
-        this.systems = Array.from(systemRegistry.values());
+        this.systems = systemRegistry.values();
     }
 
     public start(): void {
