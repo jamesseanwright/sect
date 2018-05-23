@@ -20,7 +20,7 @@ const systemRegistry = createSystemRegistry(context);
 const game = new Game(systemRegistry);
 const bindEntity = createEntityBinder(systemRegistry);
 
-const ball = createBall(bindEntity);
+const ball = createBall(bindEntity, game);
 const paddle = createPlayerPaddle(bindEntity);
 const computerPaddle = createComputerPaddle(bindEntity, ball);
 const topEdge = createEdge(bindEntity, 0, canvas.width, EDGE_HEIGHT);
