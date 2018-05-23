@@ -9,8 +9,8 @@ const FONT_COLOUR = 'black';
 
 const createHud = (bindEntity: EntityBinder, game: Game) => {
     const stateQueryable = new StateQueryable(game);
-    const playerScorePositionable = new RectPositionable(20, 40, 0, 0);
-    const computerScorePositionable = new RectPositionable(770, 40, 0, 0);
+    const playerScorePositionable = new RectPositionable(360, 40, 0, 0);
+    const computerScorePositionable = new RectPositionable(440, 40, 0, 0);
 
     const playerScoreTextRenderable = new TextRenderable(
         game.getState<string>('playerScore'),
