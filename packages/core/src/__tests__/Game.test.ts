@@ -12,7 +12,20 @@ describe('Game', function () {
             const game = new Game(new SystemRegistry());
             const expectedScore = 100;
 
-            game.setState<number>('score', expectedScore);
+            game.setState<number>('score', () => expectedScore);
+
+            const actualScore = game.getState<number>('score');
+
+            expect(actualScore).to.equal(expectedScore);
+        });
+
+        it('should support new state computations based upon the previous value', function () {
+            const game = new Game(new SystemRegistry());
+            const initialScore = 100;
+            const expectedScore = 200;
+
+            game.setState<number>('score', () => initialScore);
+            game.setState<number>('score', score => score + 100);
 
             const actualScore = game.getState<number>('score');
 

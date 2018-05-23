@@ -15,11 +15,16 @@ class BounceSystem extends System<Bounceable> {
             component.linearCollidable.removeCollisionsWith('edge');
         }],
 
-        ['playerGoal', (component: Bounceable) => { // TODO: implement goals
+        ['playerGoal', (component: Bounceable) => {
+            component.stateQueryable.setState<number>('computerScore', score => score + 1);
+
+            /* TODO: perhaps this name suggests future collisions won't
+             * be acknowledged. Rename to removeEnqueuedCollisions? */
             component.linearCollidable.removeCollisionsWith('playerGoal');
         }],
 
         ['computerGoal', (component: Bounceable) => {
+            component.stateQueryable.setState<number>('playerScore', score => score + 1);
             component.linearCollidable.removeCollisionsWith('computerGoal');
         }],
     ]);

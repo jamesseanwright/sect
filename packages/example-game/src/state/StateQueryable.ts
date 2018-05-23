@@ -1,4 +1,4 @@
-// TODO: move to basics package (rename to foundation?)
+// TODO: move to basics package??? (rename to foundation?)
 import { Component, Game } from '@sectjs/core';
 
 class StateQueryable extends Component {
@@ -13,8 +13,8 @@ class StateQueryable extends Component {
         return this._game.getState(key);
     }
 
-    public setState<T>(key: string, value: T): void {
-        this._game.setState(key, value);
+    public setState<T>(key: string, computeValue: (currentValue: T) => T): void {
+        this._game.setState(key, computeValue);
     }
 }
 

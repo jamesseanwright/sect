@@ -4,6 +4,7 @@ import createSystemRegistry from './systemRegistry';
 import createBall from './entities/ball';
 import createComputerPaddle from './entities/computerPaddle';
 import createEdge from './entities/edge';
+import createGoal from './entities/goal';
 import createHud from './entities/hud';
 import createPlayerPaddle from './entities/playerPaddle';
 
@@ -18,16 +19,19 @@ const clearContext = () => {
 
 const systemRegistry = createSystemRegistry(context);
 const game = new Game(systemRegistry);
-const bindEntity = createEntityBinder(systemRegistry);
 
+game.setState<number>('playerScore', () => 0);
+game.setState<number>('computerScore', () => 0);
+
+const bindEntity = createEntityBinder(systemRegistry);
 const ball = createBall(bindEntity, game);
 const paddle = createPlayerPaddle(bindEntity);
 const computerPaddle = createComputerPaddle(bindEntity, ball);
 const topEdge = createEdge(bindEntity, 0, canvas.width, EDGE_HEIGHT);
 const bottomEdge = createEdge(bindEntity, canvas.height - EDGE_HEIGHT, canvas.width, EDGE_HEIGHT);
+const playerGoal = createGoal(bindEntity, 'playerGoal', 0, canvas.height);
+const computerGoal = createGoal(bindEntity, 'computerGoal', canvas.width - 0.01, canvas.height);
 const hud = createHud(bindEntity, game);
 
 game.onLoopStart(clearContext);
-
-game.setState<number>('score', 0);
 game.start();

@@ -9,6 +9,8 @@ import TrackingMoveable from './movement/TrackingMoveable';
 import TrackingMovementSystem from './movement/TrackingMovementSystem';
 import Bounceable from './physics/Bounceable';
 import BounceSystem from './physics/BounceSystem';
+import ScoreSystem from './state/ScoreSystem';
+import ScoreTracking from './state/ScoreTracking';
 
 const createSystemRegistry = (context: CanvasRenderingContext2D) => new SystemRegistry([
     [KeyboardMoveable, new KeyboardMovementSystem()],
@@ -18,6 +20,7 @@ const createSystemRegistry = (context: CanvasRenderingContext2D) => new SystemRe
     [TrackingMoveable, new TrackingMovementSystem()],
     [LinearCollidable, new LinearCollisionSystem(hasRectangularCollision)],
     [Bounceable, new BounceSystem()],
+    [ScoreTracking, new ScoreSystem()],
 ]);
 
 export default createSystemRegistry;

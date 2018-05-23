@@ -31,6 +31,10 @@ class TextRenderable extends Component {
         return this._text;
     }
 
+    public set text(value: string) {
+        this._text = value;
+    }
+
     public get fontFamily(): string {
         return this._fontFamily;
     }

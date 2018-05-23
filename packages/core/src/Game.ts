@@ -30,8 +30,9 @@ class Game {
         return this.gameState.get(key) as T;
     }
 
-    public setState<T>(key: string, value: T) {
-        this.gameState.set(key, value);
+    public setState<T>(key: string, computeValue: (currentValue: T) => T) {
+        const currentValue = this.getState<T>(key);
+        this.gameState.set(key, computeValue(currentValue));
     }
 
     private loop = (timestamp: number): void => {
