@@ -1,6 +1,6 @@
 import Entity from './Entity';
 import Component from './Component';
-import System from './System';
+import { System } from './createSystem';
 import SystemRegistry from './SystemRegistry';
 
 export type EntityBinder = (entity: Entity) => Entity;

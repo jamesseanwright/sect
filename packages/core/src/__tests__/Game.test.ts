@@ -3,8 +3,9 @@ import * as sinon from 'sinon';
 import { createDom, RafManipulator } from '@sectjs/test-utils';
 import Component from '../Component';
 import Game from '../Game';
-import System from '../System';
+import createSystem, { System } from '../createSystem';
 import SystemRegistry from '../SystemRegistry';
+import { createSecureContext } from 'tls';
 
 describe('Game', function () {
     describe('game state', function () {
@@ -37,11 +38,7 @@ describe('Game', function () {
         let destroyDom: () => void;
         let raf: RafManipulator;
 
-        class StubSystem extends System<Component> {
-            public next(component: Component, timestamp: number) {}
-        }
-
-        const system = new StubSystem();
+        const system = createSystem('stubSystem', (...args) => undefined);
         const mockSystem = sinon.mock(system);
         const systemRegistry = new SystemRegistry([[Component, system]]);
         let game: Game;

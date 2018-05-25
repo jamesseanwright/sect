@@ -1,5 +1,5 @@
 import Component from './Component';
-import System from './System';
+import { System } from './createSystem';
 import SystemRegistry from './SystemRegistry';
 
 const noOp = () => undefined;

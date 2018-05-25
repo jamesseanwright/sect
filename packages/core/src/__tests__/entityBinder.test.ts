@@ -5,14 +5,10 @@ import * as sinon from 'sinon';
 import Entity from '../Entity';
 import createEntityBinder from '../entityBinder';
 import Component from '../Component';
-import System from '../System';
+import createSystem, { System } from '../createSystem';
 import SystemRegistry from '../SystemRegistry';
 
 describe('bindEntity', function () {
-    const createSystem = <T extends Component>() => new (class extends System<T> {
-        protected next(...args): void {}
-    })();
-
     class Component1 extends Component {}
     class Component2 extends Component {}
     class OrphanedComponent extends Component {}
@@ -25,8 +21,8 @@ describe('bindEntity', function () {
     let bindEntity: (entity: Entity) => void;
 
     beforeEach(function () {
-        const system1 = createSystem<Component1>();
-        const system2 = createSystem<Component2>();
+        const system1 = createSystem<Component1>('system1', (...args) => undefined);
+        const system2 = createSystem<Component2>('system2', (...args) => undefined);
         component1 = new Component1();
         component2 = new Component2();
         orphanedComponent = new OrphanedComponent(); // e.g. Positionable
