@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import { Positionable, RectPositionable } from '@sectjs/basics';
 import LinearCollidable from '../LinearCollidable';
-import LinearCollisionSystem from '../LinearCollisionSystem';
+import createLinearCollisionSystem from '../linearCollisionSystem';
 
 describe('LinearCollisionSystem', function () {
     it('should mark colliding components as having a collision with one another', function () {
         const hasCollision = (a: Positionable, b: Positionable) => true;
-        const collisionSystem = new LinearCollisionSystem(hasCollision);
+        const collisionSystem = createLinearCollisionSystem(hasCollision);
         const aCollidable = new LinearCollidable('aCollidable', new RectPositionable(0, 0, 1, 1));
         const bCollidable = new LinearCollidable('bCollidable', new RectPositionable(0, 0, 1, 1));
 
@@ -20,7 +20,7 @@ describe('LinearCollisionSystem', function () {
 
     it('should not mark components that are not colliding', function () {
         const hasCollision = (a: Positionable, b: Positionable) => false;
-        const collisionSystem = new LinearCollisionSystem(hasCollision);
+        const collisionSystem = createLinearCollisionSystem(hasCollision);
         const aCollidable = new LinearCollidable('aCollidable', new RectPositionable(0, 0, 1, 1));
         const bCollidable = new LinearCollidable('bCollidable', new RectPositionable(0, 0, 1, 1));
 
