@@ -1,6 +1,6 @@
 {
   "name": "@sectjs/example-game",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "An example game using various packages in the monorepo",
   "private": true,
   "main": "dist/index.js",
@@ -37,10 +37,10 @@
   },
   "homepage": "https://github.com/jamesseanwright/tecs#readme",
   "dependencies": {
-    "@sectjs/basics": "^0.1.3",
-    "@sectjs/collision": "^0.1.3",
-    "@sectjs/core": "^0.1.3",
-    "@sectjs/input": "^0.1.3"
+    "@sectjs/basics": "^0.2.0",
+    "@sectjs/collision": "^0.2.0",
+    "@sectjs/core": "^0.2.0",
+    "@sectjs/input": "^0.2.0"
   },
   "devDependencies": {
     "chai": "4.1.2",
