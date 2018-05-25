@@ -1,11 +1,11 @@
-import { System } from '@sectjs/core';
+import { createSystem } from '@sectjs/core';
 import ScoreTracking from './ScoreTracking';
 
-class ScoreRenderSystem extends System<ScoreTracking> {
-    protected next(component: ScoreTracking, timestamp: number): void {
+const createScoreTrackingSystem = () => (
+    createSystem<ScoreTracking>('scoreRenderer', (timestamp, component) => {
         // TODO: performance considerations
         component.textRenderable.text = component.score;
-    }
-}
+    })
+);
 
-export default ScoreRenderSystem;
+export default createScoreTrackingSystem;

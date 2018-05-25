@@ -2,7 +2,7 @@ import { createSystem } from '@sectjs/core';
 import KeyboardMoveable from './KeyboardMoveable';
 
 const createKeyboardMovementSystem = () => (
-    createSystem<KeyboardMoveable>('keyboardMover', (timestamp: number, component: KeyboardMoveable) => {
+    createSystem<KeyboardMoveable>('keyboardMover', (timestamp, component) => {
         if (component.keyboardInteractable.isPressed('ArrowUp')) {
             component.positionable.y -= component.moveable.ySpeed;
         }

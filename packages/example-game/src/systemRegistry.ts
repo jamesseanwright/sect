@@ -2,25 +2,25 @@ import { SystemRegistry } from '@sectjs/core';
 import { createRectRenderSystem, createTextRenderSystem, RectRenderable, TextRenderable } from '@sectjs/basics';
 import { LinearCollidable, createLinearCollisionSystem, hasRectangularCollision } from '@sectjs/collision';
 import KeyboardMoveable from './movement/KeyboardMoveable';
-import KeyboardMovementSystem from './movement/KeyboardMovementSystem';
+import createKeyboardMovementSystem from './movement/keyboardMovementSystem';
 import ConstantMoveable from './movement/ConstantMoveable';
-import ConstantMovementSystem from './movement/ConstantMovementSystem';
+import createConstantMovementSystem from './movement/constantMovementSystem';
 import TrackingMoveable from './movement/TrackingMoveable';
-import TrackingMovementSystem from './movement/TrackingMovementSystem';
+import createTrackingMovementSystem from './movement/trackingMovementSystem';
 import Bounceable from './physics/Bounceable';
-import BounceSystem from './physics/BounceSystem';
-import ScoreRenderSystem from './state/ScoreRenderSystem';
+import createBounceSystem from './physics/bounceSystem';
 import ScoreTracking from './state/ScoreTracking';
+import createScoreRenderSystem from './state/scoreRenderSystem';
 
 const createSystemRegistry = (context: CanvasRenderingContext2D) => new SystemRegistry([
-    [KeyboardMoveable, new KeyboardMovementSystem()],
+    [KeyboardMoveable, createKeyboardMovementSystem()],
     [RectRenderable, createRectRenderSystem(context)],
     [TextRenderable, createTextRenderSystem(context)],
-    [ConstantMoveable, new ConstantMovementSystem()],
-    [TrackingMoveable, new TrackingMovementSystem()],
+    [ConstantMoveable, createConstantMovementSystem()],
+    [TrackingMoveable, createTrackingMovementSystem()],
     [LinearCollidable, createLinearCollisionSystem(hasRectangularCollision)],
-    [Bounceable, new BounceSystem()],
-    [ScoreTracking, new ScoreRenderSystem()],
+    [Bounceable, createBounceSystem()],
+    [ScoreTracking, createScoreRenderSystem()],
 ]);
 
 export default createSystemRegistry;

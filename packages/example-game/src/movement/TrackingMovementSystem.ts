@@ -14,4 +14,4 @@ const createTrackingMovementSystem = () => (
     })
 );
 
-export default TrackingMovementSystem;
+export default createTrackingMovementSystem;
