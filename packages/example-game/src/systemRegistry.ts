@@ -1,6 +1,6 @@
 import { SystemRegistry } from '@sectjs/core';
-import { RectRenderSystem, RectRenderable, TextRenderable, TextRenderSystem } from '@sectjs/basics';
-import { LinearCollidable, LinearCollisionSystem, hasRectangularCollision } from '@sectjs/collision';
+import { createRectRenderSystem, createTextRenderSystem, RectRenderable, TextRenderable } from '@sectjs/basics';
+import { LinearCollidable, createLinearCollisionSystem, hasRectangularCollision } from '@sectjs/collision';
 import KeyboardMoveable from './movement/KeyboardMoveable';
 import KeyboardMovementSystem from './movement/KeyboardMovementSystem';
 import ConstantMoveable from './movement/ConstantMoveable';
@@ -14,11 +14,11 @@ import ScoreTracking from './state/ScoreTracking';
 
 const createSystemRegistry = (context: CanvasRenderingContext2D) => new SystemRegistry([
     [KeyboardMoveable, new KeyboardMovementSystem()],
-    [RectRenderable, new RectRenderSystem(context)],
-    [TextRenderable, new TextRenderSystem(context)],
+    [RectRenderable, createRectRenderSystem(context)],
+    [TextRenderable, createTextRenderSystem(context)],
     [ConstantMoveable, new ConstantMovementSystem()],
     [TrackingMoveable, new TrackingMovementSystem()],
-    [LinearCollidable, new LinearCollisionSystem(hasRectangularCollision)],
+    [LinearCollidable, createLinearCollisionSystem(hasRectangularCollision)],
     [Bounceable, new BounceSystem()],
     [ScoreTracking, new ScoreRenderSystem()],
 ]);

@@ -1,11 +1,11 @@
-import { System } from '@sectjs/core';
+import { createSystem } from '@sectjs/core';
 import ConstantMoveable from './ConstantMoveable';
 
-class ConstantMovementSystem extends System<ConstantMoveable> {
-    protected next(component: ConstantMoveable, timestamp: number): void {
+const createConstantMovementSystem = () => (
+    createSystem<ConstantMoveable>('constantMover', (component: ConstantMoveable, timestamp: number) => {
         component.positionable.x += component.moveable.xSpeed;
         component.positionable.y += component.moveable.ySpeed;
-    }
-}
+    })
+);
 
-export default ConstantMovementSystem;
+export default createConstantMovementSystem;
