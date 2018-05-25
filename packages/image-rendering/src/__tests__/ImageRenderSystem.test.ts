@@ -2,9 +2,9 @@ import { expect } from 'chai';
 import * as sinon from 'sinon';
 import { RectPositionable } from '@sectjs/basics';
 import ImageRenderable from '../ImageRenderable';
-import ImageRenderSystem from '../ImageRenderSystem';
+import createImageRenderSystem from '../imageRenderSystem';
 
-describe('ImageRenderSystem', function () {
+describe('imageRenderSystem', function () {
     describe('next', function () {
         it('should render an image using the associated context', function () {
             const context = {
@@ -16,7 +16,7 @@ describe('ImageRenderSystem', function () {
             };
 
             const image = {} as any;
-            const system = new ImageRenderSystem(context as any, imageLoader as any); // TODO: typings
+            const system = createImageRenderSystem(context as any, imageLoader as any); // TODO: typings
             const positionable = new RectPositionable(10, 20, 30, 40);
             const imageRenderable = new ImageRenderable(positionable, image);
 

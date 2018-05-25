@@ -3,7 +3,7 @@ import { Positionable, RectPositionable } from '@sectjs/basics';
 import LinearCollidable from '../LinearCollidable';
 import createLinearCollisionSystem from '../linearCollisionSystem';
 
-describe('LinearCollisionSystem', function () {
+describe('linearCollisionSystem', function () {
     it('should mark colliding components as having a collision with one another', function () {
         const hasCollision = (a: Positionable, b: Positionable) => true;
         const collisionSystem = createLinearCollisionSystem(hasCollision);
