@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
+import { System } from '@tecs/core';
 import RectPositionable from '../RectPositionable';
 import TextRenderable from '../TextRenderable';
-import TextRenderSystem from '../TextRenderSystem';
+import createTextRenderSystem from '../textRenderSystem';
 
 describe('textRenderSystem', function () {
     const context = {
@@ -18,10 +19,10 @@ describe('textRenderSystem', function () {
     const fill = 'red';
     const stroke = 'yellow';
     const positionable = new RectPositionable(x, y, width, height);
-    let textRenderSystem: TextRenderSystem;
+    let textRenderSystem: System<TextRenderable>;
 
     beforeEach(function () {
-        textRenderSystem = new TextRenderSystem(context as any);
+        textRenderSystem = createTextRenderSystem(context as any);
     });
 
     afterEach(function () {

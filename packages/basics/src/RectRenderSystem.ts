@@ -1,35 +1,28 @@
-import { Component, System } from '@sectjs/core';
+import { Component, createSystem, System } from '@sectjs/core';
 import RectRenderable from './RectRenderable';
 import { RenderMode } from './types';
 
-class RectRenderSystem extends System<RectRenderable> {
-    private context: CanvasRenderingContext2D;
+const render = (context: CanvasRenderingContext2D, component: RectRenderable, mode: RenderMode) => {
+    context[`${mode}Style`] = component[mode];
 
-    constructor(context: CanvasRenderingContext2D) {
-        super();
-        this.context = context;
-    }
+    context[`${mode}Rect`](
+        component.positionable.x,
+        component.positionable.y,
+        component.positionable.width,
+        component.positionable.height,
+    );
+};
 
-    protected next(component: RectRenderable, timestamp: number): void {
+const createRectRenderSystem = (context: CanvasRenderingContext2D) => (
+    createSystem<RectRenderable>('rectRenderer', (timestamp, component) => {
         if (component.fill) {
-            this.render(component, 'fill');
+            render(context, component, 'fill');
         }
 
         if (component.stroke) {
-            this.render(component, 'stroke');
+            render(context, component, 'stroke');
         }
-    }
+    })
+);
 
-    private render(component: RectRenderable, mode: RenderMode) {
-        this.context[`${mode}Style`] = component[mode];
-
-        this.context[`${mode}Rect`](
-            component.positionable.x,
-            component.positionable.y,
-            component.positionable.width,
-            component.positionable.height,
-        );
-    }
-}
-
-export default RectRenderSystem;
+export default createRectRenderSystem;

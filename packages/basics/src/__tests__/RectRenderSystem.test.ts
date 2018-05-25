@@ -1,10 +1,11 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
+import { System } from '@tecs/core';
 import RectPositionable from '../RectPositionable';
 import RectRenderable from '../RectRenderable';
-import RectRenderSystem from '../RectRenderSystem';
+import createRectRenderSystem from '../rectRenderSystem';
 
-describe('RectRenderSystem', function () {
+describe('rectRenderSystem', function () {
     const context = {
         fillRect: sinon.stub(),
         strokeRect: sinon.stub(),
@@ -17,10 +18,10 @@ describe('RectRenderSystem', function () {
     const fill = 'red';
     const stroke = 'yellow';
     const positionable = new RectPositionable(x, y, width, height);
-    let rectRenderSystem: RectRenderSystem;
+    let rectRenderSystem: System<RectRenderable>;
 
     beforeEach(function () {
-        rectRenderSystem = new RectRenderSystem(context as any);
+        rectRenderSystem = createRectRenderSystem(context as any);
     });
 
     afterEach(function () {

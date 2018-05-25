@@ -1,36 +1,29 @@
-import { Component, System } from '@sectjs/core';
+import { Component, createSystem, System } from '@sectjs/core';
 import TextRenderable from './TextRenderable';
 import { RenderMode } from './types';
 
-class TextRenderSystem extends System<TextRenderable> {
-    private context: CanvasRenderingContext2D;
+const render = (context: CanvasRenderingContext2D, component: TextRenderable, mode: RenderMode) => {
+    context[`${mode}Style`] = component[mode];
 
-    constructor(context: CanvasRenderingContext2D) {
-        super();
-        this.context = context;
-    }
+    context[`${mode}Text`](
+        component.text,
+        component.positionable.x,
+        component.positionable.y,
+    );
+};
 
-    protected next(component: TextRenderable, timestamp: number): void {
-        this.context.font = `${component.fontSize}px ${component.fontFamily}`;
+const createTextRenderSystem = (context: CanvasRenderingContext2D) => (
+    createSystem<TextRenderable>('textRenderer', (timestamp, component) => {
+        context.font = `${component.fontSize}px ${component.fontFamily}`;
 
         if (component.fill) {
-            this.render(component, 'fill');
+            render(context, component, 'fill');
         }
 
         if (component.stroke) {
-            this.render(component, 'stroke');
+            render(context, component, 'stroke');
         }
-    }
+    })
+);
 
-    private render(component: TextRenderable, mode: RenderMode) {
-        this.context[`${mode}Style`] = component[mode];
-
-        this.context[`${mode}Text`](
-            component.text,
-            component.positionable.x,
-            component.positionable.y,
-        );
-    }
-}
-
-export default TextRenderSystem;
+export default createTextRenderSystem;
