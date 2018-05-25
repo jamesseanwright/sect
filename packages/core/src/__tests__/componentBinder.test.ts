@@ -2,13 +2,12 @@
 
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import Entity from '../Entity';
-import createEntityBinder from '../entityBinder';
+import createComponentBinder, { ComponentBinder } from '../componentBinder';
 import Component from '../Component';
 import createSystem, { System } from '../createSystem';
 import SystemRegistry from '../SystemRegistry';
 
-describe('bindEntity', function () {
+describe('componentBinder', function () {
     class Component1 extends Component {}
     class Component2 extends Component {}
     class OrphanedComponent extends Component {}
@@ -18,7 +17,7 @@ describe('bindEntity', function () {
     let component2: Component;
     let orphanedComponent: Component;
     let systemRegistry: SystemRegistry;
-    let bindEntity: (entity: Entity) => void;
+    let bindComponents: ComponentBinder;
 
     beforeEach(function () {
         const system1 = createSystem<Component1>('system1', (...args) => undefined);
@@ -32,7 +31,7 @@ describe('bindEntity', function () {
             [Component2, system2],
         ]);
 
-        bindEntity = createEntityBinder(systemRegistry);
+        bindComponents = createComponentBinder(systemRegistry);
     });
 
     afterEach(function () {
@@ -40,12 +39,12 @@ describe('bindEntity', function () {
     });
 
     it('should register each component of an entity with its associated system', function () {
-        const entity = new Entity(component1, component2, orphanedComponent);
+        const components = [component1, component2, orphanedComponent];
 
         const expectation = mockSystem.expects('register')
             .twice();
 
-        bindEntity(entity);
+        const boundComponents = bindComponents(...components);
 
         const [ firstComponent ] = expectation.getCall(0).args;
         const [ secondComponent ] = expectation.getCall(1).args;
@@ -53,6 +52,7 @@ describe('bindEntity', function () {
         // TODO: mixing of assertion styles is a bit weird
         expect(firstComponent).to.equal(component1);
         expect(secondComponent).to.equal(component2);
+        expect(boundComponents).to.deep.equal(components);
         mockSystem.verify();
     });
 });
