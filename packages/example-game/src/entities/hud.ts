@@ -1,5 +1,5 @@
 import { RectPositionable, RectRenderable, TextRenderable } from '@sectjs/basics';
-import { Entity, EntityBinder, Game } from '@sectjs/core';
+import { ComponentBinder, Game } from '@sectjs/core';
 import StateQueryable from '../state/StateQueryable';
 import ScoreTracking from '../state/ScoreTracking';
 
@@ -7,7 +7,7 @@ const FONT_FAMILY = 'Arial';
 const FONT_SIZE = 20;
 const FONT_COLOUR = 'black';
 
-const createHud = (bindEntity: EntityBinder, game: Game) => {
+const createHud = (bindComponents: ComponentBinder, game: Game) => {
     const stateQueryable = new StateQueryable(game);
     const playerScorePositionable = new RectPositionable(360, 40, 0, 0);
     const computerScorePositionable = new RectPositionable(440, 40, 0, 0);
@@ -31,13 +31,11 @@ const createHud = (bindEntity: EntityBinder, game: Game) => {
     const playerScoreTracking = new ScoreTracking('player', playerScoreTextRenderable, stateQueryable);
     const computerScoreTracking = new ScoreTracking('computer', computerScoreTextRenderable, stateQueryable);
 
-    return bindEntity(
-        new Entity(
-            playerScoreTextRenderable,
-            playerScoreTracking,
-            computerScoreTextRenderable,
-            computerScoreTracking,
-        ),
+    return bindComponents(
+        playerScoreTextRenderable,
+        playerScoreTracking,
+        computerScoreTextRenderable,
+        computerScoreTracking,
     );
 };
 
