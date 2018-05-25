@@ -33,7 +33,8 @@ export class System<T extends Component> {
 
     /* memoised filtered component for perf although this
      * current implentation will cause linear ramps in memory
-     * consumption and perf issues for many components */
+     * consumption and perf issues for many components.
+     * TODO: make optional mixin? */
     private getOtherComponents(component: T): T[] {
         if (!this._otherComponents.has(component)) {
             this._otherComponents.set(component, this.components.filter(c => c !== component));
