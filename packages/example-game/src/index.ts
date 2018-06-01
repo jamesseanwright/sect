@@ -10,7 +10,7 @@ import createPlayerPaddle from './entities/playerPaddle';
 
 const EDGE_HEIGHT = 5;
 
-const canvas: HTMLCanvasElement = document.body.querySelector('#game-output');
+const canvas = document.body.querySelector<HTMLCanvasElement>('#game-output');
 const context = canvas.getContext('2d');
 
 const clearContext = () => {
