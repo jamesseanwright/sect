@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
-import { System } from '@tecs/core';
+import { System } from '@sectjs/core';
 import RectPositionable from '../RectPositionable';
 import TextRenderable from '../TextRenderable';
 import createTextRenderSystem from '../textRenderSystem';
