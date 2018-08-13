@@ -26,4 +26,11 @@ const packageInfo = require(packageInfoPath);
 packageInfo.name = packageInfo.name.replace('package-template', packageName);
 fs.writeFileSync(packageInfoPath, JSON.stringify(packageInfo, null, 2));
 console.log(`Package created at ${targetPath}!`);
-child_process.execSync('./node_modules/.bin/lerna bootstrap');
+
+const lerna = child_process.execSync('./node_modules/.bin/lerna bootstrap', {
+    stdio: [
+        null,
+        process.stdout,
+        process.stderr,
+    ]
+});
