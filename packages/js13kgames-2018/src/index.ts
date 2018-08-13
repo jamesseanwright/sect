@@ -17,7 +17,6 @@ const systemRegistry = createSystemRegistry(context);
 const game = new Game(systemRegistry);
 
 game.setState<number>('playerScore', () => 0);
-game.setState<number>('computerScore', () => 0);
 
 const bindComponents = createComponentBinder(systemRegistry);
 // const ball = createBall(bindComponents, game);
