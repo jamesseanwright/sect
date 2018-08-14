@@ -6,12 +6,13 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "dev-success": "npm test",
+    "prebuild": "npm run create-dist-dir && cp src/index.html dist",
+    "build": "rollup -c",
+    "create-dist-dir": "mkdir -p dist && rm -rf dist/*",
     "lint": "tslint -c ../../tslint.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build",
-    "test": "npm run lint && mocha -r esm 'dist/**/__tests__/*.test.js'",
-    "watch": "tsc-watch --onSuccess 'npm run dev-success'"
+    "test": "npm run lint",
+    "watch": "npm run prebuild && rollup -c -w"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,12 @@
     "@sectjs/basics": "^0.2.0",
     "@sectjs/collision": "^0.2.0",
     "@sectjs/core": "^0.2.0",
-    "@sectjs/image-rendering": "^0.2.0"
+    "@sectjs/image-rendering": "^0.2.0",
+    "rollup": "^0.64.1",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-typescript2": "^0.16.1",
+    "rollup-plugin-uglify": "^4.0.0",
+    "uglify-es": "^3.3.9"
   },
   "devDependencies": {
     "chai": "4.1.2",
