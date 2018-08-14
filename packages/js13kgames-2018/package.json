@@ -37,7 +37,9 @@
   "homepage": "https://github.com/jamesseanwright/tecs#readme",
   "dependencies": {
     "@sectjs/basics": "^0.2.0",
-    "@sectjs/core": "^0.2.0"
+    "@sectjs/collision": "^0.2.0",
+    "@sectjs/core": "^0.2.0",
+    "@sectjs/image-rendering": "^0.2.0"
   },
   "devDependencies": {
     "chai": "4.1.2",
