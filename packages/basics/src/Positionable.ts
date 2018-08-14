@@ -30,7 +30,7 @@ abstract class Positionable extends Component {
     }
 
     get rotation() {
-        return this._y;
+        return this._rotation;
     }
 
     set rotation(rotation: number) {

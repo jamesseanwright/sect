@@ -1,23 +1,29 @@
 import { createComponentBinder, Game, Component } from '@sectjs/core';
 import createSystemRegistry from './systemRegistry';
+import createImages from './images';
 import buildMap from './map/builder';
 import map from './map/map';
 
-const canvas = document.body.querySelector<HTMLCanvasElement>('#game-output');
-const context = canvas.getContext('2d');
+(async () => {
+    const canvas = document.body.querySelector<HTMLCanvasElement>('#game-output');
+    const context = canvas.getContext('2d');
 
-const clearContext = () => {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-};
+    const clearContext = () => {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    };
 
-const systemRegistry = createSystemRegistry(context);
-const game = new Game(systemRegistry);
+    const imageLoader = await createImages();
+    const systemRegistry = createSystemRegistry(context, imageLoader);
+    const game = new Game(systemRegistry);
 
-game.setState<number>('playerScore', () => 0);
+    game.setState<number>('playerScore', () => 0);
 
-const bindComponents = createComponentBinder(systemRegistry);
+    const bindComponents = createComponentBinder(systemRegistry);
 
-buildMap(bindComponents, map);
+    buildMap(bindComponents, map);
 
-game.onLoopStart(clearContext);
-game.start();
+    context.imageSmoothingEnabled = false;
+    context.mozImageSmoothingEnabled = false;
+
+    game.start();
+})();
