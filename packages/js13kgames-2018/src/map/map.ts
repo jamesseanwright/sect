@@ -1,13 +1,13 @@
 /* optional numbers represent rotation of sprite
  * in 90-degree clockwise increments */
 
-type Road = 'R' | 'R(1)';
-type RoadCorner = 'C' | 'C(1)' | 'C(2)' | 'C(3)';
-type RoadThreeWay = 'T' | 'T(1)' | 'T(2)' | 'T(3)';
-type Crossroad = 'X';
-type Grass = 'G';
-type Exchange = 'E';
-type Tile = Road | RoadCorner | RoadThreeWay | Crossroad | Grass | Exchange;
+export type Road = 'R' | 'R(1)';
+export type RoadCorner = 'C' | 'C(1)' | 'C(2)' | 'C(3)';
+export type RoadThreeWay = 'T' | 'T(1)' | 'T(2)' | 'T(3)';
+export type Crossroad = 'X';
+export type Grass = 'G';
+export type Exchange = 'E';
+export type Tile = Road | RoadCorner | RoadThreeWay | Crossroad | Grass | Exchange;
 
 const map: Tile[][] = [
     Array(31).fill('G'),

@@ -4,8 +4,8 @@ class RectPositionable extends Positionable {
     private _width: number;
     private _height: number;
 
-    constructor(x: number, y: number, width: number, height: number) {
-        super(x, y);
+    constructor(x: number, y: number, width: number, height: number, rotation?: number) {
+        super(x, y, rotation);
         this._width = width;
         this._height = height;
     }

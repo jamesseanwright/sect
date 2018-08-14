@@ -1,4 +1,4 @@
-import { ComponentBinder } from '@sectjs/core';
+import { Component, ComponentBinder } from '@sectjs/core';
 import { ImageRenderable } from '@sectjs/image-rendering';
 import { RectPositionable } from '@sectjs/basics';
 import { LinearCollidable } from '@sectjs/collision';
