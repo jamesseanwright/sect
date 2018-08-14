@@ -1,14 +1,10 @@
 import { SystemRegistry } from '@sectjs/core';
+import { LinearCollidable, createLinearCollisionSystem, hasRectangularCollision } from '@sectjs/collision';
+import { ImageRenderable, createImageRenderSystem, ImageLoader } from '@sectjs/image-rendering';
 
 const createSystemRegistry = (context: CanvasRenderingContext2D) => new SystemRegistry([
-    // [KeyboardMoveable, createKeyboardMovementSystem()],
-    // [RectRenderable, createRectRenderSystem(context)],
-    // [TextRenderable, createTextRenderSystem(context)],
-    // [ConstantMoveable, createConstantMovementSystem()],
-    // [TrackingMoveable, createTrackingMovementSystem()],
-    // [LinearCollidable, createLinearCollisionSystem(hasRectangularCollision)],
-    // [Bounceable, createBounceSystem()],
-    // [ScoreTracking, createScoreRenderSystem()],
+    [LinearCollidable, createLinearCollisionSystem(hasRectangularCollision)],
+    [ImageRenderable, createImageRenderSystem(context, new ImageLoader())],
 ]);
 
 export default createSystemRegistry;

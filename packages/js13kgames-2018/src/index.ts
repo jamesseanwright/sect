@@ -1,6 +1,7 @@
-import { RectPositionable } from '@sectjs/basics';
 import { createComponentBinder, Game, Component } from '@sectjs/core';
 import createSystemRegistry from './systemRegistry';
+import buildMap from './map/builder';
+import map from './map/map';
 
 const canvas = document.body.querySelector<HTMLCanvasElement>('#game-output');
 const context = canvas.getContext('2d');
@@ -9,24 +10,14 @@ const clearContext = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
 };
 
-const findComponent = <T extends Component>(components: Component[], TargetConstructor: new (...args) => T) => (
-    components.find(c => c.constructor === TargetConstructor) as T
-);
-
 const systemRegistry = createSystemRegistry(context);
 const game = new Game(systemRegistry);
 
 game.setState<number>('playerScore', () => 0);
 
 const bindComponents = createComponentBinder(systemRegistry);
-// const ball = createBall(bindComponents, game);
-// const paddle = createPlayerPaddle(bindComponents);
-// const computerPaddle = createComputerPaddle(bindComponents, findComponent<RectPositionable>(ball, RectPositionable));
-// const topEdge = createEdge(bindComponents, 0, canvas.width, EDGE_HEIGHT);
-// const bottomEdge = createEdge(bindComponents, canvas.height - EDGE_HEIGHT, canvas.width, EDGE_HEIGHT);
-// const playerGoal = createGoal(bindComponents, 'playerGoal', 0, canvas.height);
-// const computerGoal = createGoal(bindComponents, 'computerGoal', canvas.width - 0.01, canvas.height);
-// const hud = createHud(bindComponents, game);
+
+buildMap(bindComponents, map);
 
 game.onLoopStart(clearContext);
 game.start();

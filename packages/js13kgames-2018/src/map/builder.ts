@@ -5,7 +5,7 @@ import { Tile } from './map';
 
 export type TileBuilder = (binder: ComponentBinder, x: number, y: number, rotation: number) => void;
 
-const TILE_SIZE = 24;
+const TILE_SIZE = 24; // TODO: world space
 
 const tileBuilders = new Map<string, TileBuilder>([
     ['R', (binder, x, y, rotation) => createRoad(binder, x, y, TILE_SIZE, rotation)],
@@ -16,12 +16,18 @@ const tileBuilders = new Map<string, TileBuilder>([
     ['E', (binder, x, y) => createSolidTile(binder, x, y, TILE_SIZE, 'exchange')],
 ]);
 
-// const findBuilder
+const parseRotation = (tile: Tile) => {
+    const [, , rotation = '0'] = tile;
+    return parseInt(rotation, 10);
+};
 
-const buildMap = (rows: Tile[][]) => (
-    rows.map((row, y) => (
-        row.map((tile, x) => (
+const buildMap = (componentBinder: ComponentBinder, rows: Tile[][]) => {
+    rows.forEach((row, y) => {
+        row.forEach((tile, x) => {
+            const [tileType] = tile;
+            tileBuilders.get(tileType)(componentBinder, x * TILE_SIZE, y * TILE_SIZE, parseRotation(tile));
+        });
+    });
+};
 
-        ))
-    ))
-);
+export default buildMap;
