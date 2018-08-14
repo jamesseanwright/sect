@@ -1,6 +1,7 @@
 import createRoad from '../entities/road';
 import { Component, ComponentBinder } from '@sectjs/core';
 import createSolidTile from '../entities/solidTile';
+import { Tile } from './map';
 
 export type TileBuilder = (binder: ComponentBinder, x: number, y: number, rotation: number) => void;
 
@@ -14,3 +15,13 @@ const tileBuilders = new Map<string, TileBuilder>([
     ['G', (binder, x, y) => createSolidTile(binder, x, y, TILE_SIZE, 'grass')],
     ['E', (binder, x, y) => createSolidTile(binder, x, y, TILE_SIZE, 'exchange')],
 ]);
+
+// const findBuilder
+
+const buildMap = (rows: Tile[][]) => (
+    rows.map((row, y) => (
+        row.map((tile, x) => (
+
+        ))
+    ))
+);
