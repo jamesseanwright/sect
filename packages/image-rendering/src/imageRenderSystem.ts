@@ -4,20 +4,20 @@ import ImageRenderable from './ImageRenderable';
 
 const createImageRenderSystem = (context: CanvasRenderingContext2D, imageLoader: ImageLoader) => (
     createSystem<ImageRenderable>('imageRenderer', (timestamp, { imageName, positionable }) => {
-        // TODO: test calls to translate/rotate
-        context.save();
+        // TODO: test calls to translate/rotate, support same in RectRenderable
         context.translate(positionable.x + positionable.width / 2, positionable.y + positionable.height / 2);
         context.rotate(positionable.rotation);
 
         context.drawImage(
             imageLoader.getImage(imageName),
-            0,
-            0,
+            -(positionable.width / 2),
+            -(positionable.height / 2),
             positionable.width,
             positionable.height,
         );
 
-        context.restore();
+        // tslint:disable-next-line:no-string-literal
+        context['resetTransform']();
     })
 );
 
