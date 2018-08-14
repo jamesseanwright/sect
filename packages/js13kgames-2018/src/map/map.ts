@@ -1,8 +1,6 @@
 /* optional numbers represent rotation of sprite
  * in 90-degree clockwise increments */
 
-// TODO: IMAGE FOR 3-WAY ROAD TILE!
-
 type Road = 'R' | 'R(1)';
 type RoadCorner = 'C' | 'C(1)' | 'C(2)' | 'C(3)';
 type RoadThreeWay = 'T' | 'T(1)' | 'T(2)' | 'T(3)';
