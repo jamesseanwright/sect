@@ -3,6 +3,7 @@ import createSystemRegistry from './systemRegistry';
 import createImages from './images';
 import buildMap from './map/builder';
 import map from './map/map';
+import createVan from './entities/van';
 
 (async () => {
     const canvas = document.body.querySelector<HTMLCanvasElement>('#game-output');
@@ -23,7 +24,9 @@ import map from './map/map';
 
     const bindComponents = createComponentBinder(systemRegistry);
 
+    // TODO: group by scenes
     buildMap(bindComponents, map);
+    createVan(bindComponents, 0.07, 0.3, 0.013, 0.019);
 
     context.imageSmoothingEnabled = false;
     context.mozImageSmoothingEnabled = false;
