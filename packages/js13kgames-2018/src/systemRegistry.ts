@@ -1,10 +1,10 @@
-import { SystemRegistry } from '@sectjs/core';
+import { Camera, SystemRegistry } from '@sectjs/core';
 import { LinearCollidable, createLinearCollisionSystem, hasRectangularCollision } from '@sectjs/collision';
 import { ImageRenderable, createImageRenderSystem, ImageLoader } from '@sectjs/image-rendering';
 
-const createSystemRegistry = (context: CanvasRenderingContext2D, imageLoader: ImageLoader) => new SystemRegistry([
+const createSystemRegistry = (camera: Camera, imageLoader: ImageLoader) => new SystemRegistry([
     [LinearCollidable, createLinearCollisionSystem(hasRectangularCollision)],
-    [ImageRenderable, createImageRenderSystem(context, imageLoader)],
+    [ImageRenderable, createImageRenderSystem(camera, imageLoader)],
 ]);
 
 export default createSystemRegistry;
