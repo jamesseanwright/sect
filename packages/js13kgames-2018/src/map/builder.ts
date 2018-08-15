@@ -5,7 +5,7 @@ import { Tile } from './map';
 
 export type TileBuilder = (binder: ComponentBinder, x: number, y: number, rotation: number) => void;
 
-const TILE_SIZE = 24; // TODO: world space
+const TILE_SIZE = 0.0322;
 const ROTATION_INCREMENT_RADIANS = 1.5708;
 
 const tileBuilders = new Map<string, TileBuilder>([

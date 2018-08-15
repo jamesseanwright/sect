@@ -10,7 +10,6 @@ const createSolidTile = (
     size: number,
     imageName: string,
 ) => {
-    // TODO: WORLD SPACE! Perhaps write separate transformation layer called on render?
     const positionable = new RectPositionable(x, y, size, size);
     const imageRenderable = new ImageRenderable(positionable, imageName);
     // TODO: swap params for consitency with image renderable?

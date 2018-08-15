@@ -12,7 +12,6 @@ const createRoad = (
     rotation: number,
     modifier: RoadModifier = 'Main',
 ) => {
-    // TODO: WORLD SPACE! Perhaps write separate transformation layer called on render?
     const positionable = new RectPositionable(x, y, size, size, rotation);
     const imageRenderable = new ImageRenderable(positionable, `road${modifier}`);
 

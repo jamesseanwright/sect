@@ -13,7 +13,7 @@ class Canvas2DCamera {
     }
 
     public translate(x: number, y: number) {
-        this._context.translate(x, y);
+        this._context.translate(...this.projectPoint(x, y));
     }
 
     public rotate(angle: number) {
@@ -26,7 +26,26 @@ class Canvas2DCamera {
     }
 
     public drawImage(image: HTMLImageElement, x: number, y: number, width: number, height: number) {
-        this._context.drawImage(image, x, y, width, height);
+        this._context.drawImage(image, ...this.project(x, y, width, height));
+    }
+
+    private getAspectRatio() {
+        return this._pixelSize.width / this._pixelSize.height;
+    }
+
+    private projectPoint(x: number, y: number): [number, number] {
+        return [
+            x * this._pixelSize.width / this._worldSize.width,
+            y * (this._pixelSize.height / this._worldSize.height) * this.getAspectRatio(),
+        ];
+    }
+
+    private project(x: number, y: number, width: number, height: number) {
+        return [
+            ...this.projectPoint(x, y),
+            width * this._pixelSize.width / this._worldSize.width,
+            height * (this._pixelSize.height / this._worldSize.height) * this.getAspectRatio(),
+        ] as [number, number, number, number];
     }
 }
 
