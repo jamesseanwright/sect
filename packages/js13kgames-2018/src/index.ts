@@ -8,7 +8,7 @@ import createVan from './entities/van';
 (async () => {
     const canvas = document.body.querySelector<HTMLCanvasElement>('#game-output');
     const context = canvas.getContext('2d');
-    const worldSize = new Dimension(1, 1);
+    const worldSize = new Dimension(100, 100);
     const pixelSize = new Dimension(canvas.width, canvas.height);
     const renderer = new Canvas2DRenderer(context, worldSize, pixelSize);
 
@@ -26,7 +26,7 @@ import createVan from './entities/van';
 
     // TODO: group by scenes
     buildMap(bindComponents, map);
-    createVan(bindComponents, 0.07, 0.3, 0.013, 0.019);
+    createVan(bindComponents, 7, 28, 1.3, 1.9);
 
     context.imageSmoothingEnabled = false;
     context.mozImageSmoothingEnabled = false;
