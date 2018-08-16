@@ -1,12 +1,20 @@
+import Camera from './Camera';
 import Dimension from './Dimension';
 
 class Canvas2DRenderer {
     private _context: CanvasRenderingContext2D;
+    private _camera: Camera;
     private _worldSize: Dimension;
     private _pixelSize: Dimension;
 
-    constructor(context: CanvasRenderingContext2D, worldSize: Dimension, pixelSize: Dimension) {
+    constructor(
+        context: CanvasRenderingContext2D,
+        camera: Camera,
+        worldSize: Dimension,
+        pixelSize: Dimension,
+    ) {
         this._context = context;
+        this._camera = camera;
         this._worldSize = worldSize;
         this._pixelSize = pixelSize;
     }

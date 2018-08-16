@@ -1,4 +1,5 @@
-import { Component, createSystem, System, Canvas2DRenderer } from '@sectjs/core';
+import { Canvas2DRenderer } from '@sectjs/basics';
+import { Component, createSystem, System } from '@sectjs/core';
 import ImageLoader from './ImageLoader';
 import ImageRenderable from './ImageRenderable';
 

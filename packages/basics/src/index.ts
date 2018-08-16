@@ -1,3 +1,7 @@
+export { default as Camera } from './Camera';
+export { default as TrackingCamera } from './TrackingCamera';
+export { default as Canvas2DRenderer } from './Canvas2DRenderer';
+export { default as Dimension } from './Dimension';
 export { default as Positionable } from './Positionable';
 export { default as RectPositionable } from './RectPositionable';
 export { default as CircularPositionable } from './CircularPositionable';

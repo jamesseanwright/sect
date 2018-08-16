@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/jamesseanwright/tecs#readme",
   "dependencies": {
+    "@sectjs/camera": "^0.0.1",
     "@sectjs/core": "^0.2.0"
   },
   "devDependencies": {

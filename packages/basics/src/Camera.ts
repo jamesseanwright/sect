@@ -1,8 +1,9 @@
+import Dimension from './Dimension';
+
 interface Camera {
     x: number;
     y: number;
-    width: number;
-    height: number;
+    viewport: Dimension;
 }
 
 export default Camera;
