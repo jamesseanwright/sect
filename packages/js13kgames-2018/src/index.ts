@@ -1,4 +1,4 @@
-import { createComponentBinder, Game, Camera, Component, Dimension } from '@sectjs/core';
+import { createComponentBinder, Game, Canvas2DRenderer, Component, Dimension } from '@sectjs/core';
 import createSystemRegistry from './systemRegistry';
 import createImages from './images';
 import buildMap from './map/builder';
@@ -10,14 +10,14 @@ import createVan from './entities/van';
     const context = canvas.getContext('2d');
     const worldSize = new Dimension(1, 1);
     const pixelSize = new Dimension(canvas.width, canvas.height);
-    const camera = new Camera(context, worldSize, pixelSize);
+    const renderer = new Canvas2DRenderer(context, worldSize, pixelSize);
 
     const clearContext = () => {
         context.clearRect(0, 0, canvas.width, canvas.height);
     };
 
     const imageLoader = await createImages();
-    const systemRegistry = createSystemRegistry(camera, imageLoader);
+    const systemRegistry = createSystemRegistry(renderer, imageLoader);
     const game = new Game(systemRegistry);
 
     game.setState<number>('playerScore', () => 0);

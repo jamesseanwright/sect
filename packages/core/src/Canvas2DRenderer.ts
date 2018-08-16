@@ -1,7 +1,6 @@
 import Dimension from './Dimension';
 
-// TODO: rename export, make other render systems use this
-class Canvas2DCamera {
+class Canvas2DRenderer {
     private _context: CanvasRenderingContext2D;
     private _worldSize: Dimension;
     private _pixelSize: Dimension;
@@ -29,6 +28,7 @@ class Canvas2DCamera {
         this._context.drawImage(image, ...this.project(x, y, width, height));
     }
 
+    // TODO: should aspect ratio be computed from world space?
     private getAspectRatio() {
         return this._pixelSize.width / this._pixelSize.height;
     }
@@ -49,4 +49,4 @@ class Canvas2DCamera {
     }
 }
 
-export default Canvas2DCamera;
+export default Canvas2DRenderer;

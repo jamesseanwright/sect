@@ -1,0 +1,12 @@
+{
+    "include": ["src/**/*.ts"],
+
+    "compilerOptions": {
+        "outDir": "dist",
+        "target": "ES6",
+        "module": "ES2015",
+		"moduleResolution": "Node",
+        "removeComments": true,
+        "declaration": true
+    }
+}

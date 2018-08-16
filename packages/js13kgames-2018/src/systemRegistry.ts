@@ -1,12 +1,12 @@
-import { Camera, SystemRegistry } from '@sectjs/core';
+import { Canvas2DRenderer, SystemRegistry } from '@sectjs/core';
 import { LinearCollidable, createLinearCollisionSystem, hasRectangularCollision } from '@sectjs/collision';
 import { ImageRenderable, createImageRenderSystem, ImageLoader } from '@sectjs/image-rendering';
 import KeyboardMoveable from './movement/KeyboardMoveable';
 import createKeyboardMovementSystem from './movement/keyboardMovementSystem';
 
-const createSystemRegistry = (camera: Camera, imageLoader: ImageLoader) => new SystemRegistry([
+const createSystemRegistry = (renderer: Canvas2DRenderer, imageLoader: ImageLoader) => new SystemRegistry([
     [LinearCollidable, createLinearCollisionSystem(hasRectangularCollision)],
-    [ImageRenderable, createImageRenderSystem(camera, imageLoader)],
+    [ImageRenderable, createImageRenderSystem(renderer, imageLoader)],
     [KeyboardMoveable, createKeyboardMovementSystem()],
 ]);
 
