@@ -44,7 +44,7 @@ class Game {
 
         this.loopEndCallback();
 
-        // requestAnimationFrame(this.loop);
+        requestAnimationFrame(this.loop);
     }
 }
 

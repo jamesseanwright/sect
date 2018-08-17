@@ -33,13 +33,6 @@ class Canvas2DRenderer {
     }
 
     public drawImage(image: HTMLImageElement, x: number, y: number, width: number, height: number) {
-        // this._context.translate(
-        //     this.toPixels(this._camera.x, 'width'),
-        //     this.toPixels(this._camera.y, 'height'),
-        // );
-
-        // this._context.scale(this._camera.zoom, this._camera.zoom);
-
         this._context.drawImage(image, ...this.project(x, y, width, height));
     }
 
@@ -55,8 +48,9 @@ class Canvas2DRenderer {
 
     private projectPoint(x: number, y: number): [number, number] {
         return [
-            this.toPixels(x, 'width'),
-            this.toPixels(y, 'height') * this.getAspectRatio(),
+            // TODO: is centring too tightly-coupled with camera?
+            this.toPixels(x, 'width') + this.toPixels(this._camera.x, 'width'),
+            (this.toPixels(y, 'height') + this.toPixels(this._camera.y, 'height')) * this.getAspectRatio(),
         ];
     }
 

@@ -40,5 +40,4 @@ const findComponent = <T extends Component>(components: Component[], TargetConst
     context.mozImageSmoothingEnabled = false;
 
     game.start();
-    game.onLoopEnd(clearContext);
 })();
