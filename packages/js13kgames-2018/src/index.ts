@@ -17,7 +17,7 @@ const findComponent = <T extends Component>(components: Component[], TargetConst
     const worldSize = new Dimension(100, 100);
     const pixelSize = new Dimension(canvas.width, canvas.height);
     const imageLoader = await createImages();
-    const camera = new TrackingCamera(new Dimension(200, 200));
+    const camera = new TrackingCamera(2);
     const renderer = new Canvas2DRenderer(context, camera, worldSize, pixelSize);
     const systemRegistry = createSystemRegistry(renderer, imageLoader);
     const bindComponents = createComponentBinder(systemRegistry);
@@ -40,4 +40,5 @@ const findComponent = <T extends Component>(components: Component[], TargetConst
     context.mozImageSmoothingEnabled = false;
 
     game.start();
+    game.onLoopEnd(clearContext);
 })();

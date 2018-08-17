@@ -18,7 +18,6 @@ const createImageRenderSystem = (renderer: Canvas2DRenderer, imageLoader: ImageL
             positionable.height,
         );
 
-        // tslint:disable-next-line:no-string-literal
         renderer.resetTransform();
     })
 );

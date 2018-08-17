@@ -33,6 +33,13 @@ class Canvas2DRenderer {
     }
 
     public drawImage(image: HTMLImageElement, x: number, y: number, width: number, height: number) {
+        // this._context.translate(
+        //     this.toPixels(this._camera.x, 'width'),
+        //     this.toPixels(this._camera.y, 'height'),
+        // );
+
+        // this._context.scale(this._camera.zoom, this._camera.zoom);
+
         this._context.drawImage(image, ...this.project(x, y, width, height));
     }
 
@@ -41,18 +48,23 @@ class Canvas2DRenderer {
         return this._pixelSize.width / this._pixelSize.height;
     }
 
+    // TODO: dimension is right here, but rename Dimension class?
+    private toPixels(unit: number, dimension: 'width' | 'height') {
+        return unit * this._pixelSize[dimension] / this._worldSize[dimension];
+    }
+
     private projectPoint(x: number, y: number): [number, number] {
         return [
-            x * this._pixelSize.width / this._worldSize.width,
-            y * (this._pixelSize.height / this._worldSize.height) * this.getAspectRatio(),
+            this.toPixels(x, 'width'),
+            this.toPixels(y, 'height') * this.getAspectRatio(),
         ];
     }
 
     private project(x: number, y: number, width: number, height: number) {
         return [
             ...this.projectPoint(x, y),
-            width * this._pixelSize.width / this._worldSize.width,
-            height * (this._pixelSize.height / this._worldSize.height) * this.getAspectRatio(),
+            this.toPixels(width, 'width'),
+            this.toPixels(height, 'height') * this.getAspectRatio(),
         ] as [number, number, number, number];
     }
 }

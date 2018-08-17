@@ -20,7 +20,7 @@ const createVan = (
     // TODO: consistent component creation (perhaps createPositionable(), createKeyboardInteractable()?)
     const keyboardMoveable = new KeyboardMoveable(positionable, moveable, KeyboardInteractable.create());
 
-    return bindComponents(imageRenderable, collidable, keyboardMoveable);
+    return bindComponents(positionable, imageRenderable, collidable, keyboardMoveable);
 };
 
 export default createVan;

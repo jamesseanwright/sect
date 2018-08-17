@@ -4,11 +4,11 @@ import Positionable from './Positionable';
 import RectPositionable from './RectPositionable';
 
 class TrackingCamera implements Camera {
-    private _positionable: Positionable = new RectPositionable(0, 0, 0, 0);
-    private _viewport: Dimension;
+    private _positionable: Positionable = new RectPositionable(1, 1, 1, 1);
+    private _zoom: number;
 
-    constructor(viewport: Dimension) {
-        this._viewport = viewport;
+    constructor(zoom: number) {
+        this._zoom = zoom;
     }
 
     public get x() {
@@ -19,8 +19,8 @@ class TrackingCamera implements Camera {
         return this._positionable.y;
     }
 
-    public get viewport() {
-        return this._viewport;
+    public get zoom() {
+        return this._zoom;
     }
 
     public set positionable(value: Positionable) {
