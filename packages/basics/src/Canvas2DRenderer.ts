@@ -48,9 +48,8 @@ class Canvas2DRenderer {
 
     private projectPoint(x: number, y: number): [number, number] {
         return [
-            // TODO: is centring too tightly-coupled with camera?
-            this.toPixels(x, 'width') + this.toPixels(this._camera.x, 'width'),
-            (this.toPixels(y, 'height') + this.toPixels(this._camera.y, 'height')) * this.getAspectRatio(),
+            this.toPixels(x + this._camera.x, 'width'),
+            this.toPixels(y + this._camera.y, 'height') * this.getAspectRatio(),
         ];
     }
 

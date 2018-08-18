@@ -22,4 +22,7 @@ export default {
             }
         }, esMinify),
     ],
+    watch: {
+        include: '../**/*.ts',
+    }
 };

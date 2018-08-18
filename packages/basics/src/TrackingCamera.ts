@@ -1,10 +1,9 @@
-import Dimension from './Dimension';
 import Camera from './Camera';
 import Positionable from './Positionable';
 import RectPositionable from './RectPositionable';
 
 class TrackingCamera implements Camera {
-    private _positionable: Positionable = new RectPositionable(1, 1, 1, 1);
+    private _positionable: Positionable = new RectPositionable(0, 0, 0, 0);
     private _zoom: number;
 
     constructor(zoom: number) {

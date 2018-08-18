@@ -12,7 +12,7 @@
     "lint": "tslint -c ../../tslint.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build",
     "test": "npm run lint",
-    "watch": "npm run prebuild && rollup -c -w"
+    "watch": "npm run prebuild && rollup -cw"
   },
   "repository": {
     "type": "git",
