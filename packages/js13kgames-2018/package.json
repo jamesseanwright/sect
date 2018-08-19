@@ -8,11 +8,11 @@
   "scripts": {
     "prebuild": "npm run create-dist-dir && cp src/index.html dist",
     "build": "rollup -c",
+    "dev": "npm run prebuild && rollup -w -c rollup.config.dev.js",
     "create-dist-dir": "mkdir -p dist && rm -rf dist/*",
     "lint": "tslint -c ../../tslint.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build",
-    "test": "npm run lint",
-    "watch": "npm run prebuild && rollup -cw"
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
