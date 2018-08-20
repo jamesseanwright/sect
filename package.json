@@ -6,7 +6,7 @@
   "scripts": {
     "build": "lerna run build",
     "create-package": "node createPackage.js",
-    "js13k-dev": "(cd packages/js13kgames-2018 && npm run dev) && cd ../.. || cd ../..",
+    "js13k-dev": "node packages/js13kgames-2018/devWatcher",
     "watch": "lerna run watch --parallel",
     "release": "lerna publish",
     "test": "lerna run test"
