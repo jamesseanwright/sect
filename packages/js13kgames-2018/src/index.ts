@@ -1,4 +1,4 @@
-import { Canvas2DRenderer, Dimension, TrackingCamera, Positionable, RectPositionable } from '@sectjs/basics';
+import { Canvas2DRenderer, Size, TrackingCamera, Positionable, RectPositionable } from '@sectjs/basics';
 import { createComponentBinder, Game, Component } from '@sectjs/core';
 import createSystemRegistry from './systemRegistry';
 import createImages from './images';
@@ -14,8 +14,8 @@ const findComponent = <T extends Component>(components: Component[], TargetConst
 (async () => {
     const canvas = document.body.querySelector<HTMLCanvasElement>('#game-output');
     const context = canvas.getContext('2d');
-    const worldSize = new Dimension(100, 100);
-    const pixelSize = new Dimension(canvas.width, canvas.height);
+    const worldSize = new Size(100, 100);
+    const pixelSize = new Size(canvas.width, canvas.height);
     const imageLoader = await createImages();
     const camera = new TrackingCamera(2);
     const renderer = new Canvas2DRenderer(context, camera, worldSize, pixelSize);

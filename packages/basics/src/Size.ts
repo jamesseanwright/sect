@@ -1,4 +1,4 @@
-class Dimension {
+class Size {
     private _width: number;
     private _height: number;
 
@@ -16,4 +16,4 @@ class Dimension {
     }
 }
 
-export default Dimension;
+export default Size;

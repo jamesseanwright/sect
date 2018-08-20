@@ -1,17 +1,17 @@
 import Camera from './Camera';
-import Dimension from './Dimension';
+import Size from './Size';
 
 class Canvas2DRenderer {
     private _context: CanvasRenderingContext2D;
     private _camera: Camera;
-    private _worldSize: Dimension;
-    private _pixelSize: Dimension;
+    private _worldSize: Size;
+    private _pixelSize: Size;
 
     constructor(
         context: CanvasRenderingContext2D,
         camera: Camera,
-        worldSize: Dimension,
-        pixelSize: Dimension,
+        worldSize: Size,
+        pixelSize: Size,
     ) {
         this._context = context;
         this._camera = camera;
@@ -41,15 +41,15 @@ class Canvas2DRenderer {
         return this._pixelSize.width / this._pixelSize.height;
     }
 
-    // TODO: dimension is right here, but rename Dimension class?
+    // TODO: dimension is right here, but rename Dimension class to Size
     private toPixels(unit: number, dimension: 'width' | 'height') {
         return unit * this._pixelSize[dimension] / this._worldSize[dimension];
     }
 
     private projectPoint(x: number, y: number): [number, number] {
         return [
-            this.toPixels(x + this._camera.x, 'width'),
-            this.toPixels(y + this._camera.y, 'height') * this.getAspectRatio(),
+            this.toPixels(x, 'width'),
+            this.toPixels(y, 'height') * this.getAspectRatio(),
         ];
     }
 
