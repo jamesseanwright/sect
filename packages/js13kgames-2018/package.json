@@ -8,7 +8,7 @@
   "scripts": {
     "prebuild": "npm run create-dist-dir && cp src/index.html dist",
     "build": "rollup -c",
-    "dev": "npm run prebuild && rollup -w -c rollup.config.dev.js",
+    "dev": "npm run prebuild && node devWatcher.js",
     "create-dist-dir": "mkdir -p dist && rm -rf dist/*",
     "lint": "tslint -c ../../tslint.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build",
@@ -41,15 +41,16 @@
     "@sectjs/collision": "^0.2.0",
     "@sectjs/core": "^0.2.0",
     "@sectjs/image-rendering": "^0.2.0",
-    "@sectjs/input": "^0.2.0",
-    "rollup": "^0.64.1",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-typescript2": "^0.16.1",
-    "rollup-plugin-uglify": "^4.0.0",
-    "uglify-es": "^3.3.9"
+    "@sectjs/input": "^0.2.0"
   },
   "devDependencies": {
     "chai": "4.1.2",
-    "sinon": "4.4.9"
+    "chokidar": "2.0.4",
+    "rollup": "0.64.1",
+    "rollup-plugin-node-resolve": "3.3.0",
+    "rollup-plugin-typescript2": "0.16.1",
+    "rollup-plugin-uglify": "4.0.0",
+    "sinon": "4.4.9",
+    "uglify-es": "3.3.9"
   }
 }
