@@ -58,6 +58,7 @@ const child_process = require('child_process');
 const path = require('path');
 const chokidar = require('chokidar');
 const puppeteer = require('puppeteer');
+const typescript = require('typescript');
 const createObservableWatcher = require('./observableWatcher');
 const currentPackageMetadata = require(path.join(process.cwd(), 'package.json'));
 
@@ -103,6 +104,14 @@ const injectRebuildingBanner = async page => {
     });
 };
 
+const getArgsFromTsProject = () => {
+    const tsConfig = require(path.join(__dirname, '..', 'tsconfig.json'));
+
+    return Object.entries(tsConfig.compilerOptions).map(
+        ([key, value]) => `--${key} ${Array.isArray(value) ? `${value.join(',')}` : value}`
+    ).join(' ');
+};
+
 (async () => {
     const page = await createOpenedGamePage();
 
@@ -117,11 +126,18 @@ const injectRebuildingBanner = async page => {
         .subscribe('change')
         .filter(isValidSourcePath)
         .log(path => `Change detected for ${path}`)
-        .map(path => /(packages.*)\/src\/.*/.exec(path)[1])
-        .log(packageRoot => `Rebuilding ${packageRoot}`)
+        .map(path => {
+            const [, packageRoot, file] = /(packages.*)\/(src\/.*)/.exec(path);
+
+            return {
+                file,
+                packageRoot,
+            };
+        })
+        .log(({ file }) => `Compiling ${file}...`)
         .await(async () => await injectRebuildingBanner(page))
-        .do(packageRoot => {
-            child_process.execSync('npm run build', {
+        .do(({ packageRoot, file }) => {
+            child_process.execSync(`npm run build -- ${file} ${getArgsFromTsProject()}`, {
                 cwd: packageRoot,
                 stdio: [
                     null,
@@ -130,10 +146,10 @@ const injectRebuildingBanner = async page => {
                 ],
             });
         })
-        .log(path => `Built! ${path}. Rebuilding game...`)
+        .log(({ file }) => `Built ${file}! Rebuilding game...`)
         .do(() => {
             child_process.execSync('npm run build', {
-                cwd: __dirname,
+                cwd: path.join(__dirname, '..'),
                 stdio: [
                     null,
                     process.stdout,

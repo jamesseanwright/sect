@@ -42,7 +42,7 @@ const createObservableWatcher = watch => {
                                 return { value: mappedValue };
 
                             case 'log':
-                                console.log(parameters.callback(path));
+                                console.log(parameters.callback(value));
                                 return { value };
 
                             case 'await':
