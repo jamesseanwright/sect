@@ -104,10 +104,19 @@ const injectRebuildingBanner = async page => {
     });
 };
 
-const getArgsFromTsProject = () => {
+const getTsArgs = () => {
     const tsConfig = require(path.join(__dirname, '..', 'tsconfig.json'));
 
-    return Object.entries(tsConfig.compilerOptions).map(
+    /* Skipping some checks to improve dev
+     * build times. Full type checking will
+     * occur when running the prod build. */
+    const options = {
+        ...tsConfig.compilerOptions,
+        skipDefaultLibCheck: true,
+        skipLibCheck: true,
+    };
+
+    return Object.entries(options).map(
         ([key, value]) => `--${key} ${Array.isArray(value) ? `${value.join(',')}` : value}`
     ).join(' ');
 };
@@ -137,7 +146,7 @@ const getArgsFromTsProject = () => {
         .log(({ file }) => `Compiling ${file}...`)
         .await(async () => await injectRebuildingBanner(page))
         .do(({ packageRoot, file }) => {
-            child_process.execSync(`npm run build -- ${file} ${getArgsFromTsProject()}`, {
+            child_process.execSync(`npm run build -- ${file} ${getTsArgs()}`, {
                 cwd: packageRoot,
                 stdio: [
                     null,
@@ -155,6 +164,10 @@ const getArgsFromTsProject = () => {
                     process.stdout,
                     process.stderr,
                 ],
+                env: {
+                    ...process.env,
+                    NODE_ENV: 'dev',
+                },
             });
         })
         .log(() => `Game built!`)

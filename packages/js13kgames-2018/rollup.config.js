@@ -4,6 +4,8 @@ import { uglify } from 'rollup-plugin-uglify';
 import { minify as esMinify } from 'uglify-es';
 import reservedDomProps from 'uglify-es/tools/domprops';
 
+const isDevMode = process.env.NODE_ENV = 'dev';
+
 export default {
     input: 'src/index.ts',
     output: {
@@ -12,8 +14,10 @@ export default {
     },
     plugins: [
         resolve(),
-        typescript(),
-        uglify({
+        typescript({
+            check: !isDevMode,
+        }),
+        !isDevMode && uglify({
             mangle: {
                 toplevel: true,
                 properties: {

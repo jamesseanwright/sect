@@ -41,15 +41,14 @@ class Canvas2DRenderer {
         return this._pixelSize.width / this._pixelSize.height;
     }
 
-    // TODO: dimension is right here, but rename Dimension class to Size
     private toPixels(unit: number, dimension: 'width' | 'height') {
         return unit * this._pixelSize[dimension] / this._worldSize[dimension];
     }
 
     private projectPoint(x: number, y: number): [number, number] {
         return [
-            this.toPixels(x, 'width'),
-            this.toPixels(y, 'height') * this.getAspectRatio(),
+            this.toPixels(x + this._camera.x, 'width'),
+            this.toPixels(y + this._camera.y, 'height') * this.getAspectRatio(),
         ];
     }
 
