@@ -43,10 +43,10 @@
                         IT'S A HACK!
 
 Even with the Chokidar option enabled and configured,
-simply refuses to watch monorepo-wide source files.
-I thus rolled my own that consumes Chokidar directly
+Rollup refuses to watch monorepo-wide source files.
+I thus rolled my own watcher that consumes Chokidar directly
 and uses  ̶h̶a̶c̶k̶s̶ magic to rebuild any changed packages
-and in turn rebuilding the game's rollup bundle. Maaagic.
+and in turn rebuilding the game's rollup bundle. Maaagiiic.
 
 Once the game is complete, it will be moved from the Sect monorepo
 to a repository of its own, thus this masterpiece is temporary.
@@ -54,9 +54,10 @@ to a repository of its own, thus this masterpiece is temporary.
 
 'use strict';
 
+const child_process = require('child_process');
 const path = require('path');
 const chokidar = require('chokidar');
-const child_process = require('child_process');
+const puppeteer = require('puppeteer');
 const createObservableWatcher = require('./observableWatcher');
 const currentPackageMetadata = require(path.join(process.cwd(), 'package.json'));
 
@@ -66,38 +67,80 @@ if (!isRepoRoot) {
     throw new Error('Please run from the monorepo`s root!');
 }
 
-const isValidSourcePath = path =>
-    !path.includes('node_modules')
-    && !path.includes('js13kgames-2018')
-    && !path.includes('dist');
+const createOpenedGamePage = async () => {
+    const browser = await puppeteer.launch({
+        headless: false,
+    });
 
-console.log('Listening for monorepo source changes...');
+    const page = await browser.newPage();
+    const appPath = `file://${path.resolve(__dirname, '..', 'dist', 'index.html')}`;
 
-createObservableWatcher(chokidar.watch('packages'))
-    .subscribe('change')
-    .filter(isValidSourcePath)
-    .log(path => `Change detected for ${path}`)
-    .map(path => /(packages.*)\/src\/.*/.exec(path)[1])
-    .log(packageRoot => `Rebuilding ${packageRoot}`)
-    .do(packageRoot => {
-        child_process.execSync('npm run build', {
-            cwd: packageRoot,
-            stdio: [
-                null,
-                process.stdout,
-                process.stderr,
-            ],
-        });
-    })
-    .log(path => `Built! ${path}. Rebuilding game...`)
-    .do(() => {
-        child_process.execSync('npm run build', {
-            cwd: __dirname,
-            stdio: [
-                null,
-                process.stdout,
-                process.stderr,
-            ],
-        });
-    })
-    .log(() => `Game built!`);
+    await page.goto(appPath);
+
+    return page;
+};
+
+const injectRebuildingBanner = async page => {
+    await page.evaluate(() => {
+        const banner = document.createElement('div');
+
+        banner.style = `
+            font-family: Arial;
+            font-size: 48px;
+            text-align: center;
+            background-color: red;
+            color: white;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        `;
+
+        banner.textContent = 'Rebuilding...';
+
+        document.body.appendChild(banner);
+    });
+};
+
+(async () => {
+    const page = await createOpenedGamePage();
+
+    const isValidSourcePath = path =>
+        !path.includes('node_modules')
+        && !path.includes('dist')
+        && !path.includes('.rpt2_cache');
+
+    console.log('Listening for monorepo source changes...');
+
+    createObservableWatcher(chokidar.watch('packages'))
+        .subscribe('change')
+        .filter(isValidSourcePath)
+        .log(path => `Change detected for ${path}`)
+        .map(path => /(packages.*)\/src\/.*/.exec(path)[1])
+        .log(packageRoot => `Rebuilding ${packageRoot}`)
+        .await(async () => await injectRebuildingBanner(page))
+        .do(packageRoot => {
+            child_process.execSync('npm run build', {
+                cwd: packageRoot,
+                stdio: [
+                    null,
+                    process.stdout,
+                    process.stderr,
+                ],
+            });
+        })
+        .log(path => `Built! ${path}. Rebuilding game...`)
+        .do(() => {
+            child_process.execSync('npm run build', {
+                cwd: __dirname,
+                stdio: [
+                    null,
+                    process.stdout,
+                    process.stderr,
+                ],
+            });
+        })
+        .log(() => `Game built!`)
+        .await(async () => await page.reload());
+})();

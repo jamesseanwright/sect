@@ -9,33 +9,51 @@ const createObservableWatcher = watch => {
     return {
         subscribe(eventName) {
             const createInvoker = operators => path => {
-                let value = path;
+                let initialValue = path;
 
-                for (let { name, parameters } of operators.chain) {
-                    switch(name) {
-                        case 'filter':
-                            if (!parameters.predicate(value)) {
-                                return;
-                            }
+                /* Required for async operators. Mixing async and promises
+                 * is strange but required as reduce doesn't honour async */
+                operators.chain.reduce((promise, { name, parameters }) => {
+                    return promise.then(async ({ value, abort }) => {
+                        if (abort) {
+                            return {
+                                value,
+                                abort,
+                            };
+                        }
 
-                            break
+                        switch(name) {
+                            case 'filter':
+                                if (!parameters.predicate(value)) {
+                                    return {
+                                        value,
+                                        abort: true
+                                    };
+                                }
 
-                        case 'do':
-                            parameters.callback(value);
-                            break;
+                                return { value };
 
-                        case 'map':
-                            value = parameters.callback(value);
-                            break;
+                            case 'do':
+                                parameters.callback(value);
+                                return { value };
 
-                        case 'log':
-                            console.log(parameters.callback(path));
-                            break;
+                            case 'map':
+                                const mappedValue = parameters.callback(value);
+                                return { value: mappedValue };
 
-                        default:
-                            throw new Error('Operator not found');
-                    }
-                }
+                            case 'log':
+                                console.log(parameters.callback(path));
+                                return { value };
+
+                            case 'await':
+                                await parameters.asyncFunc();
+                                return { value };
+
+                            default:
+                                throw new Error('Operator not found');
+                        }
+                    });
+                }, Promise.resolve({ value: initialValue }));
             };
 
             const operators = {
@@ -68,6 +86,14 @@ const createObservableWatcher = watch => {
                 log(callback) {
                     this.chain.push(
                         createOperationState('log', { callback })
+                    );
+
+                    return this;
+                },
+
+                await(asyncFunc) {
+                    this.chain.push(
+                        createOperationState('await', { asyncFunc })
                     );
 
                     return this;
