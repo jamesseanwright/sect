@@ -36,6 +36,7 @@ class Canvas2DRenderer {
     }
 
     public drawImage(image: HTMLImageElement, x: number, y: number, width: number, height: number) {
+        this._context.scale(...this.projectPoint(this._camera.zoom, this._camera.zoom));
         this._context.drawImage(image, ...this.project(x, y, width, height));
     }
 
