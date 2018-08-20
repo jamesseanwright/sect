@@ -20,7 +20,10 @@ class Canvas2DRenderer {
     }
 
     public translate(x: number, y: number) {
-        this._context.translate(...this.projectPoint(x, y));
+        this._context.translate(...this.projectPoint(
+            x + this._camera.x,
+            y + this._camera.y,
+        ));
     }
 
     public rotate(angle: number) {
@@ -47,8 +50,8 @@ class Canvas2DRenderer {
 
     private projectPoint(x: number, y: number): [number, number] {
         return [
-            this.toPixels(x + this._camera.x, 'width'),
-            this.toPixels(y + this._camera.y, 'height') * this.getAspectRatio(),
+            this.toPixels(x, 'width'),
+            this.toPixels(y, 'height') * this.getAspectRatio(),
         ];
     }
 
