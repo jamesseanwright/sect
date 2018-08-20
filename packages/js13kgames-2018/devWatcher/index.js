@@ -1,3 +1,57 @@
+/*
+                            __...------------._
+                         ,-'                   `-.
+                      ,-'                         `.
+                    ,'                            ,-`.
+                   ;                              `-' `.
+                  ;                                 .-. \
+                 ;                           .-.    `-'  \
+                ;                            `-'          \
+               ;                                          `.
+               ;                                           :
+              ;                                            |
+             ;                                             ;
+            ;                            ___              ;
+           ;                        ,-;-','.`.__          |
+       _..;                      ,-' ;`,'.`,'.--`.        |
+      ///;           ,-'   `. ,-'   ;` ;`,','_.--=:      /
+     |'':          ,'        :     ;` ;,;,,-'_.-._`.   ,'
+     '  :         ;_.-.      `.    :' ;;;'.ee.    \|  /
+      \.'    _..-'/8o. `.     :    :! ' ':8888)   || /
+       ||`-''    \\88o\ :     :    :! :  :`""'    ;;/
+       ||         \"88o\;     `.    \ `. `.      ;,'
+       /)   ___    `."'/(--.._ `.    `.`.  `-..-' ;--.
+       \(.="""""==.. `'-'     `.|      `-`-..__.-' `. `.
+        |          `"==.__      )                    )  ;
+        |   ||           `"=== '                   .'  .'
+        /\,,||||  | |           \                .'   .'
+        | |||'|' |'|'           \|             .'   _.' \
+        | |\' |  |           || ||           .'    .'    \
+        ' | \ ' |'  .   ``-- `| ||         .'    .'       \
+          '  |  ' |  .    ``-.._ |  ;    .'    .'          `.
+       _.--,;`.       .  --  ...._,'   .'    .'              `.__
+     ,'  ,';   `.     .   --..__..--'.'    .'                __/_\
+   ,'   ; ;     |    .   --..__.._.'     .'                ,'     `.
+  /    ; :     ;     .    -.. _.'     _.'                 /         `
+ /     :  `-._ |    .    _.--'     _.'                   |
+/       `.    `--....--''       _.'                      |
+          `._              _..-'                         |
+             `-..____...-''                              |
+                                                         |
+                        art by mGk                       |
+
+                        IT'S A HACK!
+
+Even with the Chokidar option enabled and configured,
+simply refuses to watch monorepo-wide source files.
+I thus rolled my own that consumes Chokidar directly
+and uses  ̶h̶a̶c̶k̶s̶ magic to rebuild any changed packages
+and in turn rebuilding the game's rollup bundle. Maaagic.
+
+Once the game is complete, it will be moved from the Sect monorepo
+to a repository of its own, thus this masterpiece is temporary.
+*/
+
 'use strict';
 
 const path = require('path');
@@ -46,4 +100,4 @@ createObservableWatcher(chokidar.watch('packages'))
             ],
         });
     })
-    .log(path => `Game built!`);
+    .log(() => `Game built!`);
