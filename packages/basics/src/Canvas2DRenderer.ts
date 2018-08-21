@@ -36,7 +36,7 @@ class Canvas2DRenderer {
     }
 
     public drawImage(image: HTMLImageElement, x: number, y: number, width: number, height: number) {
-        this._context.scale(...this.projectPoint(this._camera.zoom, this._camera.zoom));
+        this._context.scale(this._camera.zoom, this._camera.zoom);
         this._context.drawImage(image, ...this.project(x, y, width, height));
     }
 
@@ -51,8 +51,8 @@ class Canvas2DRenderer {
 
     private projectPoint(x: number, y: number): [number, number] {
         return [
-            this.toPixels(x, 'width'),
-            this.toPixels(y, 'height') * this.getAspectRatio(),
+            this.toPixels(x + this._camera.x / this._camera.zoom, 'width'),
+            this.toPixels(y - this._camera.y, 'height') * this.getAspectRatio(),
         ];
     }
 

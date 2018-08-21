@@ -146,14 +146,16 @@ const getTsArgs = () => {
         .log(({ file }) => `Compiling ${file}...`)
         .await(async () => await injectRebuildingBanner(page))
         .do(({ packageRoot, file }) => {
-            child_process.execSync(`npm run build -- ${file} ${getTsArgs()}`, {
-                cwd: packageRoot,
-                stdio: [
-                    null,
-                    process.stdout,
-                    process.stderr,
-                ],
-            });
+            if (!packageRoot.includes('js13kgames-2018')) { // imperative code in observable === 'eww', but no time to fix now
+                child_process.execSync(`npm run build -- ${file} ${getTsArgs()}`, {
+                    cwd: packageRoot,
+                    stdio: [
+                        null,
+                        process.stdout,
+                        process.stderr,
+                    ],
+                });
+            }
         })
         .log(({ file }) => `Built ${file}! Rebuilding game...`)
         .do(() => {

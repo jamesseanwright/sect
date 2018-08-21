@@ -4,7 +4,7 @@ import KeyboardMoveable from './KeyboardMoveable';
 const createKeyboardMovementSystem = () => (
     createSystem<KeyboardMoveable>('keyboardMover', (timestamp, component) => {
         if (component.keyboardInteractable.isPressed('a')) {
-            component.positionable.x -= component.moveable.xSpeed;
+            component.positionable.y -= component.moveable.ySpeed;
         }
 
         if (component.keyboardInteractable.isPressed('ArrowLeft')) {
