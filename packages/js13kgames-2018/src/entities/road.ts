@@ -9,11 +9,11 @@ const createRoad = (
     x: number,
     y: number,
     size: number,
-    rotation: number,
+    rotation: string = '',
     modifier: RoadModifier = 'Main',
 ) => {
-    const positionable = new RectPositionable(x, y, size, size, rotation);
-    const imageRenderable = new ImageRenderable(positionable, `road${modifier}`);
+    const positionable = new RectPositionable(x, y, size, size);
+    const imageRenderable = new ImageRenderable(positionable, `road${modifier}${rotation}`);
 
     return bindComponents(imageRenderable);
 };

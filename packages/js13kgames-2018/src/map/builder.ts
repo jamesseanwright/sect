@@ -3,23 +3,22 @@ import { Component, ComponentBinder } from '@sectjs/core';
 import createSolidTile from '../entities/solidTile';
 import { Tile } from './map';
 
-export type TileBuilder = (binder: ComponentBinder, x: number, y: number, rotation: number) => void;
+export type TileBuilder = (binder: ComponentBinder, x: number, y: number, rotation: string) => void;
 
 const TILE_SIZE = 3.225807;
-const ROTATION_INCREMENT_RADIANS = 1.5708;
 
 const tileBuilders = new Map<string, TileBuilder>([
     ['R', (binder, x, y, rotation) => createRoad(binder, x, y, TILE_SIZE, rotation)],
     ['T', (binder, x, y, rotation) => createRoad(binder, x, y, TILE_SIZE, rotation, 'ThreeWay')],
     ['C', (binder, x, y, rotation) => createRoad(binder, x, y, TILE_SIZE, rotation, 'Corner')],
-    ['X', (binder, x, y) => createRoad(binder, x, y, TILE_SIZE, 0, 'Cross')],
+    ['X', (binder, x, y, rotation) => createRoad(binder, x, y, TILE_SIZE, rotation, 'Cross')],
     ['G', (binder, x, y) => createSolidTile(binder, x, y, TILE_SIZE, 'grass')],
     ['E', (binder, x, y) => createSolidTile(binder, x, y, TILE_SIZE, 'exchange')],
 ]);
 
 const getRotation = (tile: Tile) => {
-    const [, , rotation = '0'] = tile;
-    return parseInt(rotation, 10) * ROTATION_INCREMENT_RADIANS;
+    const [, , rotation = ''] = tile;
+    return rotation;
 };
 
 const buildMap = (componentBinder: ComponentBinder, rows: Tile[][]) => {

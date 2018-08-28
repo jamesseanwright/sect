@@ -1,5 +1,4 @@
 import Camera from './Camera';
-import Size from './Size';
 
 class Canvas2DRenderer {
     private _context: CanvasRenderingContext2D;
@@ -11,6 +10,8 @@ class Canvas2DRenderer {
     ) {
         this._context = context;
         this._camera = camera;
+
+        this._context.scale(this._camera.getZoom(), this._camera.getZoom());
     }
 
     public translate(x: number, y: number) {
@@ -27,7 +28,6 @@ class Canvas2DRenderer {
     }
 
     public drawImage(image: HTMLImageElement, x: number, y: number, width: number, height: number) {
-        this._context.scale(this._camera.getZoom(), this._camera.getZoom());
         this._context.drawImage(image, ...this._camera.project(x, y, width, height));
     }
 }
