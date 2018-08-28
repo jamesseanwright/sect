@@ -6,27 +6,48 @@ import Size from './Size';
 class TrackingCamera implements Camera {
     private _positionable: Positionable = new RectPositionable(0, 0, 0, 0);
     private _worldSize: Size;
+    private _pixelSize: Size;
     private _zoom: number;
 
-    constructor(zoom: number, worldSize: Size) {
+    constructor(zoom: number, worldSize: Size, pixelSize: Size) {
         this._worldSize = worldSize;
+        this._pixelSize = pixelSize;
         this._zoom = zoom;
     }
 
-    public get x() {
-        return this._worldSize.width / 2 - this._positionable.x;
+    public projectPoint(x: number, y: number): [number, number] {
+        return [
+            this.toPixels((x - this._positionable.x) + this._worldSize.width / (this._zoom * 2), 'width'),
+            this.toPixels(
+                y - this._positionable.y  + this._worldSize.height / (this._zoom * 2),
+                'height',
+            ) * this.getAspectRatio(),
+        ];
     }
 
-    public get y() {
-        return this._worldSize.height / 2 - this._positionable.y;
+    public project(x: number, y: number, width: number, height: number) {
+        return [
+            ...this.projectPoint(x, y),
+            this.toPixels(width, 'width'),
+            this.toPixels(height, 'height') * this.getAspectRatio(),
+        ] as [number, number, number, number];
     }
 
-    public get zoom() {
+    public getZoom() { // No getters in interfaces :(
         return this._zoom;
     }
 
+    // TODO: inject into constructor instead
     public set positionable(value: Positionable) {
         this._positionable = value;
+    }
+
+    private toPixels(unit: number, dimension: 'width' | 'height') {
+        return unit * this._pixelSize[dimension] / this._worldSize[dimension];
+    }
+
+    private getAspectRatio() {
+        return this._pixelSize.width / this._pixelSize.height;
     }
 }
 

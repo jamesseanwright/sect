@@ -1,4 +1,11 @@
-import { Canvas2DRenderer, Size, TrackingCamera, Positionable, RectPositionable } from '@sectjs/basics';
+import {
+    Canvas2DRenderer,
+    Size,
+    TrackingCamera,
+    createDebuggableCamera,
+    Positionable,
+    RectPositionable,
+} from '@sectjs/basics';
 import { createComponentBinder, Game, Component } from '@sectjs/core';
 import createSystemRegistry from './systemRegistry';
 import createImages from './images';
@@ -17,14 +24,14 @@ const findComponent = <T extends Component>(components: Component[], TargetConst
     const worldSize = new Size(100, 100);
     const pixelSize = new Size(canvas.width, canvas.height);
     const imageLoader = await createImages();
-    const camera = new TrackingCamera(6, worldSize);
-    const renderer = new Canvas2DRenderer(context, camera, worldSize, pixelSize);
+    const camera = new TrackingCamera(4, worldSize, pixelSize);
+    const renderer = new Canvas2DRenderer(context, camera);
     const systemRegistry = createSystemRegistry(renderer, imageLoader);
     const bindComponents = createComponentBinder(systemRegistry);
 
     buildMap(bindComponents, map);
 
-    const van = createVan(bindComponents, 7, 28, 1.3, 1.9);
+    const van = createVan(bindComponents, 50, 50, 1.3, 1.9);
 
     camera.positionable = findComponent<Positionable>(van, RectPositionable);
 

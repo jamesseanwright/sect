@@ -1,4 +1,5 @@
 export { default as Camera } from './Camera';
+export { default as createDebuggableCamera } from './debuggableCamera';
 export { default as TrackingCamera } from './TrackingCamera';
 export { default as Canvas2DRenderer } from './Canvas2DRenderer';
 export { default as Size } from './Size';
