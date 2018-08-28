@@ -6,6 +6,8 @@ import ImageRenderable from './ImageRenderable';
 // TODO: fix tests
 const createImageRenderSystem = (renderer: Canvas2DRenderer, imageLoader: ImageLoader) =>
     createSystem<ImageRenderable>('imageRenderer', (timestamp, { imageName, positionable }) => {
+        renderer.rotate(positionable.rotation);
+
         renderer.drawImage(
             imageLoader.getImage(imageName),
             positionable.x,
@@ -13,6 +15,8 @@ const createImageRenderSystem = (renderer: Canvas2DRenderer, imageLoader: ImageL
             positionable.width,
             positionable.height,
         );
+
+        renderer.resetTransform();
     });
 
 export default createImageRenderSystem;

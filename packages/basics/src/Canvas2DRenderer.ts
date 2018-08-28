@@ -25,6 +25,7 @@ class Canvas2DRenderer {
     public resetTransform() {
         // tslint:disable-next-line:no-string-literal
         this._context['resetTransform']();
+        this._context.scale(this._camera.getZoom(), this._camera.getZoom());
     }
 
     public drawImage(image: HTMLImageElement, x: number, y: number, width: number, height: number) {
