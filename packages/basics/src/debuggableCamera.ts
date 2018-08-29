@@ -6,16 +6,16 @@ const createDebuggableCamera = (camera: Camera): Camera =>
         get(target, prop) {
             switch (prop) {
                 case 'projectPoint':
-                    return (x: number, y: number) => {
-                        const result = target.projectPoint(x, y);
+                    return (x: number, y: number, offsetX = 0, offsetY = 0) => {
+                        const result = target.projectPoint(x, y, offsetX, offsetY);
                         // tslint:disable-next-line:no-console
                         console.log('Request for point projection:', x, y, '=>', ...result);
                         return result;
                     };
 
                 case 'project':
-                    return (x: number, y: number, width: number, height: number) => {
-                        const result = target.project(x, y, width, height);
+                    return (x: number, y: number, width: number, height: number, offsetX: number, offsetY: number) => {
+                        const result = target.project(x, y, width, height, offsetX, offsetY);
                         // tslint:disable-next-line:no-console
                         console.log('Request for rect projection:', x, y, width, height, '=>', ...result);
                         return result;

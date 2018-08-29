@@ -1,6 +1,5 @@
 import {
     Canvas2DRenderer,
-    Size,
     TrackingCamera,
     createDebuggableCamera,
     Positionable,
@@ -21,10 +20,10 @@ const findComponent = <T extends Component>(components: Component[], TargetConst
 (async () => {
     const canvas = document.body.querySelector<HTMLCanvasElement>('#game-output');
     const context = canvas.getContext('2d');
-    const worldSize = new Size(100, 100);
-    const pixelSize = new Size(canvas.width, canvas.height);
+    const worldSize = [100, 100];
+    const pixelSize = [canvas.width, canvas.height];
     const imageLoader = await createImages();
-    const camera = new TrackingCamera(4, worldSize, pixelSize);
+    const camera = createDebuggableCamera(new TrackingCamera(4, worldSize, pixelSize));
     const renderer = new Canvas2DRenderer(context, camera);
     const systemRegistry = createSystemRegistry(renderer, imageLoader);
     const bindComponents = createComponentBinder(systemRegistry);
