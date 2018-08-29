@@ -10,8 +10,6 @@ interface Camera {
         offsetX?: number,
         offsetY?: number,
     ): [number, number, number, number];
-
-    getZoom(): number;
 }
 
 export default Camera;

@@ -18,11 +18,11 @@ class TrackingCamera implements Camera {
     public projectPoint(x: number, y: number, offsetX = 0, offsetY = 0): [number, number] {
         return [
             this.toPixels(
-                (x - this._positionable.x) + offsetX,
+                (x + offsetX - this._positionable.x),
                 0,
             ),
             this.toPixels(
-                (y - this._positionable.y) + offsetY,
+                (y + offsetY - this._positionable.y),
                 1,
             ) * this.getAspectRatio(),
         ];
@@ -36,18 +36,13 @@ class TrackingCamera implements Camera {
         ] as [number, number, number, number];
     }
 
-    public getZoom() { // No getters in interfaces :(
-        return 1;
-        return this._zoom;
-    }
-
     // TODO: inject into constructor instead
     public set positionable(value: Positionable) {
         this._positionable = value;
     }
 
     private toPixels(unit: number, dimension: 0 | 1) {
-        return unit * this._pixelSize[dimension] / this._worldSize[dimension];
+        return (unit * this._pixelSize[dimension] / this._worldSize[dimension]) * this._zoom;
     }
 
     private getAspectRatio() {
