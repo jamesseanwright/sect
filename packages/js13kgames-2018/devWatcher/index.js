@@ -58,7 +58,6 @@ const child_process = require('child_process');
 const path = require('path');
 const chokidar = require('chokidar');
 const puppeteer = require('puppeteer');
-const typescript = require('typescript');
 const createObservableWatcher = require('./observableWatcher');
 const currentPackageMetadata = require(path.join(process.cwd(), 'package.json'));
 
@@ -145,17 +144,15 @@ const getTsArgs = () => {
         })
         .log(({ file }) => `Compiling ${file}...`)
         .await(async () => await injectRebuildingBanner(page))
-        .do(({ packageRoot, file }) => {
-            if (!packageRoot.includes('js13kgames-2018')) { // imperative code in observable === 'eww', but no time to fix now
-                child_process.execSync(`npm run build -- ${file} ${getTsArgs()}`, {
-                    cwd: packageRoot,
-                    stdio: [
-                        null,
-                        process.stdout,
-                        process.stderr,
-                    ],
-                });
-            }
+        .doIf(({ packageRoot }) => !packageRoot.includes('js13kgames-2018'), ({ packageRoot, file }) => {
+            child_process.execSync(`npm run build -- ${file} ${getTsArgs()}`, {
+                cwd: packageRoot,
+                stdio: [
+                    null,
+                    process.stdout,
+                    process.stderr,
+                ],
+            });
         })
         .log(({ file }) => `Built ${file}! Rebuilding game...`)
         .do(() => {

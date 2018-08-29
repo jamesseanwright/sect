@@ -37,6 +37,13 @@ const createObservableWatcher = watch => {
                                 parameters.callback(value);
                                 return { value };
 
+                            case 'doIf':
+                                if (parameters.predicate(value)) {
+                                    parameters.callback(value);
+                                }
+
+                                return { value };
+
                             case 'map':
                                 const mappedValue = parameters.callback(value);
                                 return { value: mappedValue };
@@ -78,6 +85,14 @@ const createObservableWatcher = watch => {
                 do(callback) {
                     this.chain.push(
                         createOperationState('do', { callback })
+                    );
+
+                    return this;
+                },
+
+                doIf(predicate, callback) {
+                    this.chain.push(
+                        createOperationState('doIf', { predicate, callback })
                     );
 
                     return this;
