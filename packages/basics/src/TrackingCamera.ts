@@ -3,7 +3,7 @@ import Positionable from './Positionable';
 import RectPositionable from './RectPositionable';
 
 class TrackingCamera implements Camera {
-    private _positionable: Positionable = new RectPositionable(0, 0, 0, 0);
+    private _positionable: RectPositionable = new RectPositionable(0, 0, 0, 0);
     private _worldSize: [number, number];
     private _pixelSize: [number, number];
     private _zoom: number;
@@ -14,7 +14,6 @@ class TrackingCamera implements Camera {
         this._zoom = zoom;
     }
 
-    // this._worldSize[0] / (this._zoom * 2)
     public projectPoint(x: number, y: number, offsetX = 0, offsetY = 0): [number, number] {
         return [
             this.toPixels(
@@ -36,9 +35,16 @@ class TrackingCamera implements Camera {
         ] as [number, number, number, number];
     }
 
+    public getOrigin() {
+        return [
+            this.toPixels(this._positionable.width / 2 + this._worldSize[0] / 2 / this._zoom, 0),
+            this.toPixels(this._worldSize[1] / 2 / this._zoom, 1),
+        ] as [number, number];
+    }
+
     // TODO: inject into constructor instead
     public set positionable(value: Positionable) {
-        this._positionable = value;
+        this._positionable = value as RectPositionable; // TODO: change type in param!
     }
 
     private toPixels(unit: number, dimension: 0 | 1) {

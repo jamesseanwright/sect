@@ -6,18 +6,18 @@ import ImageRenderable from './ImageRenderable';
 // TODO: fix tests
 const createImageRenderSystem = (renderer: Canvas2DRenderer, imageLoader: ImageLoader) =>
     createSystem<ImageRenderable>('imageRenderer', (timestamp, { imageName, positionable }) => {
-        renderer.translate(positionable.x - positionable.width, positionable.y - positionable.height);
+        renderer.save();
         renderer.rotate(positionable.rotation);
 
         renderer.drawImage(
             imageLoader.getImage(imageName),
-            positionable.width / 2,
-            positionable.height / 2,
+            positionable.x,
+            positionable.y,
             positionable.width,
             positionable.height,
         );
 
-        renderer.resetTransform();
+        renderer.restore();
     });
 
 export default createImageRenderSystem;

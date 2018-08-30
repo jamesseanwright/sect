@@ -16,7 +16,7 @@ const createVan = (
     const positionable = new RectPositionable(x, y, width, height);
     const imageRenderable = new ImageRenderable(positionable, 'van');
     const collidable = new LinearCollidable('van', positionable);
-    const moveable = new Moveable(0.04, 0.04, 0.02); // TODO: acceleration
+    const moveable = new Moveable(0, 0, 0.02); // TODO: acceleration
     // TODO: consistent component creation (perhaps createPositionable(), createKeyboardInteractable()?)
     const keyboardMoveable = new KeyboardMoveable(positionable, moveable, KeyboardInteractable.create());
 

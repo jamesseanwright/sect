@@ -12,18 +12,33 @@ class Canvas2DRenderer {
     ) {
         this._context = context;
         this._camera = camera;
+
+        /* This is a bit of a hack so that
+         * subsequent translations can occur
+         * around the origin of the camera */
+        context.translate(...camera.getOrigin());
     }
 
     public translate(x: number, y: number) {
         /* We have to track translation changes ourselves for
          * accurate camera projections. This is not ideal but
-         * can at least be refactored at a later date. */
-        this._translateX += x;
-        this._translateY += y;
+         * can at least be refactored at a later date.
+         * TODO: perhaps camera should hold this offset? */
+        // this._translateX += x;
+        // this._translateY += y;
+        this._context.translate(...this._camera.projectPoint(x, y));
     }
 
     public rotate(angle: number) {
         this._context.rotate(angle);
+    }
+
+    public save() {
+        this._context.save();
+    }
+
+    public restore() {
+        this._context.restore();
     }
 
     public resetTransform() {

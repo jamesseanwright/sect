@@ -10,6 +10,8 @@ interface Camera {
         offsetX?: number,
         offsetY?: number,
     ): [number, number, number, number];
+
+    getOrigin(): [number, number];
 }
 
 export default Camera;
